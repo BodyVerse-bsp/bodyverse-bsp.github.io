@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Body Functionality Reflection — Intervensi Digital Remaja</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%226%22 fill=%22%230d9488%22/><text x=%2250%25%22 y=%2255%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2214%22 fill=%22white%22>B</text></svg>">
+    <title>BodyVerse — Your Body-Your Story-Your Power</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23ffffff%22/><path d=%22M82 4L84.8 12.2L93 15L84.8 17.8L82 26L79.2 17.8L71 15L79.2 12.2Z%22 fill=%22%23008767%22/><circle cx=%2244%22 cy=%2227%22 r=%229.5%22 fill=%22%23008767%22/><path d=%22M12 38C26 35 36 41 45 41C54 41 64 27 73 19C67 32 58 45 53 58L35 63C32 50 24 42 12 38Z%22 fill=%22%23008767%22/><path d=%22M36 74L48 70C42 82 34 90 24 96C27 87 32 80 36 74Z%22 fill=%22%23008767%22/><path d=%22M26 56C10 66 12 80 32 76C52 72 78 54 74 40C71 33 60 34 56 36C64 36 67 40 65 45C61 55 42 66 28 67C18 68 18 61 26 56Z%22 fill=%22%235ac8a5%22/></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -18,145 +18,494 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- KUMPULAN ANIMASI KUSTOM BODYVERSE -->
+    <style>
+        /* 1. Transisi Halaman Mengalir (Smooth Slide & Fade) */
+        @keyframes pageSlideUp {
+            0% { opacity: 0; transform: translateY(16px) scale(0.99); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .page-transition {
+            animation: pageSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* 2. Animasi Logo & Ilustrasi (Floating, Twinkle & Bounce) */
+        @keyframes floatVitality {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3.5px); }
+        }
+        @keyframes twinkleStar {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.22) rotate(12deg); opacity: 0.75; }
+        }
+        @keyframes ballBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .logo-float {
+            animation: floatVitality 3.6s ease-in-out infinite;
+        }
+        .star-twinkle {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: twinkleStar 2.2s ease-in-out infinite;
+        }
+        .ball-bounce {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: ballBounce 1.8s ease-in-out infinite;
+        }
+
+        /* 3. Animasi Breathing Circle (Tarik & Hembuskan Napas) */
+        @keyframes breathePulse {
+            0%, 100% { transform: scale(0.82); box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.35); }
+            50% { transform: scale(1.18); box-shadow: 0 0 40px 14px rgba(20, 184, 166, 0.20); }
+        }
+        .breathing-circle {
+            animation: breathePulse 6s ease-in-out infinite;
+        }
+
+        /* 4. Animasi Detak Jantung ECG (Aktivitas 2) */
+        @keyframes ecgWave {
+            0% { stroke-dashoffset: 240; }
+            100% { stroke-dashoffset: 0; }
+        }
+        .ecg-line {
+            stroke-dasharray: 240;
+            animation: ecgWave 2.8s linear infinite;
+        }
+
+        /* 5. Animasi Scanner Filter Sosmed (Aktivitas 3) */
+        @keyframes scanFilter {
+            0%, 100% { transform: translateY(-10px); opacity: 0.4; }
+            50% { transform: translateY(12px); opacity: 1; }
+        }
+        .scan-bar {
+            animation: scanFilter 2.5s ease-in-out infinite;
+        }
+
+        /* 6. Animasi Hati & Musik Melayang */
+        @keyframes floatHeart {
+            0% { transform: translateY(4px) scale(0.9); opacity: 0.3; }
+            50% { transform: translateY(-6px) scale(1.08); opacity: 1; }
+            100% { transform: translateY(4px) scale(0.9); opacity: 0.3; }
+        }
+        .heart-float-1 { animation: floatHeart 3s ease-in-out infinite; }
+        .heart-float-2 { animation: floatHeart 3s ease-in-out 1.5s infinite; }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between font-sans selection:bg-teal-500 selection:text-white">
 
-    <!-- HEADER / NAVBAR -->
-    <header class="w-full bg-white border-b border-slate-100 py-3.5 px-5 sticky top-0 z-50 shadow-sm">
+    <!-- HEADER / NAVBAR DENGAN LOGO BODYVERSE ANIMASI -->
+    <header class="w-full bg-white/95 backdrop-blur-md border-b border-slate-100 py-3.5 px-5 sticky top-0 z-40 shadow-sm print:hidden">
         <div class="max-w-2xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2.5">
-                <div class="w-9 h-9 bg-teal-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md shadow-teal-500/25">
-                    B
-                </div>
+                <svg class="w-11 h-11 flex-shrink-0 logo-float" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="star-twinkle" d="M82 4 L84.8 12.2 L93 15 L84.8 17.8 L82 26 L79.2 17.8 L71 15 L79.2 12.2 Z" fill="#008767"/>
+                    <circle cx="44" cy="27" r="9.5" fill="#008767"/>
+                    <path d="M12 38 C26 35, 36 41, 45 41 C54 41, 64 27, 73 19 C67 32, 58 45, 53 58 L35 63 C32 50, 24 42, 12 38 Z" fill="#008767"/>
+                    <path d="M36 74 L48 70 C42 82, 34 90, 24 96 C27 87, 32 80, 36 74 Z" fill="#008767"/>
+                    <path d="M26 56 C10 66, 12 80, 32 76 C52 72, 78 54, 74 40 C71 33, 60 34, 56 36 C64 36, 67 40, 65 45 C61 55, 42 66 28 67 C18 68, 18 61, 26 56 Z" fill="#5ac8a5"/>
+                </svg>
                 <div>
-                    <span class="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 block leading-none">
-                        Body Functionality <span class="text-teal-600">Reflection</span>
+                    <span class="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 block leading-none">
+                        Body<span class="text-[#008f68]">Verse</span>
                     </span>
-                    <span class="text-[11px] text-slate-400 font-medium">Media Intervensi Psikososial Remaja</span>
+                    <span class="text-[11px] text-slate-500 font-medium block mt-0.5">Your Body-Your Story-Your Power</span>
                 </div>
             </div>
-            <span id="badge-step" class="text-xs font-bold px-3 py-1.5 bg-teal-50 text-teal-700 rounded-full border border-teal-100">
-                Halaman 1 / 9
-            </span>
+
+            <div class="flex items-center space-x-2">
+                <span id="badge-step" class="text-xs font-bold px-3 py-1.5 bg-teal-50 text-teal-700 rounded-full border border-teal-100">
+                    Akses Terkunci
+                </span>
+                <button type="button" id="btn-logout" onclick="logoutAkun()" class="hidden text-xs font-bold px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-full border border-rose-200 transition-all">
+                    Keluar
+                </button>
+            </div>
         </div>
-        <!-- Progress Bar Global -->
-        <div class="max-w-2xl mx-auto mt-3 w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
-            <div id="global-progress" class="h-full bg-teal-600 transition-all duration-300" style="width: 11%;"></div>
-        </div>
+        <div id="global-progress" class="hidden"></div>
     </header>
+
+    <!-- POP-UP 1: INFORMASI PENELITIAN & PERSETUJUAN (INFORMED CONSENT) -->
+    <div id="modal-consent" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-100 space-y-4 page-transition">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div class="flex items-center space-x-2">
+                    <span class="text-lg">📄</span>
+                    <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Informasi Penelitian & Persetujuan</h3>
+                </div>
+                <button type="button" onclick="tutupModalConsent()" class="text-slate-400 hover:text-slate-600 text-xl font-bold px-2">&times;</button>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-xs text-slate-600 space-y-2.5 max-h-60 overflow-y-auto leading-relaxed">
+                <p><b>1. Peneliti & Institusi:</b> Penelitian ini dilakukan oleh <b>Muhammad Yoga Dwi Nugraha</b> (Mahasiswa Program Studi Keperawatan, Poltekkes Kemenkes Jakarta III).</p>
+                <p><b>2. Tujuan Penelitian:</b> Mengetahui efektivitas intervensi <i>Refleksi Fungsi Tubuh (Body Functionality Reflection)</i> terhadap peningkatan citra tubuh positif pada remaja SMA pengguna media sosial.</p>
+                <p><b>3. Rangkaian Kegiatan:</b> Kegiatan dibagi menjadi 2 sesi: <b>Sesi 1</b> (Pengisian kuesioner awal ~5 menit) dan <b>Sesi 2</b> (5 aktivitas menulis refleksi fungsi tubuh & evaluasi akhir ~40 menit).</p>
+                <p><b>4. Hak Responden & Persetujuan Orang Tua/Wali:</b> Keikutsertaan ini bersifat sukarela tanpa paksaan serta telah mendapatkan izin/persetujuan dari orang tua atau wali murid. Kamu berhak bertanya atau mengundurkan diri kapan saja tanpa konsekuensi apa pun.</p>
+                <p><b>5. Kerahasiaan Data:</b> Nama dan akun yang kamu gunakan hanya dipakai oleh sistem untuk mencocokkan data <b>Sesi 1</b> dan <b>Sesi 2</b>. Pada laporan hasil penelitian, identitas akan diubah menjadi kode anonim dan dijaga kerahasiaannya.</p>
+                <p><b>6. Kontak Peneliti:</b> Muhammad Yoga Dwi Nugraha — Poltekkes Kemenkes Jakarta III.</p>
+            </div>
+
+            <label class="flex items-start space-x-3 p-3.5 rounded-xl bg-teal-50/70 border border-teal-200 cursor-pointer">
+                <input type="checkbox" id="consent-check" class="mt-0.5 w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                <span class="text-xs font-semibold text-teal-950 leading-snug">
+                    Saya telah membaca penjelasan di atas, telah mendapatkan persetujuan dari orang tua/wali murid, dan setuju berpartisipasi secara sukarela sebagai responden.
+                </span>
+            </label>
+
+            <div class="flex space-x-3 pt-1">
+                <button type="button" onclick="tutupModalConsent()" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 rounded-xl text-xs sm:text-sm">
+                    Batal
+                </button>
+                <button type="button" onclick="konfirmasiConsentDanMulai()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-teal-600/25 text-xs sm:text-sm">
+                    Saya Setuju & Mulai Sesi 1 &rarr;
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POP-UP 2: ANIMASI MINDFUL BREATHING SEBELUM INTERVENSI SESI 2 -->
+    <div id="modal-breathing" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/75 backdrop-blur-md p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-7 shadow-2xl border border-teal-100 text-center space-y-6 page-transition">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-bold border border-teal-200">
+                🌬️ Jeda Kesadaran Tubuh (Mindful Pause)
+            </span>
+
+            <div class="space-y-1">
+                <h3 class="text-xl font-extrabold text-slate-900">Rasakan Fungsi Tubuhmu Saat Ini</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Sebelum mulai menulis refleksi, ikuti irama lingkaran di bawah ini. Sadari paru-paru dan jantungmu yang sedang bekerja otomatis untukmu.
+                </p>
+            </div>
+
+            <div class="py-6 flex justify-center items-center">
+                <div class="w-36 h-36 rounded-full bg-gradient-to-tr from-teal-500 to-emerald-400 flex flex-col items-center justify-center text-white shadow-lg breathing-circle">
+                    <span id="breath-instruction" class="font-extrabold text-sm tracking-wide">Tarik Napas...</span>
+                    <span id="breath-timer" class="text-[11px] text-teal-50 mt-1 font-medium">Rasakan energimu</span>
+                </div>
+            </div>
+
+            <button type="button" onclick="lanjutKeAktivitas1SetelahNapas()" class="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-teal-600/25 transition-all text-xs sm:text-sm">
+                Saya Siap Memulai Refleksi Sesi 2 &rarr;
+            </button>
+        </div>
+    </div>
 
     <!-- MAIN CONTAINER -->
     <main class="flex-grow flex items-start justify-center px-4 py-6 sm:py-10">
         <div class="max-w-xl w-full bg-white rounded-3xl shadow-xl shadow-slate-200/60 p-6 sm:p-8 border border-slate-100">
 
-            <!-- ================= HALAMAN 1: BERANDA ================= -->
-            <section id="page-1" class="space-y-5">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200/60">
-                    🌿 Satu Sesi Refleksi Digital (~45 Menit)
-                </div>
-
-                <div>
-                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug mb-2">
-                        BODY FUNCTIONALITY REFLECTION
+            <!-- ================= HALAMAN 0: GERBANG LOGIN & DAFTAR AKUN ================= -->
+            <section id="view-login" class="space-y-6 page-transition">
+                <div class="text-center space-y-2">
+                    <div class="w-16 h-16 mx-auto bg-teal-50/80 rounded-2xl flex items-center justify-center border border-teal-100 shadow-sm mb-2">
+                        <svg class="w-12 h-12 logo-float" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="star-twinkle" d="M82 4 L84.8 12.2 L93 15 L84.8 17.8 L82 26 L79.2 17.8 L71 15 L79.2 12.2 Z" fill="#008767"/>
+                            <circle cx="44" cy="27" r="9.5" fill="#008767"/>
+                            <path d="M12 38 C26 35, 36 41, 45 41 C54 41, 64 27, 73 19 C67 32, 58 45, 53 58 L35 63 C32 50, 24 42, 12 38 Z" fill="#008767"/>
+                            <path d="M36 74 L48 70 C42 82, 34 90, 24 96 C27 87, 32 80, 36 74 Z" fill="#008767"/>
+                            <path d="M26 56 C10 66, 12 80, 32 76 C52 72, 78 54, 74 40 C71 33, 60 34, 56 36 C64 36, 67 40, 65 45 C61 55, 42 66 28 67 C18 68, 18 61, 26 56 Z" fill="#5ac8a5"/>
+                        </svg>
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200/60">
+                        🔒 Akses Akun Responden
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                        Selamat Datang di Body<span class="text-[#008f68]">Verse</span>
                     </h1>
-                    <p class="text-teal-600 font-bold text-base sm:text-lg">
-                        Kenali, Hargai, dan Syukuri Fungsi Tubuhmu
+                    <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
+                        Silakan masuk menggunakan akunmu. Jika belum memiliki akun untuk mengikuti <b>Sesi 1</b>, pilih menu <b>Daftar Akun Baru</b> terlebih dahulu.
                     </p>
                 </div>
 
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100 text-slate-700 text-sm italic leading-relaxed">
-                    "Tubuh bukan hanya tentang bagaimana penampilan kita, tetapi juga tentang berbagai hal yang dapat kita lakukan dengannya."
+                <div class="grid grid-cols-2 gap-2 p-1.5 bg-slate-100 rounded-2xl">
+                    <button type="button" id="tab-auth-login" onclick="switchAuthTab('login')" class="py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all bg-white text-teal-700 shadow-sm">
+                        🔑 Masuk (Login)
+                    </button>
+                    <button type="button" id="tab-auth-register" onclick="switchAuthTab('register')" class="py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all text-slate-500 hover:text-slate-800">
+                        📝 Daftar Akun Baru
+                    </button>
                 </div>
 
-                <div class="space-y-2 text-sm text-slate-600 leading-relaxed">
-                    <p class="font-bold text-slate-800">Selamat datang!</p>
-                    <p>
-                        Melalui kegiatan ini, kamu akan diajak mengenali berbagai kemampuan tubuh, memahami pentingnya fungsi tubuh, dan membangun penghargaan terhadap tubuh.
-                    </p>
+                <!-- FORM 1: MASUK (LOGIN) -->
+                <div id="form-login-box" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                            Username <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="login-username" placeholder="Masukkan username kamu..." 
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 bg-slate-50/50 font-semibold transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                            Password <span class="text-red-500">*</span>
+                        </label>
+                        <input type="password" id="login-password" placeholder="Masukkan password (min. 8 karakter)..." 
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 bg-slate-50/50 transition-all">
+                    </div>
+
+                    <button type="button" id="btn-submit-login" onclick="prosesLogin()" class="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-teal-600/25 transition-all text-sm">
+                        Masuk ke BodyVerse &rarr;
+                    </button>
                 </div>
 
-                <div class="bg-teal-50/70 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-900 space-y-2">
-                    <span class="font-bold block text-teal-950">📋 Petunjuk Kegiatan:</span>
-                    <ul class="list-disc pl-5 space-y-1">
-                        <li>Ikuti setiap tahapan secara berurutan.</li>
-                        <li>Bacalah instruksi dengan saksama sebelum menjawab.</li>
-                        <li>Tidak ada jawaban benar atau salah.</li>
-                        <li>Jawablah jujur berdasarkan pengalamanmu sendiri.</li>
-                    </ul>
-                </div>
-
-                <div class="text-[11px] text-slate-400 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                    <b>Landasan Ilmiah:</b> Konsep <i>Body Functionality</i> (Alleva & Tylka, 2021), <i>Expand Your Horizon</i> (Alleva et al., 2015), dan <i>Project Body Neutrality</i> (Smith et al., 2023).
-                </div>
-
-                <button type="button" onclick="goToPage(2)" class="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-teal-600/25 transition-all text-sm flex items-center justify-center space-x-2">
-                    <span>Lanjut ke Informasi & Persetujuan</span>
-                    <span>&rarr;</span>
-                </button>
-            </section>
-
-            <!-- ================= HALAMAN 2: INFORMASI PENELITIAN, PERSETUJUAN & KODE RESPONDEN ================= -->
-            <section id="page-2" class="hidden space-y-5">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200/60">
-                    📄 Halaman 02 &bull; Penjelasan Sebelum Persetujuan (PSP)
-                </div>
-
-                <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">
-                    Informasi Penelitian & Identitas Responden
-                </h2>
-
-                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-xs sm:text-sm text-slate-600 space-y-2.5 max-h-64 overflow-y-auto leading-relaxed">
-                    <p><b>1. Peneliti & Institusi:</b> Penelitian ini dilakukan oleh <b>Muhammad Yoga Dwi Nugraha</b> (Mahasiswa Program Studi Keperawatan, Poltekkes Kemenkes Jakarta III).</p>
-                    <p><b>2. Tujuan Penelitian:</b> Mengetahui efektivitas intervensi <i>Refleksi Fungsi Tubuh (Body Functionality Reflection)</i> terhadap citra tubuh positif pada remaja SMA pengguna media sosial.</p>
-                    <p><b>3. Aktivitas & Durasi:</b> Kamu akan mengisi kuesioner awal (Pretest), mengikuti 5 aktivitas menulis refleksi fungsi tubuh secara bertahap, dan mengisi kuesioner akhir (Posttest). Perkiraan waktu pelaksanaan sekitar <b>45 menit</b>.</p>
-                    <p><b>4. Hak Responden:</b> Keikutsertaan ini bersifat sukarela. Kamu berhak bertanya apabila ada hal yang kurang jelas atau mengundurkan diri kapan saja tanpa konsekuensi apa pun.</p>
-                    <p><b>5. Kerahasiaan Data:</b> Identitasmu dicatat menggunakan <b>Kode Responden</b> (bukan nama lengkap). Seluruh catatan refleksi dan jawaban disimpan secara rahasia di basis data peneliti dan hanya digunakan untuk kepentingan ilmiah.</p>
-                    <p><b>6. Kontak Peneliti:</b> Muhammad Yoga Dwi Nugraha (Poltekkes Kemenkes Jakarta III — Detail kontak/email peneliti dapat dihubungi melalui tim peneliti di sekolah).</p>
-                </div>
-
-                <div class="space-y-4 pt-2">
-                    <label class="flex items-start space-x-3 p-3.5 rounded-xl bg-teal-50/60 border border-teal-200 cursor-pointer">
-                        <input type="checkbox" id="consent-check" class="mt-1 w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
-                        <span class="text-xs sm:text-sm font-semibold text-teal-950 leading-snug">
-                            Saya telah membaca informasi penelitian di atas, memahami kegiatan yang akan dilakukan, dan setuju berpartisipasi secara sukarela sebagai responden.
-                        </span>
-                    </label>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <!-- FORM 2: DAFTAR AKUN BARU (PASSWORD MIN 8 KARAKTER) -->
+                <div id="form-register-box" class="hidden space-y-3.5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
-                                Kode Responden <span class="text-red-500">*</span>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                                Buat Username <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" id="kode-responden" placeholder="Cth: R-001 / A12" 
-                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 bg-slate-50/50">
-                            <span class="text-[11px] text-slate-400">Gunakan kode/inisial, bukan nama lengkap.</span>
+                            <input type="text" id="reg-username" placeholder="Cth: budi12" 
+                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50 font-semibold">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
-                                Usia (Tahun) <span class="text-red-500">*</span>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                                Buat Password <span class="text-red-500">*</span>
                             </label>
-                            <input type="number" id="usia-responden" placeholder="Cth: 16" min="13" max="20"
-                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 bg-slate-50/50">
+                            <input type="password" id="reg-password" placeholder="Minimal 8 karakter" 
+                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                            <span class="text-[10px] text-slate-400 block mt-0.5">Wajib minimal 8 karakter (huruf/angka).</span>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                            Nama Lengkap Sesuai Absen <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="reg-nama" placeholder="Cth: Budi Santoso" 
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                                Usia (Tahun) <span class="text-red-500">*</span>
+                            </label>
+                            <input type="number" id="reg-usia" placeholder="Cth: 16" min="13" max="20"
+                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
                                 Jenis Kelamin <span class="text-red-500">*</span>
                             </label>
-                            <select id="jk-responden" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 bg-slate-50/50">
+                            <select id="reg-jk" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
                                 <option value="">-- Pilih --</option>
                                 <option value="Perempuan">Perempuan</option>
                                 <option value="Laki-laki">Laki-laki</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                            Durasi Penggunaan Media Sosial / Hari <span class="text-red-500">*</span>
+                        </label>
+                        <select id="reg-durasi" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                            <option value="">-- Pilih Durasi Harian --</option>
+                            <option value="< 1 Jam per hari">&lt; 1 Jam per hari</option>
+                            <option value="1 - 3 Jam per hari">1 – 3 Jam per hari</option>
+                            <option value="3 - 5 Jam per hari">3 – 5 Jam per hari</option>
+                            <option value="> 5 Jam per hari">&gt; 5 Jam per hari</option>
+                        </select>
+                    </div>
+
+                    <button type="button" id="btn-submit-register" onclick="prosesRegister()" class="w-full bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition-all text-sm">
+                        Daftar Akun & Masuk &rarr;
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= HALAMAN BERANDA UTAMA (MUNCUL SETELAH LOGIN) ================= -->
+            <section id="view-home" class="hidden space-y-5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200/60">
+                        👋 Halo, <span id="greeting-nama" class="font-extrabold">Responden</span>
+                    </div>
+                    <button type="button" onclick="bukaModalInfoSaja()" class="text-xs font-bold text-teal-600 hover:text-teal-800 underline flex items-center gap-1">
+                        📄 Baca Informasi Penelitian
+                    </button>
+                </div>
+                
+                    <!-- JUDUL + SUBJUDUL + ILUSTRASI SVG 4 REMAJA -->
+                <div class="space-y-3.5">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug mb-1">
+                            BODY FUNCTIONALITY REFLECTION
+                        </h1>
+                        <p class="text-teal-600 font-bold text-sm sm:text-base">
+                            Kenali, Hargai, dan Syukuri Fungsi Tubuhmu
+                        </p>
+                    </div>
+
+                    <!-- Ilustrasi Fungsi Tubuh (4 Remaja: Menulis, Menari, Musik, Bermain Bola) -->
+                    <div class="w-full overflow-hidden rounded-2xl border border-teal-100 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 200" class="w-full h-auto block" role="img" aria-labelledby="t d">
+                            <title id="t">Ilustrasi fungsi tubuh</title>
+                            <desc id="d">Empat remaja dengan bentuk tubuh berbeda menulis, menari, mendengarkan musik, dan bermain bola.</desc>
+                            <defs>
+                                <linearGradient id="bgm" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#e6f7f1"/>
+                                    <stop offset="1" stop-color="#d4f0e8"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Latar -->
+                            <rect width="360" height="200" rx="18" fill="url(#bgm)"/>
+                            <circle cx="28" cy="28" r="26" fill="#ffffff" opacity=".45"/>
+                            <circle cx="335" cy="24" r="34" fill="#ffffff" opacity=".4"/>
+                            <circle cx="180" cy="16" r="14" fill="#ffffff" opacity=".35"/>
+                            <path d="M0 170h360v12a18 18 0 0 1-18 18H18A18 18 0 0 1 0 182z" fill="#bfe8d9"/>
+                            <g fill="#f4b942">
+                                <path class="star-twinkle" d="M118 22l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z"/>
+                                <path class="star-twinkle" d="M262 14l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/>
+                            </g>
+
+                            <!-- 1. Menulis (Berhijab) -->
+                            <g transform="translate(-52 4) scale(.75)">
+                                <rect x="118" y="178" width="13" height="44" rx="6" fill="#2f4858"/>
+                                <rect x="140" y="178" width="13" height="44" rx="6" fill="#2f4858"/>
+                                <path d="M104 128q32-12 64 0l8 62q-40 10-80 0z" fill="#34b58f"/>
+                                <circle cx="136" cy="98" r="30" fill="#0f8f6f"/>
+                                <path d="M110 112q26 34 52 0l8 22q-34 18-68 0z" fill="#0f8f6f"/>
+                                <circle cx="136" cy="100" r="21" fill="#efc29c"/>
+                                <circle cx="129" cy="99" r="2" fill="#3b2a20"/>
+                                <circle cx="144" cy="99" r="2" fill="#3b2a20"/>
+                                <path d="M130 108q6 5 12 0" stroke="#3b2a20" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                <rect x="92" y="150" width="46" height="32" rx="4" fill="#ffffff" stroke="#0f8f6f" stroke-width="2.5" transform="rotate(-8 115 166)"/>
+                                <path d="M100 160h28M100 168h22" stroke="#9ad3bf" stroke-width="2.5" stroke-linecap="round" transform="rotate(-8 115 166)"/>
+                                <path d="M168 140l-30 20" stroke="#efc29c" stroke-width="10" stroke-linecap="round"/>
+                                <path d="M140 160l-12 12" stroke="#f4b942" stroke-width="5" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- 2. Menari -->
+                            <g transform="translate(-101 4) scale(.75)">
+                                <path d="M290 178l-24 44" stroke="#2f4858" stroke-width="17" stroke-linecap="round"/>
+                                <path d="M318 178l30 30" stroke="#2f4858" stroke-width="17" stroke-linecap="round"/>
+                                <rect x="276" y="118" width="64" height="68" rx="26" fill="#f4b942"/>
+                                <path d="M284 130l-34-36" stroke="#c98b5e" stroke-width="11" stroke-linecap="round"/>
+                                <path d="M332 130l34-42" stroke="#c98b5e" stroke-width="11" stroke-linecap="round"/>
+                                <circle cx="308" cy="94" r="22" fill="#c98b5e"/>
+                                <path d="M286 90q4-24 24-24t22 24q-14-10-46 0z" fill="#2b1d16"/>
+                                <circle cx="301" cy="96" r="2" fill="#3b2a20"/>
+                                <circle cx="316" cy="96" r="2" fill="#3b2a20"/>
+                                <path d="M300 104q8 7 16 0" stroke="#3b2a20" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                                <path class="heart-float-1" d="M372 62c-6-10-20-2-12 8l12 12 12-12c8-10-6-18-12-8z" fill="#f08a7e"/>
+                            </g>
+
+                            <!-- 3. Musik -->
+                            <g transform="translate(-142.5 4) scale(.75)">
+                                <path d="M458 84q0-32 28-32t28 32v52q-28 8-56 0z" fill="#2b1d16"/>
+                                <rect x="474" y="176" width="11" height="46" rx="5" fill="#3b5b7a"/>
+                                <rect x="492" y="176" width="11" height="46" rx="5" fill="#3b5b7a"/>
+                                <path d="M466 130q20-8 40 0l6 52h-52z" fill="#f08a7e"/>
+                                <path d="M468 136l-14 36" stroke="#f1c9a5" stroke-width="8" stroke-linecap="round"/>
+                                <path d="M506 136l14 -24" stroke="#f1c9a5" stroke-width="8" stroke-linecap="round"/>
+                                <circle cx="486" cy="92" r="19" fill="#f1c9a5"/>
+                                <path d="M467 88q4-22 19-22t19 22q-18-8-38 0z" fill="#2b1d16"/>
+                                <circle cx="480" cy="95" r="2" fill="#3b2a20"/>
+                                <circle cx="493" cy="95" r="2" fill="#3b2a20"/>
+                                <path d="M481 102q5 5 10 0" stroke="#3b2a20" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                <path d="M465 90q2-30 21-30t21 30" stroke="#0f8f6f" stroke-width="4" fill="none" stroke-linecap="round"/>
+                                <rect x="460" y="86" width="9" height="16" rx="4" fill="#0f8f6f"/>
+                                <rect x="503" y="86" width="9" height="16" rx="4" fill="#0f8f6f"/>
+                                <g fill="#0f8f6f" font-family="Arial, sans-serif" font-weight="700">
+                                    <text class="heart-float-1" x="526" y="78" font-size="28">♪</text>
+                                    <text class="heart-float-2" x="430" y="62" font-size="22" opacity=".7">♫</text>
+                                </g>
+                            </g>
+
+                            <!-- 4. Bermain Bola -->
+                            <g transform="translate(-206 4) scale(.75)">
+                                <rect x="646" y="176" width="14" height="46" rx="7" fill="#2f4858"/>
+                                <path d="M674 178l30 28" stroke="#2f4858" stroke-width="14" stroke-linecap="round"/>
+                                <rect x="636" y="118" width="58" height="64" rx="24" fill="#5aa9e6"/>
+                                <path d="M642 130l-26-12" stroke="#a86b46" stroke-width="10" stroke-linecap="round"/>
+                                <path d="M688 130l24-22" stroke="#a86b46" stroke-width="10" stroke-linecap="round"/>
+                                <circle cx="665" cy="94" r="21" fill="#a86b46"/>
+                                <g fill="#241812">
+                                    <circle cx="650" cy="80" r="8"/><circle cx="662" cy="74" r="9"/>
+                                    <circle cx="675" cy="76" r="9"/><circle cx="684" cy="86" r="7"/>
+                                </g>
+                                <circle cx="658" cy="96" r="2" fill="#241812"/>
+                                <circle cx="672" cy="96" r="2" fill="#241812"/>
+                                <path d="M658 103q7 6 14 0" stroke="#241812" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                                <g class="ball-bounce">
+                                    <circle cx="728" cy="208" r="13" fill="#ffffff" stroke="#2f4858" stroke-width="2.5"/>
+                                    <path d="M728 199l7 5-3 8h-8l-3-8z" fill="#2f4858"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 text-slate-700 text-xs sm:text-sm italic leading-relaxed">
+                    "Tubuh bukan hanya tentang bagaimana penampilan kita, tetapi juga tentang berbagai hal yang dapat kita lakukan dengannya."
+                </div>
+
+                <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-3.5 text-xs text-teal-900 space-y-1">
+                    <span class="font-bold block text-teal-950">📋 Petunjuk Kegiatan:</span>
+                    <p class="leading-relaxed">Pilih sesi pelaksanaan di bawah ini (<b>Sesi 1</b> atau <b>Sesi 2</b>), bacalah setiap instruksi dengan saksama, dan jawablah dengan jujur sesuai pengalamanmu sendiri (tidak ada jawaban benar atau salah).</p>
+                </div>
+
+                <!-- TAB PILIHAN SESI: SESI 1 VS SESI 2 -->
+                <div class="pt-1">
+                    <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2 text-center">
+                        Pilih Sesi Kegiatan Kamu:
+                    </label>
+                    <div class="grid grid-cols-2 gap-2.5 p-1.5 bg-slate-100 rounded-2xl">
+                        <button type="button" id="tab-sesi-1" onclick="pilihModeSesi(1)" class="py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all bg-white text-teal-700 shadow-sm">
+                            📌 Sesi 1: Kuesioner Awal
+                        </button>
+                        <button type="button" id="tab-sesi-2" onclick="pilihModeSesi(2)" class="py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all text-slate-500 hover:text-slate-800">
+                            🌿 Sesi 2: Intervensi
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FORM INPUT IDENTITAS DINAMIS -->
+                <div class="space-y-3.5 pt-1">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                            Nama Lengkap Responden <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="nama-responden" placeholder="Ketik nama lengkapmu" 
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 bg-slate-50/50 font-semibold">
+                        <span id="helper-nama" class="text-[11px] text-slate-400 block mt-1">
+                            Nama otomatis terisi dari akunmu untuk mencocokkan Sesi 1 dan Sesi 2.
+                        </span>
+                    </div>
+
+                    <div id="fields-sesi-1" class="space-y-3.5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                                    Usia (Tahun) <span class="text-red-500">*</span>
+                                </label>
+                                <input type="number" id="usia-responden" placeholder="Cth: 16" min="13" max="20"
+                                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                                    Jenis Kelamin <span class="text-red-500">*</span>
+                                </label>
+                                <select id="jk-responden" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                                    <option value="">-- Pilih --</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
-                                Durasi Media Sosial / Hari <span class="text-red-500">*</span>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                                Durasi Penggunaan Media Sosial / Hari <span class="text-red-500">*</span>
                             </label>
-                            <select id="durasi-sosmed" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 bg-slate-50/50">
-                                <option value="">-- Pilih Durasi --</option>
+                            <select id="durasi-sosmed" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                                <option value="">-- Pilih Rata-rata Durasi Harian --</option>
                                 <option value="< 1 Jam per hari">&lt; 1 Jam per hari</option>
                                 <option value="1 - 3 Jam per hari">1 – 3 Jam per hari</option>
                                 <option value="3 - 5 Jam per hari">3 – 5 Jam per hari</option>
@@ -166,21 +515,19 @@
                     </div>
                 </div>
 
-                <div class="flex space-x-3 pt-2">
-                    <button type="button" onclick="goToPage(1)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
-                        Kembali
-                    </button>
-                    <button type="button" onclick="validatePage2()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
-                        Lanjut ke Pretest BAS-2 &rarr;
+                <!-- TOMBOL AKSI UTAMA BERANDA -->
+                <div class="pt-2">
+                    <button type="button" id="btn-home-action" onclick="handleTombolUtamaBeranda()" class="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-teal-600/25 transition-all text-sm">
+                        Lanjut ke Kuesioner Awal (Sesi 1) &rarr;
                     </button>
                 </div>
             </section>
 
-            <!-- ================= HALAMAN 3: PRETEST BAS-2 ================= -->
-            <section id="page-3" class="hidden space-y-5">
+            <!-- ================= SESI 1: KUESIONER AWAL (PRETEST) ================= -->
+            <section id="view-pretest" class="hidden space-y-5">
                 <div class="flex justify-between items-center">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-semibold border border-amber-200">
-                        📊 Halaman 03 &bull; Instrumen Pengukuran Awal (Pretest)
+                        📊 Sesi 1 &bull; Kuesioner Awal
                     </span>
                     <span class="text-xs text-slate-400 font-semibold">~5 Menit</span>
                 </div>
@@ -190,38 +537,73 @@
                         Kenali Perasaanmu terhadap Tubuhmu
                     </h2>
                     <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                        Silakan baca setiap pernyataan di bawah ini dan pilih jawaban yang paling sesuai dengan keadaan atau pengalaman dirimu saat ini. <b>Tidak ada jawaban benar atau salah.</b>
+                        Silakan baca setiap pernyataan dan pilih jawaban yang paling sesuai dengan keadaan atau pengalaman dirimu saat ini. <b>Tidak ada jawaban benar atau salah.</b>
                     </p>
                 </div>
 
                 <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-[11px] sm:text-xs text-slate-500">
-                    <b>Keterangan Pilihan:</b> 1 = Tidak Pernah &bull; 2 = Jarang &bull; 3 = Kadang-kadang &bull; 4 = Sering &bull; 5 = Selalu
+                    <b>Skala Jawaban:</b> 1 = Tidak Pernah &bull; 2 = Jarang &bull; 3 = Kadang-kadang &bull; 4 = Sering &bull; 5 = Selalu
                 </div>
 
                 <div id="pretest-container" class="space-y-4"></div>
 
                 <div class="flex space-x-3 pt-2">
-                    <button type="button" onclick="goToPage(2)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                    <button type="button" onclick="showView('view-home', 'Beranda Utama', 15)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3.5 px-4 rounded-xl text-sm">
                         Kembali
                     </button>
-                    <button type="button" onclick="validatePretest()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
-                        Mulai Aktivitas Intervensi &rarr;
+                    <button type="button" id="btn-submit-pretest" onclick="submitPretestSesi1()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
+                        Simpan Jawaban Sesi 1 &check;
                     </button>
                 </div>
             </section>
 
-            <!-- ================= HALAMAN 4: AKTIVITAS 1 (MENGENALI FUNGSI TUBUH) ================= -->
-            <section id="page-4" class="hidden space-y-5">
+            <!-- ================= LAYAR SELESAI SESI 1 ================= -->
+            <section id="view-pretest-done" class="hidden text-center py-6 space-y-5">
+                <div class="w-16 h-16 bg-teal-100 text-teal-700 rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold shadow-sm animate-bounce">
+                    ✅
+                </div>
+                <div class="space-y-2">
+                    <span class="inline-block px-3 py-1 rounded-full bg-teal-50 text-teal-800 text-xs font-bold border border-teal-200">
+                        Sesi 1 Selesai
+                    </span>
+                    <h2 class="text-2xl font-extrabold text-slate-900">
+                        Terima Kasih, Jawaban Sesi 1 Tersimpan!
+                    </h2>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                    Kuesioner awalmu sudah berhasil direkam. Pada sesi berikutnya (<b>Sesi 2: Intervensi</b>), silakan login kembali dengan akunmu dan pilih tab <b>Sesi 2</b>:
+                </p>
+                <div class="bg-slate-50 border-2 border-dashed border-teal-300 rounded-2xl p-4 max-w-xs mx-auto">
+                    <span class="text-[11px] uppercase font-bold text-slate-400 block">Responden Terdaftar:</span>
+                    <span id="done-pretest-nama" class="text-lg font-extrabold text-teal-700">-</span>
+                </div>
+                <div class="pt-3">
+                    <button type="button" onclick="showView('view-home', 'Beranda Utama', 15)" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-6 rounded-xl text-xs sm:text-sm">
+                        &larr; Kembali ke Beranda Utama
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= SESI 2: AKTIVITAS 1 (MENGENALI FUNGSI TUBUH + QUEST PROGRESS) ================= -->
+            <section id="view-act-1" class="hidden space-y-5">
                 <div class="flex justify-between items-center">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200">
-                        🌱 Aktivitas 01 dari 05 &bull; Mengenali Fungsi Tubuh
+                        🌱 Sesi 2 &bull; Aktivitas 01 dari 05
                     </span>
                     <span class="text-xs text-slate-400 font-semibold">~7 Menit</span>
                 </div>
 
-                <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">
-                    Tubuh Saya Membantu Saya
-                </h2>
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-teal-50 border border-teal-100 rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-teal-100 flex items-center justify-center flex-shrink-0 logo-float">
+                        <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <div class="text-xs text-teal-950">
+                        <span class="font-extrabold block text-sm text-slate-900">Tubuh Saya Membantu Saya</span>
+                        <span>Pancaindra, gerak fisik, bernapas, hingga berkomunikasi adalah bukti kehebatan fungsi tubuhmu.</span>
+                    </div>
+                </div>
 
                 <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-950 leading-relaxed space-y-2">
                     <span class="font-bold block">📖 Materi Pengantar:</span>
@@ -231,20 +613,28 @@
                 </div>
 
                 <div class="space-y-2">
-                    <label class="block text-sm font-bold text-slate-800">
-                        ✍️ Tugas Refleksi:
-                    </label>
-                    <p class="text-xs text-slate-600 leading-relaxed">
+                    <div class="flex justify-between items-end">
+                        <label class="block text-sm font-bold text-slate-800">
+                            ✍️ Tugas Refleksi (10 Fungsi Tubuh):
+                        </label>
+                        <span id="act1-counter-badge" class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 transition-all">
+                            0 / 10 Terisi
+                        </span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div id="act1-progress-bar" class="h-full bg-gradient-to-r from-teal-500 to-emerald-500 transition-all duration-300" style="width: 0%;"></div>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed pt-1">
                         Tuliskan <b>minimal 10 aktivitas</b> yang dapat kamu lakukan berkat fungsi tubuhmu.<br>
-                        <span class="text-slate-400 italic">Contoh: membaca buku, mendengarkan musik, berjalan ke sekolah, bernapas, memeluk orang tua, atau berbicara dengan teman.</span>
+                        <span class="text-slate-400 italic">Contoh: membaca buku, mendengarkan musik, berjalan, bernapas, memeluk keluarga, atau berbicara dengan teman.</span>
                     </p>
                 </div>
 
                 <div id="aktivitas1-inputs" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
 
                 <div class="flex space-x-3 pt-2">
-                    <button type="button" onclick="goToPage(3)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
-                        Kembali
+                    <button type="button" onclick="showView('view-home', 'Beranda Utama', 15)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                        Beranda
                     </button>
                     <button type="button" onclick="validateAktivitas1()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
                         Lanjut ke Aktivitas 2 &rarr;
@@ -252,18 +642,26 @@
                 </div>
             </section>
 
-            <!-- ================= HALAMAN 5: AKTIVITAS 2 (MENGHARGAI FUNGSI TUBUH) ================= -->
-            <section id="page-5" class="hidden space-y-5">
+            <!-- ================= SESI 2: AKTIVITAS 2 (MENGHARGAI FUNGSI TUBUH + ANIMASI DETAK VITALITAS) ================= -->
+            <section id="view-act-2" class="hidden space-y-5">
                 <div class="flex justify-between items-center">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200">
-                        🌿 Aktivitas 02 dari 05 &bull; Menghargai Fungsi Tubuh
+                        🌿 Sesi 2 &bull; Aktivitas 02 dari 05
                     </span>
                     <span class="text-xs text-slate-400 font-semibold">~5 Menit</span>
                 </div>
 
-                <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">
-                    Fungsi Tubuh yang Saya Hargai
-                </h2>
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-teal-50 border border-teal-100 rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-14 h-12 rounded-2xl bg-white shadow-sm border border-teal-100 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-10 h-8 text-teal-600" viewBox="0 0 100 50" fill="none">
+                            <path class="ecg-line" d="M2 25 L25 25 L33 10 L42 42 L52 6 L62 38 L70 25 L98 25" stroke="#0d9488" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="text-xs text-teal-950">
+                        <span class="font-extrabold block text-sm text-slate-900">Fungsi Tubuh yang Saya Hargai</span>
+                        <span>Menyadari dan mensyukuri 3 fungsi utama tubuh yang paling bermakna dalam keseharianmu.</span>
+                    </div>
+                </div>
 
                 <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-950 leading-relaxed space-y-2">
                     <span class="font-bold block">📖 Materi Pengantar:</span>
@@ -280,20 +678,20 @@
                         Tuliskan <b>tiga fungsi tubuh</b> yang paling berarti bagimu, lalu jelaskan alasan mengapa kamu menghargai fungsi tersebut.
                     </p>
 
-                    <input type="text" id="act2-fungsi-1" placeholder="Fungsi tubuh 1 (Cth: Kemampuan mata untuk melihat)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600">
-                    <input type="text" id="act2-fungsi-2" placeholder="Fungsi tubuh 2 (Cth: Tangan untuk menulis dan berkarya)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600">
-                    <input type="text" id="act2-fungsi-3" placeholder="Fungsi tubuh 3 (Cth: Paru-paru dan jantung yang bekerja otomatis)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600">
+                    <input type="text" id="act2-fungsi-1" placeholder="⭐ Fungsi tubuh utama 1 (Cth: Mata untuk melihat dan membaca)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+                    <input type="text" id="act2-fungsi-2" placeholder="⭐ Fungsi tubuh utama 2 (Cth: Tangan untuk menulis dan membantu sesama)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+                    <input type="text" id="act2-fungsi-3" placeholder="⭐ Fungsi tubuh utama 3 (Cth: Paru-paru dan jantung yang bekerja tanpa henti)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
 
                     <div class="pt-2">
                         <label class="block text-xs font-bold text-slate-700 mb-1.5">
                             Kenapa ketiga fungsi tersebut sangat bermakna bagimu? <span class="text-red-500">*</span>
                         </label>
-                        <textarea id="act2-alasan" rows="4" placeholder="Ceritakan alasanmu menghargai ketiga fungsi tubuh di atas dalam kehidupan sehari-hari..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600"></textarea>
+                        <textarea id="act2-alasan" rows="4" placeholder="Ceritakan alasanmu menghargai ketiga fungsi tubuh di atas..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all"></textarea>
                     </div>
                 </div>
 
                 <div class="flex space-x-3 pt-2">
-                    <button type="button" onclick="goToPage(4)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                    <button type="button" onclick="showView('view-act-1', 'Sesi 2: Aktivitas 1 / 5', 30)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
                         Kembali
                     </button>
                     <button type="button" onclick="validateAktivitas2()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
@@ -302,18 +700,28 @@
                 </div>
             </section>
 
-            <!-- ================= HALAMAN 6: AKTIVITAS 3 (REFLEKSI MEDIA SOSIAL) ================= -->
-            <section id="page-6" class="hidden space-y-5">
+            <!-- ================= SESI 2: AKTIVITAS 3 (REFLEKSI MEDIA SOSIAL + ANIMASI FILTER LENSA) ================= -->
+            <section id="view-act-3" class="hidden space-y-5">
                 <div class="flex justify-between items-center">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200">
-                        📱 Aktivitas 03 dari 05 &bull; Refleksi Media Sosial
+                        📱 Sesi 2 &bull; Aktivitas 03 dari 05
                     </span>
                     <span class="text-xs text-slate-400 font-semibold">~8 Menit</span>
                 </div>
 
-                <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">
-                    Memahami Media Sosial dan Cara Pandang terhadap Tubuh
-                </h2>
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-teal-50 border border-teal-100 rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-teal-100 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+                        <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <rect x="6" y="3" width="12" height="18" rx="2"/>
+                            <line x1="10" y1="18" x2="14" y2="18"/>
+                        </svg>
+                        <div class="w-9 h-1 bg-teal-500 rounded-full absolute scan-bar"></div>
+                    </div>
+                    <div class="text-xs text-teal-950">
+                        <span class="font-extrabold block text-sm text-slate-900">Memahami Media Sosial & Cara Pandang Tubuh</span>
+                        <span>Mengaktifkan filter kritis agar tidak mudah terjebak membandingkan fisik di dunia maya.</span>
+                    </div>
+                </div>
 
                 <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-950 leading-relaxed space-y-2">
                     <span class="font-bold block">📖 Materi Pengantar:</span>
@@ -327,37 +735,36 @@
                         ✍️ Tugas Refleksi Pengalaman Digital:
                     </label>
 
-                    <!-- 4 Pertanyaan Ya / Tidak -->
                     <div class="space-y-2.5 text-xs sm:text-sm">
                         <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                             <span class="text-slate-700 font-medium">1. Saya pernah membandingkan penampilan saya dengan orang lain di media sosial.</span>
                             <div class="flex space-x-4 shrink-0">
-                                <label class="inline-flex items-center"><input type="radio" name="sosmed-1" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
-                                <label class="inline-flex items-center"><input type="radio" name="sosmed-1" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-1" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-1" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
                             </div>
                         </div>
 
                         <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                             <span class="text-slate-700 font-medium">2. Saya pernah merasa kurang menarik setelah melihat konten media sosial.</span>
                             <div class="flex space-x-4 shrink-0">
-                                <label class="inline-flex items-center"><input type="radio" name="sosmed-2" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
-                                <label class="inline-flex items-center"><input type="radio" name="sosmed-2" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-2" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-2" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
                             </div>
                         </div>
 
                         <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                             <span class="text-slate-700 font-medium">3. Saya pernah merasa tidak puas terhadap tubuh setelah melihat konten media sosial.</span>
                             <div class="flex space-x-4 shrink-0">
-                                <label class="inline-flex items-center"><input type="radio" name="sosmed-3" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
-                                <label class="inline-flex items-center"><input type="radio" name="sosmed-3" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-3" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-3" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
                             </div>
                         </div>
 
                         <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                             <span class="text-slate-700 font-medium">4. Saya pernah berharap memiliki penampilan seperti orang yang saya lihat di media sosial.</span>
                             <div class="flex space-x-4 shrink-0">
-                                <label class="inline-flex items-center"><input type="radio" name="sosmed-4" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
-                                <label class="inline-flex items-center"><input type="radio" name="sosmed-4" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-4" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-4" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
                             </div>
                         </div>
                     </div>
@@ -371,7 +778,7 @@
                 </div>
 
                 <div class="flex space-x-3 pt-2">
-                    <button type="button" onclick="goToPage(5)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                    <button type="button" onclick="showView('view-act-2', 'Sesi 2: Aktivitas 2 / 5', 45)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
                         Kembali
                     </button>
                     <button type="button" onclick="validateAktivitas3()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
@@ -380,18 +787,27 @@
                 </div>
             </section>
 
-            <!-- ================= HALAMAN 7: AKTIVITAS 4 (SURAT UNTUK TUBUH SAYA) ================= -->
-            <section id="page-7" class="hidden space-y-5">
+            <!-- ================= SESI 2: AKTIVITAS 4 (SURAT UNTUK TUBUH SAYA + ANIMASI APRESIASI) ================= -->
+            <section id="view-act-4" class="hidden space-y-5">
                 <div class="flex justify-between items-center">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200">
-                        💌 Aktivitas 04 dari 05 &bull; Mengapresiasi Tubuh
+                        💌 Sesi 2 &bull; Aktivitas 04 dari 05
                     </span>
                     <span class="text-xs text-slate-400 font-semibold">~7 Menit</span>
                 </div>
 
-                <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">
-                    Surat untuk Tubuh Saya
-                </h2>
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-teal-50 border border-teal-100 rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-teal-100 flex items-center justify-center flex-shrink-0 relative">
+                        <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <span class="absolute -top-1 right-1 text-xs heart-float-1">💚</span>
+                    </div>
+                    <div class="text-xs text-teal-950">
+                        <span class="font-extrabold block text-sm text-slate-900">Surat untuk Tubuh Saya</span>
+                        <span>Ungkapkan rasa terima kasih yang tulus kepada tubuh yang telah menemanimu bertumbuh.</span>
+                    </div>
+                </div>
 
                 <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-950 leading-relaxed space-y-2">
                     <span class="font-bold block">📖 Materi Pengantar:</span>
@@ -405,16 +821,16 @@
                         ✍️ Tugas Refleksi:
                     </label>
                     <p class="text-xs text-slate-600">
-                        Tuliskan pesan atau ucapan terima kasih kepada tubuhmu atas segala fungsi yang telah membantumu bertahan, belajar, dan bertumbuh hingga hari ini.
+                        Tuliskan pesan atau ucapan terima kasih kepada tubuhmu atas segala fungsi yang telah membantumu bertahan, belajar, dan bertumbuh hingga saat ini.
                     </p>
-                    <textarea id="act4-surat" rows="6" placeholder="Untuk tubuhku tersayang, terima kasih karena selama ini..." class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600"></textarea>
+                    <textarea id="act4-surat" rows="6" placeholder="Untuk tubuhku tersayang, terima kasih karena selama ini..." class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all"></textarea>
                     <p class="text-[11px] text-slate-400 italic">
                         🔒 Jawaban bersifat pribadi dan tidak perlu dibagikan kepada teman.
                     </p>
                 </div>
 
                 <div class="flex space-x-3 pt-2">
-                    <button type="button" onclick="goToPage(6)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                    <button type="button" onclick="showView('view-act-3', 'Sesi 2: Aktivitas 3 / 5', 60)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
                         Kembali
                     </button>
                     <button type="button" onclick="validateAktivitas4()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
@@ -423,18 +839,29 @@
                 </div>
             </section>
 
-            <!-- ================= HALAMAN 8: AKTIVITAS 5 (KOMITMEN DIRI) ================= -->
-            <section id="page-8" class="hidden space-y-5">
+            <!-- ================= SESI 2: AKTIVITAS 5 (KOMITMEN DIRI + INDIKATOR TUMBUH) ================= -->
+            <section id="view-act-5" class="hidden space-y-5">
                 <div class="flex justify-between items-center">
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200">
-                        ✨ Aktivitas 05 dari 05 &bull; Berkomitmen
+                        ✨ Sesi 2 &bull; Aktivitas 05 dari 05
                     </span>
                     <span class="text-xs text-slate-400 font-semibold">~4 Menit</span>
                 </div>
 
-                <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">
-                    Komitmen Menghargai Tubuh Saya
-                </h2>
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-teal-50 border border-teal-100 rounded-2xl p-4 flex items-center justify-between">
+                    <div class="flex items-center space-x-3.5">
+                        <div class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-teal-100 flex items-center justify-center flex-shrink-0 logo-float">
+                            <span class="text-2xl">🌱</span>
+                        </div>
+                        <div class="text-xs text-teal-950">
+                            <span class="font-extrabold block text-sm text-slate-900">Komitmen Menghargai Tubuh Saya</span>
+                            <span>Wujudkan rasa syukur melalui 3 kebiasaan nyata untuk merawat fungsi tubuhmu.</span>
+                        </div>
+                    </div>
+                    <span id="act5-badge-count" class="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-white text-teal-700 border border-teal-200 shrink-0">
+                        0 / 3 Siap
+                    </span>
+                </div>
 
                 <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-950 leading-relaxed space-y-2">
                     <span class="font-bold block">📖 Materi Pengantar:</span>
@@ -448,31 +875,30 @@
                         ✍️ Tugas Refleksi:
                     </label>
                     <p class="text-xs text-slate-600">
-                        Tuliskan <b>tiga tindakan nyata</b> yang akan kamu lakukan untuk menghargai dan menjaga fungsi tubuhmu mulai hari ini.
+                        Tuliskan <b>tiga tindakan nyata</b> yang akan kamu lakukan untuk menghargai dan menjaga fungsi tubuhmu mulai sekarang.
                     </p>
 
-                    <input type="text" id="act5-komitmen-1" placeholder="Komitmen 1 (Cth: Tidur cukup dan tidak begadang karena scrolling sosmed)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600">
-                    <input type="text" id="act5-komitmen-2" placeholder="Komitmen 2 (Cth: Mengucapkan syukur atas kesehatan tubuh setiap pagi)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600">
-                    <input type="text" id="act5-komitmen-3" placeholder="Komitmen 3 (Cth: Berhenti membandingkan fisik diri sendiri dengan foto di internet)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600">
+                    <input type="text" id="act5-komitmen-1" oninput="updateAct5Progress()" placeholder="🌿 Komitmen 1 (Cth: Tidur cukup dan membatasi begadang karena sosmed)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+                    <input type="text" id="act5-komitmen-2" oninput="updateAct5Progress()" placeholder="🌿 Komitmen 2 (Cth: Mengucapkan syukur atas fungsi tubuh setiap pagi)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+                    <input type="text" id="act5-komitmen-3" oninput="updateAct5Progress()" placeholder="🌿 Komitmen 3 (Cth: Berhenti membandingkan fisik diri dengan foto di internet)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
                 </div>
 
                 <div class="flex space-x-3 pt-2">
-                    <button type="button" onclick="goToPage(7)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                    <button type="button" onclick="showView('view-act-4', 'Sesi 2: Aktivitas 4 / 5', 75)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
                         Kembali
                     </button>
                     <button type="button" onclick="validateAktivitas5()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
-                        Lanjut ke Posttest BAS-2 &rarr;
+                        Lanjut ke Evaluasi Akhir &rarr;
                     </button>
                 </div>
             </section>
 
-            <!-- ================= HALAMAN 9: POSTTEST BAS-2 & RANGKUMAN TINDAK LANJUT ================= -->
-            <section id="page-9" class="hidden space-y-5">
-                <!-- Sub-bagian 9A: Form Posttest BAS-2 -->
+            <!-- ================= SESI 2: EVALUASI AKHIR & RAPOR HASIL REFLEKSI ================= -->
+            <section id="view-posttest" class="hidden space-y-5">
                 <div id="posttest-wrapper" class="space-y-5">
                     <div class="flex justify-between items-center">
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-semibold border border-amber-200">
-                            📊 Halaman 09 &bull; Pengukuran Akhir (Posttest)
+                            📊 Sesi 2 &bull; Evaluasi Akhir
                         </span>
                         <span class="text-xs text-slate-400 font-semibold">~6 Menit</span>
                     </div>
@@ -482,114 +908,182 @@
                             Kenali Perasaanmu terhadap Tubuhmu (Setelah Refleksi)
                         </h2>
                         <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                            Setelah mengikuti seluruh rangkaian refleksi fungsi tubuh, silakan baca kembali setiap pernyataan berikut dan pilih jawaban yang paling menggambarkan perasaanmu <b>saat ini</b>.
+                            Setelah mengikuti seluruh rangkaian refleksi fungsi tubuh pada <b>Sesi 2</b>, silakan baca kembali setiap pernyataan berikut dan pilih jawaban yang paling menggambarkan perasaanmu <b>saat ini</b>.
                         </p>
                     </div>
 
                     <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-[11px] sm:text-xs text-slate-500">
-                        <b>Keterangan Pilihan:</b> 1 = Tidak Pernah &bull; 2 = Jarang &bull; 3 = Kadang-kadang &bull; 4 = Sering &bull; 5 = Selalu
+                        <b>Skala Jawaban:</b> 1 = Tidak Pernah &bull; 2 = Jarang &bull; 3 = Kadang-kadang &bull; 4 = Sering &bull; 5 = Selalu
                     </div>
 
                     <div id="posttest-container" class="space-y-4"></div>
 
                     <div class="flex space-x-3 pt-2">
-                        <button type="button" onclick="goToPage(8)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                        <button type="button" onclick="showView('view-act-5', 'Sesi 2: Aktivitas 5 / 5', 85)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
                             Kembali
                         </button>
-                        <button type="button" id="btn-submit-all" onclick="submitSeluruhData()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
-                            Simpan & Lihat Rangkuman Refleksi &check;
+                        <button type="button" id="btn-submit-intervensi" onclick="submitIntervensiSesi2()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
+                            Simpan & Lihat Rapor Hasil Refleksi &check;
                         </button>
                     </div>
                 </div>
 
-                <!-- Sub-bagian 9B: Layar Penutup, Hasil Refleksi & Panduan Tindak Lanjut -->
-                <div id="closing-wrapper" class="hidden space-y-6 py-2">
-                    <div class="text-center space-y-2 border-b border-slate-100 pb-5">
-                        <div class="w-14 h-14 bg-teal-100 text-teal-700 rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold shadow-sm">
-                            🌿
-                        </div>
-                        <span class="inline-block px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-[11px] font-bold border border-teal-200">
-                            Sesi Intervensi Selesai &bull; Kode Responden: <span id="closing-kode">-</span>
+                <!-- LAYAR RAPOR HASIL AKHIR ALA TES PSIKOLOGI DENGAN ANIMASI COUNT-UP -->
+                <div id="closing-wrapper" class="hidden space-y-6 py-2 page-transition">
+                    <div class="bg-gradient-to-br from-slate-900 via-teal-950 to-slate-900 text-white rounded-3xl p-6 text-center space-y-4 shadow-xl relative overflow-hidden">
+                        <span class="inline-block px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-[11px] font-bold border border-teal-400/30 uppercase tracking-wider">
+                            📊 Personal Reflection Report
                         </span>
-                        <h2 class="text-2xl font-extrabold text-slate-900">
-                            Terima Kasih! Setiap Fungsi Tubuh Memiliki Arti
+                        <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight">
+                            Hasil Evaluasi Apresiasi & Fungsi Tubuh
                         </h2>
-                        <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
-                            Seluruh jawabanmu telah tersimpan aman di sistem penelitian. Berikut adalah rangkuman perjalanan refleksimu dan panduan langkah nyata yang bisa kamu terapkan mulai hari ini.
+                        <p class="text-xs text-slate-300">
+                            Responden: <b id="closing-nama" class="text-white">-</b> &bull; Program: <i>Body Functionality Reflection</i>
+                        </p>
+
+                        <!-- Gauge Lingkaran Skor -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 py-3">
+                            <div class="relative w-36 h-36 flex items-center justify-center">
+                                <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="10"></circle>
+                                    <circle id="score-circle-bar" cx="60" cy="60" r="50" fill="none" stroke="#14b8a6" stroke-width="10" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" class="transition-all duration-1000 ease-out"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span class="text-[10px] uppercase tracking-widest text-teal-300 font-bold">Indeks Apresiasi</span>
+                                    <span id="score-mean-display" class="text-3xl font-extrabold text-white">0.00</span>
+                                    <span id="score-total-display" class="text-[11px] text-slate-300 font-medium">dari 5.0 (0%)</span>
+                                </div>
+                            </div>
+
+                            <div class="text-left space-y-2 max-w-xs">
+                                <span class="text-[11px] uppercase tracking-wider text-teal-300 font-bold block">Profil Apresiasi Diri Saat Ini:</span>
+                                <div id="score-badge-title" class="inline-block px-3 py-1 rounded-lg bg-amber-400 text-slate-950 font-extrabold text-xs sm:text-sm">
+                                    -
+                                </div>
+                                <p id="score-badge-desc" class="text-xs text-slate-200 leading-relaxed">
+                                    -
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="text-[10px] text-slate-400 italic border-t border-white/10 pt-3">
+                            *Skor dihitung berdasarkan rata-rata evaluasi apresiasi dan fungsi tubuh sebagai gambaran reflektif, bukan diagnosis medis/klinis.
                         </p>
                     </div>
 
-                    <!-- 1. Penjelasan Psikologis: Mengapa Kita Bisa Merasa Insecure & Peran Body Functionality -->
-                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 sm:p-5 space-y-2.5 text-xs sm:text-sm leading-relaxed">
-                        <h3 class="font-extrabold text-slate-900 flex items-center gap-2 text-sm sm:text-base">
-                            <span>🧠</span> Mengapa Kamu Perlu Mengenali Fungsi Tubuhmu?
+                    <!-- Grafik Batang 4 Sub-Dimensi -->
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 space-y-4">
+                        <h3 class="font-extrabold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+                            <span>📈</span> Rincian 4 Dimensi Kemampuan & Apresiasi Tubuh
                         </h3>
-                        <p id="closing-analisis-sosmed" class="text-slate-700"></p>
-                        <p class="text-slate-600">
-                            Melalui latihan <b>Body Functionality Reflection</b> yang baru saja kamu selesaikan, kamu melatih otak untuk menggeser fokus dari <i>"Bagaimana penampilanku dilihat orang?"</i> menjadi <i>"Apa kemampuan luar biasa yang bisa dilakukan tubuhku?"</i>.
-                        </p>
+
+                        <div class="space-y-3.5 text-xs">
+                            <div>
+                                <div class="flex justify-between font-bold text-slate-700 mb-1">
+                                    <span>1. Penerimaan & Kenyamanan Fisik</span>
+                                    <span id="bar-label-1" class="text-teal-700">0%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div id="bar-fill-1" class="h-full bg-teal-600 rounded-full transition-all duration-1000 ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between font-bold text-slate-700 mb-1">
+                                    <span>2. Penghormatan & Kasih Sayang Tubuh</span>
+                                    <span id="bar-label-2" class="text-teal-700">0%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div id="bar-fill-2" class="h-full bg-emerald-500 rounded-full transition-all duration-1000 ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between font-bold text-slate-700 mb-1">
+                                    <span>3. Ketahanan terhadap Standar Penampilan Sosial</span>
+                                    <span id="bar-label-3" class="text-teal-700">0%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div id="bar-fill-3" class="h-full bg-cyan-600 rounded-full transition-all duration-1000 ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between font-bold text-slate-700 mb-1">
+                                    <span>4. Kesadaran & Filter Realita Media Sosial</span>
+                                    <span id="bar-label-4" class="text-amber-700">0%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div id="bar-fill-4" class="h-full bg-amber-500 rounded-full transition-all duration-1000 ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-200/80 text-xs text-slate-600 leading-relaxed">
+                            <b>🧠 Analisis Psikologis Pengaruh Media Sosial:</b>
+                            <span id="closing-analisis-sosmed" class="block mt-1 text-slate-700"></span>
+                        </div>
                     </div>
 
-                    <!-- 2. Bekal Kemampuan Fungsi Tubuh yang Sudah Kamu Temukan Sendiri -->
-                    <div class="bg-teal-50/60 border border-teal-200/80 rounded-2xl p-4 sm:p-5 space-y-3 text-xs sm:text-sm">
+                    <!-- Rekaman Bukti Fungsi Tubuh Responden -->
+                    <div class="bg-teal-50/60 border border-teal-200/80 rounded-2xl p-5 space-y-3 text-xs sm:text-sm">
                         <h3 class="font-extrabold text-teal-950 flex items-center gap-2 text-sm sm:text-base">
-                            <span>💎</span> Bukti Kemampuan Fungsi Tubuhmu Sendiri
+                            <span>💎</span> Peta Kekuatan Fungsi Tubuhmu
                         </h3>
                         <p class="text-teal-900 text-xs">
-                            Kamu telah berhasil mengidentifikasi <b>10 aktivitas harian</b> yang bisa kamu lakukan berkat tubuhmu. Dari semuanya, ingatlah <b>3 fungsi tubuh paling berharga</b> yang kamu pilih sendiri:
+                            Dari 10 aktivitas yang berhasil kamu identifikasi, berikut adalah <b>3 fungsi tubuh paling berharga</b> yang menjadi sumber kekuatanmu:
                         </p>
                         <ul id="closing-list-fungsi" class="list-disc pl-5 font-bold text-teal-950 space-y-1"></ul>
                         <div class="bg-white/80 p-3 rounded-xl border border-teal-100 text-xs text-slate-700 italic">
                             <b>Alasanmu menghargainya:</b> "<span id="closing-alasan-fungsi">-</span>"
                         </div>
                         <div class="bg-amber-50/80 p-3.5 rounded-xl border border-amber-200/70 text-xs text-amber-950">
-                            <span class="font-bold block mb-1">💌 Pesan Apresiasi yang Kamu Tulis untuk Tubuhmu:</span>
+                            <span class="font-bold block mb-1">💌 Pesan Apresiasi Pribadi untuk Tubuhmu:</span>
                             <p class="italic">"<span id="closing-surat-tubuh">-</span>"</p>
                         </div>
                     </div>
 
-                    <!-- 3. Panduan Tindak Lanjut: Apa yang Harus Kamu Lakukan Selanjutnya? -->
+                    <!-- Panduan Tindak Lanjut (Action Plan) -->
                     <div class="bg-gradient-to-br from-teal-600 to-emerald-700 rounded-2xl p-5 text-white space-y-3.5 shadow-lg shadow-teal-600/20 text-xs sm:text-sm">
                         <h3 class="font-extrabold text-base sm:text-lg flex items-center gap-2">
-                            <span>🚀</span> Apa yang Harus Kamu Lakukan Setelah Tahu Kemampuan Ini?
+                            <span>🚀</span> Apa yang Harus Kamu Lakukan Selanjutnya?
                         </h3>
                         <p class="text-teal-100 text-xs leading-relaxed">
-                            Ketika suatu saat kamu kembali merasa minder, kurang percaya diri, atau lelah melihat standar fisik di media sosial, lakukan <b>4 langkah praktis</b> ini:
+                            Berdasarkan hasil evaluasi dan refleksi fungsi tubuhmu pada <b>Sesi 2</b>, terapkan <b>4 langkah praktis</b> berikut saat rasa kurang percaya diri muncul:
                         </p>
 
                         <div class="space-y-2.5">
                             <div class="bg-white/10 backdrop-blur-sm p-3.5 rounded-xl border border-white/15">
-                                <span class="font-bold block text-amber-300 mb-0.5">1. Terapkan Teknik "Ganti Fokus" (Shift Focus)</span>
+                                <span class="font-bold block text-amber-300 mb-0.5">1. Latih "Shift Focus" dari Penampilan ke Fungsi</span>
                                 <p class="text-xs text-teal-50 leading-relaxed">
-                                    Saat pikiranmu mulai mengkritik bagian fisik tertentu di cermin, tarik napas dalam lalu sebutkan kembali 3 fungsi utama tubuhmu di atas. Sadari bahwa tubuhmu sedang bekerja keras membantumu bernapas, belajar, dan beraktivitas.
+                                    Saat kamu mulai mengkritik penampilan fisik di cermin, segera alihkan pikiranmu dengan menyebutkan 3 fungsi utama tubuhmu di atas yang bekerja keras membantumu beraktivitas.
                                 </p>
                             </div>
 
                             <div class="bg-white/10 backdrop-blur-sm p-3.5 rounded-xl border border-white/15">
-                                <span class="font-bold block text-amber-300 mb-0.5">2. Gunakan "Filter Realita Digital" Saat Main Sosmed</span>
+                                <span class="font-bold block text-amber-300 mb-0.5">2. Aktifkan Filter Kritis Media Sosialmu</span>
                                 <p class="text-xs text-teal-50 leading-relaxed">
-                                    Saat melihat konten yang memicu rasa <i>insecure</i>, pegang teguh kesimpulan refleksimu sendiri: <i>"<span id="closing-refleksi-sosmed">-</span>"</i>. Ingat bahwa foto/video online hanyalah potongan kecil yang sudah dipilih dan diedit, bukan ukuran nilai dirimu.
+                                    Pegang teguh kesimpulanmu sendiri: <i>"<span id="closing-refleksi-sosmed">-</span>"</i>. Jangan biarkan potongan foto/video yang sudah diedit di internet menurunkan rasa syukur atas tubuhmu.
                                 </p>
                             </div>
 
                             <div class="bg-white/10 backdrop-blur-sm p-3.5 rounded-xl border border-white/15">
-                                <span class="font-bold block text-amber-300 mb-0.5">3. Baca Ulang Surat Apresiasi Tubuhmu</span>
+                                <span class="font-bold block text-amber-300 mb-0.5">3. Jadikan Surat Tubuhmu Sebagai Pengingat</span>
                                 <p class="text-xs text-teal-50 leading-relaxed">
-                                    Jadikan surat terima kasih yang kamu tulis hari ini sebagai pengingat pribadi bahwa tubuhmu adalah sahabat yang menemanimu berjuang setiap hari, bukan objek untuk dibanding-bandingkan.
+                                    Baca kembali pesan apresiasi yang kamu tulis di atas setiap kali kamu merasa lelah, agar kamu selalu ingat bahwa tubuhmu adalah rekan seperjuangan terbaikmu.
                                 </p>
                             </div>
 
                             <div class="bg-white/10 backdrop-blur-sm p-3.5 rounded-xl border border-white/15">
-                                <span class="font-bold block text-amber-300 mb-1">4. Jalankan 3 Komitmen Nyata Pilihanmu Sendiri:</span>
+                                <span class="font-bold block text-amber-300 mb-1">4. Jalankan 3 Komitmen Nyatamu:</span>
                                 <ul id="closing-list-komitmen" class="list-decimal pl-5 text-xs font-semibold text-white space-y-1"></ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tombol Cetak / Simpan Panduan -->
                     <div class="pt-2 flex flex-col sm:flex-row gap-3 print:hidden">
                         <button type="button" onclick="window.print()" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3.5 px-6 rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center space-x-2">
-                            <span>🖨️ Simpan / Cetak Panduan Refleksiku (PDF)</span>
+                            <span>🖨️ Simpan / Cetak Rapor Hasil & Panduanku (PDF)</span>
                         </button>
                     </div>
                 </div>
@@ -611,11 +1105,24 @@
 
     <!-- LOGIKA JAVASCRIPT -->
     <script>
-        // LINK GOOGLE APPS SCRIPT TERBARU
         const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbwHJdenNXUYd98DSWJ04IGe5GoJj49uomRYRQAC7YNCr8a0rewRRi_Is18xxkgsvf56/exec";
 
-        // 10 Butir Instrumen BAS-2 (Tylka & Wood-Barcalow, 2015)
-        const butirBAS2 = [
+        const AKUN_BAWAAN = [
+            {
+                username: "yoga",
+                password: "yoga1234",
+                nama: "Muhammad Yoga Dwi Nugraha",
+                usia: "21",
+                jk: "Laki-laki",
+                durasi: "1 - 3 Jam per hari"
+            }
+        ];
+
+        let modeSesiAktif = 1;
+        let akunSedangLogin = null;
+        let breathInterval = null;
+
+        const butirKuesioner = [
             "Saya menghormati tubuh saya.",
             "Saya merasa nyaman dengan tubuh saya.",
             "Saya merasa bahwa tubuh saya setidaknya memiliki beberapa kelebihan atau kualitas yang baik.",
@@ -636,23 +1143,207 @@
             { nilai: 5, label: "5 - Selalu" }
         ];
 
+        const allViews = [
+            'view-login', 'view-home', 'view-pretest', 'view-pretest-done',
+            'view-act-1', 'view-act-2', 'view-act-3', 'view-act-4', 'view-act-5', 'view-posttest'
+        ];
+
         window.addEventListener('DOMContentLoaded', () => {
-            renderBAS2('pretest-container', 'pre');
-            renderBAS2('posttest-container', 'post');
+            renderKuesioner('pretest-container', 'pre');
+            renderKuesioner('posttest-container', 'post');
             renderAktivitas1Inputs();
+            cekSesiLoginTersimpan();
         });
 
-        function renderBAS2(containerId, prefix) {
+        // =========================================================================
+        // FUNGSI AUTENTIKASI LOGIN & DAFTAR AKUN
+        // =========================================================================
+        function switchAuthTab(mode) {
+            const tabLogin = document.getElementById('tab-auth-login');
+            const tabReg = document.getElementById('tab-auth-register');
+            const boxLogin = document.getElementById('form-login-box');
+            const boxReg = document.getElementById('form-register-box');
+
+            if (mode === 'login') {
+                tabLogin.className = "py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all bg-white text-teal-700 shadow-sm";
+                tabReg.className = "py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all text-slate-500 hover:text-slate-800";
+                boxLogin.classList.remove('hidden');
+                boxReg.classList.add('hidden');
+            } else {
+                tabReg.className = "py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all bg-white text-teal-700 shadow-sm";
+                tabLogin.className = "py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all text-slate-500 hover:text-slate-800";
+                boxReg.classList.remove('hidden');
+                boxLogin.classList.add('hidden');
+            }
+        }
+
+        async function prosesLogin() {
+            const uname = document.getElementById('login-username').value.trim().toLowerCase();
+            const pass = document.getElementById('login-password').value.trim();
+
+            if (!uname || !pass) {
+                alert('Mohon masukkan Username dan Password kamu.');
+                return;
+            }
+
+            const cekBawaan = AKUN_BAWAAN.find(a => a.username === uname && a.password === pass);
+            if (cekBawaan) {
+                setBerhasilLogin(cekBawaan);
+                return;
+            }
+
+            const btn = document.getElementById('btn-submit-login');
+            btn.disabled = true;
+            btn.innerText = 'Memeriksa Akun di Database...';
+
+            try {
+                const res = await fetch(GOOGLE_SHEET_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({
+                        tipeSesi: "LOGIN_AKUN",
+                        username: uname,
+                        password: pass
+                    })
+                });
+                const result = await res.json();
+
+                if (result.status === "success" && result.user) {
+                    setBerhasilLogin(result.user);
+                } else {
+                    alert(result.message || 'Username atau Password salah!');
+                }
+            } catch (err) {
+                const akunLokal = JSON.parse(localStorage.getItem('bodyverse_users') || '[]');
+                const ditemukanLokal = akunLokal.find(a => a.username.toLowerCase() === uname && a.password === pass);
+                if (ditemukanLokal) {
+                    setBerhasilLogin(ditemukanLokal);
+                } else {
+                    alert('Gagal memverifikasi akun. Pastikan Username & Password benar.');
+                }
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Masuk ke BodyVerse →';
+            }
+        }
+
+        async function prosesRegister() {
+            const uname = document.getElementById('reg-username').value.trim().toLowerCase();
+            const pass = document.getElementById('reg-password').value.trim();
+            const nama = document.getElementById('reg-nama').value.trim();
+            const usia = document.getElementById('reg-usia').value.trim();
+            const jk = document.getElementById('reg-jk').value;
+            const durasi = document.getElementById('reg-durasi').value;
+
+            if (!uname || !pass || !nama || !usia || !jk || !durasi) {
+                alert('Mohon lengkapi seluruh kolom pendaftaran akun.');
+                return;
+            }
+
+            if (pass.length < 8) {
+                alert('Password wajib minimal 8 karakter!');
+                return;
+            }
+
+            const btn = document.getElementById('btn-submit-register');
+            btn.disabled = true;
+            btn.innerText = 'Mendaftarkan Akun ke Database...';
+
+            const akunBaru = {
+                tipeSesi: "REGISTER_AKUN",
+                tanggal: new Date().toLocaleString('id-ID'),
+                username: uname,
+                password: pass,
+                nama: nama,
+                usia: usia,
+                jk: jk,
+                durasi: durasi
+            };
+
+            try {
+                const res = await fetch(GOOGLE_SHEET_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(akunBaru)
+                });
+                const result = await res.json();
+
+                if (result.status === "error") {
+                    alert(result.message);
+                    return;
+                }
+
+                const akunLokal = JSON.parse(localStorage.getItem('bodyverse_users') || '[]');
+                akunLokal.push({ username: uname, password: pass, nama, usia, jk, durasi });
+                localStorage.setItem('bodyverse_users', JSON.stringify(akunLokal));
+
+                alert('Pendaftaran berhasil! Akunmu telah tersimpan dan kamu akan langsung masuk.');
+                setBerhasilLogin({ username: uname, nama, usia, jk, durasi });
+            } catch (err) {
+                fetch(GOOGLE_SHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(akunBaru)
+                });
+                const akunLokal = JSON.parse(localStorage.getItem('bodyverse_users') || '[]');
+                akunLokal.push({ username: uname, password: pass, nama, usia, jk, durasi });
+                localStorage.setItem('bodyverse_users', JSON.stringify(akunLokal));
+
+                alert('Akun berhasil dibuat! Kamu akan langsung masuk ke beranda BodyVerse.');
+                setBerhasilLogin({ username: uname, nama, usia, jk, durasi });
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Daftar Akun & Masuk →';
+            }
+        }
+
+        function setBerhasilLogin(akun) {
+            akunSedangLogin = akun;
+            sessionStorage.setItem('bodyverse_active_user', JSON.stringify(akun));
+
+            document.getElementById('greeting-nama').innerText = akun.nama;
+            document.getElementById('nama-responden').value = akun.nama || '';
+            document.getElementById('usia-responden').value = akun.usia || '';
+            document.getElementById('jk-responden').value = akun.jk || '';
+            document.getElementById('durasi-sosmed').value = akun.durasi || '';
+
+            document.getElementById('btn-logout').classList.remove('hidden');
+            showView('view-home', 'Beranda Utama', 15);
+        }
+
+        function cekSesiLoginTersimpan() {
+            const tersimpan = sessionStorage.getItem('bodyverse_active_user');
+            if (tersimpan) {
+                setBerhasilLogin(JSON.parse(tersimpan));
+            } else {
+                showView('view-login', 'Akses Terkunci', 5);
+            }
+        }
+
+        function logoutAkun() {
+            sessionStorage.removeItem('bodyverse_active_user');
+            akunSedangLogin = null;
+            document.getElementById('login-username').value = '';
+            document.getElementById('login-password').value = '';
+            document.getElementById('btn-logout').classList.add('hidden');
+            showView('view-login', 'Akses Terkunci', 5);
+        }
+
+        // =========================================================================
+        // FUNGSI RENDER INSTRUMEN, PROGRES INTERAKTIF & TRANSISI HALAMAN
+        // =========================================================================
+        function renderKuesioner(containerId, prefix) {
             const container = document.getElementById(containerId);
             let html = '';
-            butirBAS2.forEach((teks, idx) => {
+            butirKuesioner.forEach((teks, idx) => {
                 const no = idx + 1;
                 html += `
-                    <div class="p-4 rounded-2xl bg-slate-50/70 border border-slate-100 space-y-2.5">
+                    <div class="p-4 rounded-2xl bg-slate-50/70 border border-slate-100 space-y-2.5 transition-all hover:border-teal-200">
                         <p class="text-xs sm:text-sm font-bold text-slate-800">${no}. ${teks}</p>
                         <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
                             ${skalaLikert.map(s => `
-                                <label class="flex items-center sm:justify-center p-2 rounded-xl border border-slate-200 bg-white hover:border-teal-500 cursor-pointer text-xs">
+                                <label class="flex items-center sm:justify-center p-2 rounded-xl border border-slate-200 bg-white hover:border-teal-500 hover:bg-teal-50/30 cursor-pointer text-xs transition-all">
                                     <input type="radio" name="${prefix}-bas-${no}" value="${s.nilai}" class="text-teal-600 focus:ring-teal-500">
                                     <span class="ml-2 sm:ml-1.5 font-medium text-slate-700">${s.label}</span>
                                 </label>
@@ -669,63 +1360,217 @@
             let html = '';
             for (let i = 1; i <= 10; i++) {
                 html += `
-                    <div>
-                        <input type="text" id="act1-item-${i}" placeholder="Aktivitas ${i}..." 
-                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600">
+                    <div class="relative">
+                        <input type="text" id="act1-item-${i}" oninput="updateAct1Progress()" placeholder="Fungsi/Aktivitas ${i}..." 
+                            class="w-full pl-3.5 pr-8 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+                        <span id="act1-check-${i}" class="hidden absolute right-2.5 top-2.5 text-xs text-teal-600 font-bold">✓</span>
                     </div>
                 `;
             }
             container.innerHTML = html;
         }
 
-        function goToPage(pageNumber) {
-            for (let i = 1; i <= 9; i++) {
-                document.getElementById(`page-${i}`).classList.add('hidden');
+        function updateAct1Progress() {
+            let terisi = 0;
+            for (let i = 1; i <= 10; i++) {
+                const val = document.getElementById(`act1-item-${i}`).value.trim();
+                const checkIcon = document.getElementById(`act1-check-${i}`);
+                if (val.length > 0) {
+                    terisi++;
+                    checkIcon.classList.remove('hidden');
+                } else {
+                    checkIcon.classList.add('hidden');
+                }
             }
-            document.getElementById(`page-${pageNumber}`).classList.remove('hidden');
-            document.getElementById('badge-step').innerText = `Halaman ${pageNumber} / 9`;
-            document.getElementById('global-progress').style.width = `${Math.round((pageNumber / 9) * 100)}%`;
+            const pct = terisi * 10;
+            document.getElementById('act1-progress-bar').style.width = `${pct}%`;
+            const badge = document.getElementById('act1-counter-badge');
+            badge.innerText = `${terisi} / 10 Terisi`;
+            if (terisi === 10) {
+                badge.className = "text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-teal-100 text-teal-800 transition-all";
+            } else {
+                badge.className = "text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 transition-all";
+            }
+        }
+
+        function updateAct5Progress() {
+            let count = 0;
+            for (let i = 1; i <= 3; i++) {
+                if (document.getElementById(`act5-komitmen-${i}`).value.trim().length > 0) {
+                    count++;
+                }
+            }
+            const badge = document.getElementById('act5-badge-count');
+            badge.innerText = `${count} / 3 Siap`;
+            if (count === 3) {
+                badge.className = "text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-teal-600 text-white shadow-sm shrink-0 transition-all";
+            } else {
+                badge.className = "text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-white text-teal-700 border border-teal-200 shrink-0 transition-all";
+            }
+        }
+
+        function showView(viewId, badgeText, progressPercent) {
+            if (viewId !== 'view-login' && !akunSedangLogin) {
+                alert('Silakan login terlebih dahulu untuk mengakses halaman ini.');
+                viewId = 'view-login';
+                badgeText = 'Akses Terkunci';
+            }
+            allViews.forEach(id => {
+                const el = document.getElementById(id);
+                el.classList.add('hidden');
+                el.classList.remove('page-transition');
+            });
+            const target = document.getElementById(viewId);
+            target.classList.remove('hidden');
+            void target.offsetWidth;
+            target.classList.add('page-transition');
+
+            document.getElementById('badge-step').innerText = badgeText;
+            document.getElementById('global-progress').style.width = `${progressPercent}%`;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function validatePage2() {
-            const consent = document.getElementById('consent-check').checked;
-            const kode = document.getElementById('kode-responden').value.trim();
-            const usia = document.getElementById('usia-responden').value.trim();
-            const jk = document.getElementById('jk-responden').value;
-            const durasi = document.getElementById('durasi-sosmed').value;
+        function pilihModeSesi(sesi) {
+            modeSesiAktif = sesi;
+            const tab1 = document.getElementById('tab-sesi-1');
+            const tab2 = document.getElementById('tab-sesi-2');
+            const fieldsSesi1 = document.getElementById('fields-sesi-1');
+            const btnAction = document.getElementById('btn-home-action');
+            const helperNama = document.getElementById('helper-nama');
 
-            if (!consent) {
-                alert('Silakan centang persetujuan responden terlebih dahulu.');
-                return;
+            if (sesi === 1) {
+                tab1.className = "py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all bg-white text-teal-700 shadow-sm";
+                tab2.className = "py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all text-slate-500 hover:text-slate-800";
+                fieldsSesi1.classList.remove('hidden');
+                btnAction.innerHTML = "Lanjut ke Kuesioner Awal (Sesi 1) &rarr;";
+                helperNama.innerText = "Nama otomatis terisi dari akunmu untuk memulai Sesi 1.";
+            } else {
+                tab2.className = "py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all bg-white text-teal-700 shadow-sm";
+                tab1.className = "py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all text-slate-500 hover:text-slate-800";
+                fieldsSesi1.classList.add('hidden');
+                btnAction.innerHTML = "Mulai Aktivitas Intervensi (Sesi 2) &rarr;";
+                helperNama.innerText = "Nama lengkapmu sudah terhubung otomatis dengan data Sesi 1.";
             }
-            if (!kode || !usia || !jk || !durasi) {
-                alert('Mohon lengkapi Kode Responden, Usia, Jenis Kelamin, dan Durasi Media Sosial.');
-                return;
-            }
-            goToPage(3);
         }
 
-        function validatePretest() {
+        function handleTombolUtamaBeranda() {
+            const nama = document.getElementById('nama-responden').value.trim();
+            if (!nama) {
+                alert('Mohon pastikan Nama Lengkap kamu sudah terisi.');
+                return;
+            }
+
+            if (modeSesiAktif === 1) {
+                const usia = document.getElementById('usia-responden').value.trim();
+                const jk = document.getElementById('jk-responden').value;
+                const durasi = document.getElementById('durasi-sosmed').value;
+
+                if (!usia || !jk || !durasi) {
+                    alert('Untuk Sesi 1, mohon lengkapi Usia, Jenis Kelamin, dan Durasi Media Sosial.');
+                    return;
+                }
+                document.getElementById('modal-consent').classList.remove('hidden');
+            } else {
+                bukaModalBreathingSesi2();
+            }
+        }
+
+        function bukaModalBreathingSesi2() {
+            const modal = document.getElementById('modal-breathing');
+            const label = document.getElementById('breath-instruction');
+            modal.classList.remove('hidden');
+            label.innerText = "Tarik Napas...";
+
+            if (breathInterval) clearInterval(breathInterval);
+            let fase = 0;
+            breathInterval = setInterval(() => {
+                fase = (fase + 1) % 2;
+                label.innerText = fase === 0 ? "Tarik Napas..." : "Hembuskan...";
+            }, 3000);
+        }
+
+        function lanjutKeAktivitas1SetelahNapas() {
+            if (breathInterval) clearInterval(breathInterval);
+            document.getElementById('modal-breathing').classList.add('hidden');
+            showView('view-act-1', 'Sesi 2: Aktivitas 1 / 5', 25);
+        }
+
+        function bukaModalInfoSaja() {
+            document.getElementById('modal-consent').classList.remove('hidden');
+        }
+
+        function tutupModalConsent() {
+            document.getElementById('modal-consent').classList.add('hidden');
+        }
+
+        function konfirmasiConsentDanMulai() {
+            const setuju = document.getElementById('consent-check').checked;
+            if (!setuju) {
+                alert('Silakan centang kotak persetujuan responden terlebih dahulu.');
+                return;
+            }
+            tutupModalConsent();
+            if (modeSesiAktif === 1) {
+                showView('view-pretest', 'Sesi 1: Kuesioner Awal', 60);
+            } else {
+                bukaModalBreathingSesi2();
+            }
+        }
+
+        function submitPretestSesi1() {
             for (let i = 1; i <= 10; i++) {
-                const checked = document.querySelector(`input[name="pre-bas-${i}"]:checked`);
-                if (!checked) {
-                    alert(`Mohon pilih jawaban untuk pernyataan nomor ${i} pada Pretest.`);
+                if (!document.querySelector(`input[name="pre-bas-${i}"]:checked`)) {
+                    alert(`Mohon pilih jawaban untuk pernyataan nomor ${i}.`);
                     return;
                 }
             }
-            goToPage(4);
+
+            const btn = document.getElementById('btn-submit-pretest');
+            btn.disabled = true;
+            btn.innerText = 'Menyimpan Jawaban...';
+
+            let preItems = [];
+            let preTotal = 0;
+            for (let i = 1; i <= 10; i++) {
+                const vPre = parseInt(document.querySelector(`input[name="pre-bas-${i}"]:checked`).value);
+                preItems.push(vPre);
+                preTotal += vPre;
+            }
+
+            const namaResp = document.getElementById('nama-responden').value.trim();
+
+            const payload = {
+                tipeSesi: "HARI_1_PRETEST",
+                tanggal: new Date().toLocaleString('id-ID'),
+                namaResponden: namaResp,
+                usia: document.getElementById('usia-responden').value.trim(),
+                jenisKelamin: document.getElementById('jk-responden').value,
+                durasiSosmed: document.getElementById('durasi-sosmed').value,
+                pretestItems: preItems.join(', '),
+                pretestTotal: preTotal
+            };
+
+            fetch(GOOGLE_SHEET_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
+            }).finally(() => {
+                btn.disabled = false;
+                btn.innerText = 'Simpan Jawaban Sesi 1 ✓';
+                document.getElementById('done-pretest-nama').innerText = namaResp;
+                showView('view-pretest-done', 'Selesai Sesi 1', 100);
+            });
         }
 
         function validateAktivitas1() {
             for (let i = 1; i <= 10; i++) {
-                const val = document.getElementById(`act1-item-${i}`).value.trim();
-                if (!val) {
+                if (!document.getElementById(`act1-item-${i}`).value.trim()) {
                     alert(`Mohon lengkapi isian Aktivitas ${i} (Minimal 10 aktivitas fungsi tubuh).`);
                     return;
                 }
             }
-            goToPage(5);
+            showView('view-act-2', 'Sesi 2: Aktivitas 2 / 5', 40);
         }
 
         function validateAktivitas2() {
@@ -738,7 +1583,7 @@
                 alert('Mohon tuliskan 3 fungsi tubuh yang dihargai beserta alasannya.');
                 return;
             }
-            goToPage(6);
+            showView('view-act-3', 'Sesi 2: Aktivitas 3 / 5', 55);
         }
 
         function validateAktivitas3() {
@@ -752,7 +1597,7 @@
                 alert('Mohon isi jawaban pada pertanyaan refleksi lanjutan.');
                 return;
             }
-            goToPage(7);
+            showView('view-act-4', 'Sesi 2: Aktivitas 4 / 5', 70);
         }
 
         function validateAktivitas4() {
@@ -760,7 +1605,7 @@
                 alert('Mohon tuliskan pesan atau ucapan terima kasih untuk tubuhmu terlebih dahulu.');
                 return;
             }
-            goToPage(8);
+            showView('view-act-5', 'Sesi 2: Aktivitas 5 / 5', 85);
         }
 
         function validateAktivitas5() {
@@ -772,33 +1617,95 @@
                 alert('Mohon tuliskan 3 komitmen tindakan nyata untuk menghargai tubuhmu.');
                 return;
             }
-            goToPage(9);
+            showView('view-posttest', 'Sesi 2: Evaluasi Akhir', 95);
         }
 
-        function submitSeluruhData() {
+        // FUNGSI ANIMASI COUNT-UP SKOR DI RAPOR HASIL
+        function animasiCountUp(elementId, targetValue, duration, isDecimal = false, suffix = '') {
+            const el = document.getElementById(elementId);
+            const startTime = performance.now();
+
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const currentVal = targetValue * easeOut;
+
+                if (isDecimal) {
+                    el.innerText = currentVal.toFixed(2) + suffix;
+                } else {
+                    el.innerText = Math.round(currentVal) + suffix;
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            }
+            requestAnimationFrame(updateNumber);
+        }
+
+        function submitIntervensiSesi2() {
             for (let i = 1; i <= 10; i++) {
                 if (!document.querySelector(`input[name="post-bas-${i}"]:checked`)) {
-                    alert(`Mohon pilih jawaban untuk pernyataan nomor ${i} pada Posttest.`);
+                    alert(`Mohon pilih jawaban untuk pernyataan nomor ${i} pada Evaluasi Akhir.`);
                     return;
                 }
             }
 
-            const btn = document.getElementById('btn-submit-all');
+            const btn = document.getElementById('btn-submit-intervensi');
             btn.disabled = true;
-            btn.innerText = 'Menyimpan & Menyusun Rangkuman...';
+            btn.innerText = 'Menghitung Skor & Menyimpan...';
 
-            let preItems = [];
-            let preTotal = 0;
             let postItems = [];
             let postTotal = 0;
-
             for (let i = 1; i <= 10; i++) {
-                const vPre = parseInt(document.querySelector(`input[name="pre-bas-${i}"]:checked`).value);
                 const vPost = parseInt(document.querySelector(`input[name="post-bas-${i}"]:checked`).value);
-                preItems.push(vPre);
-                preTotal += vPre;
                 postItems.push(vPost);
                 postTotal += vPost;
+            }
+
+            const postMeanNum = postTotal / 10;
+            const postMean = postMeanNum.toFixed(2);
+            const postPercent = Math.round((postTotal / 50) * 100);
+
+            const dim1Score = postItems[1] + postItems[2] + postItems[6] + postItems[8];
+            const dim1Percent = Math.round((dim1Score / 20) * 100);
+
+            const dim2Score = postItems[0] + postItems[3] + postItems[4] + postItems[5];
+            const dim2Percent = Math.round((dim2Score / 20) * 100);
+
+            const dim3Score = postItems[7] + postItems[9];
+            const dim3Percent = Math.round((dim3Score / 10) * 100);
+
+            const s1 = document.querySelector('input[name="sosmed-1"]:checked').value;
+            const s2 = document.querySelector('input[name="sosmed-2"]:checked').value;
+            const s3 = document.querySelector('input[name="sosmed-3"]:checked').value;
+            const s4 = document.querySelector('input[name="sosmed-4"]:checked').value;
+            const sosmedArr = [s1, s2, s3, s4];
+            const jumlahTidakSosmed = sosmedArr.filter(val => val === "Tidak").length;
+            const jumlahYaSosmed = 4 - jumlahTidakSosmed;
+            const dim4Percent = 60 + (jumlahTidakSosmed * 10);
+
+            let badgeTitle = "";
+            let badgeDesc = "";
+            if (postMeanNum >= 4.0) {
+                badgeTitle = "🌟 Strong Body Appreciator";
+                badgeDesc = `Indeks Apresiasi Tubuh kamu (${postMean}/5.00) menunjukkan apresiasi dan rasa nyaman yang sangat kuat terhadap tubuhmu. Kamu mampu menghargai keunikan dan fungsi tubuhmu tanpa mudah goyah oleh standar penampilan di media sosial.`;
+            } else if (postMeanNum >= 3.0) {
+                badgeTitle = "🌿 Growing Body Appreciator";
+                badgeDesc = `Indeks Apresiasi Tubuh kamu (${postMean}/5.00) menunjukkan kamu sudah memiliki dasar penerimaan dan rasa hormat yang baik terhadap tubuhmu, meskipun pada situasi tertentu standar visual di media sosial masih sesekali memengaruhi perasaanmu.`;
+            } else {
+                badgeTitle = "🌱 Developing Body Connection";
+                badgeDesc = `Indeks Apresiasi Tubuh kamu (${postMean}/5.00) menunjukkan saat ini kamu sedang dalam tahap membangun kembali koneksi positif dengan tubuhmu. Latihan berfokus pada fungsi tubuh ini adalah langkah awal yang sangat penting untuk membantumu lebih nyaman dengan dirimu.`;
+            }
+
+            let narasiSosmed = "";
+            if (jumlahYaSosmed >= 3) {
+                narasiSosmed = `Berdasarkan refleksimu (${jumlahYaSosmed} dari 4 pengalaman), kamu menyadari cukup sering membandingkan diri saat melihat konten media sosial. Ini adalah hal yang wajar karena algoritma media sosial menonjolkan visual yang telah diedit. Mengingat kembali fungsi tubuhmu akan membantumu menjaga rasa percaya diri.`;
+            } else if (jumlahYaSosmed >= 1) {
+                narasiSosmed = `Berdasarkan refleksimu (${jumlahYaSosmed} dari 4 pengalaman), kamu sesekali pernah membandingkan penampilan dengan konten di internet, namun kamu sudah memiliki kesadaran kritis bahwa foto/video di media sosial tidak menampilkan keseluruhan hidup seseorang.`;
+            } else {
+                narasiSosmed = `Kamu memiliki daya tahan digital yang sangat baik (tidak mudah membandingkan fisik dengan konten media sosial). Pertahankan cara pandang sehat ini sambil terus merawat fungsi tubuhmu.`;
             }
 
             let act1List = [];
@@ -810,56 +1717,29 @@
             const f2 = document.getElementById('act2-fungsi-2').value.trim();
             const f3 = document.getElementById('act2-fungsi-3').value.trim();
             const alasanFungsi = document.getElementById('act2-alasan').value.trim();
-
-            const s1 = document.querySelector('input[name="sosmed-1"]:checked').value;
-            const s2 = document.querySelector('input[name="sosmed-2"]:checked').value;
-            const s3 = document.querySelector('input[name="sosmed-3"]:checked').value;
-            const s4 = document.querySelector('input[name="sosmed-4"]:checked').value;
-            const sosmedArr = [s1, s2, s3, s4];
-            const jumlahYaSosmed = sosmedArr.filter(val => val === "Ya").length;
-
             const refleksiSosmed = document.getElementById('act3-refleksi').value.trim();
             const suratTubuh = document.getElementById('act4-surat').value.trim();
-
             const k1 = document.getElementById('act5-komitmen-1').value.trim();
             const k2 = document.getElementById('act5-komitmen-2').value.trim();
             const k3 = document.getElementById('act5-komitmen-3').value.trim();
+            const namaResp = document.getElementById('nama-responden').value.trim();
 
-            const kodeResp = document.getElementById('kode-responden').value.trim();
+            document.getElementById('closing-nama').innerText = namaResp;
+            document.getElementById('score-total-display').innerText = `Skor ${postTotal}/50 (${postPercent}%)`;
+            document.getElementById('score-badge-title').innerText = badgeTitle;
+            document.getElementById('score-badge-desc').innerText = badgeDesc;
 
-            let narasiSosmed = "";
-            if (jumlahYaSosmed >= 3) {
-                narasiSosmed = `Pada Aktivitas 3, kamu menyadari bahwa kamu cukup sering membandingkan penampilan atau merasa kurang puas terhadap tubuh setelah melihat konten media sosial (${jumlahYaSosmed} dari 4 pengalaman). Hal ini sangat wajar dialami remaja karena algoritma media sosial memang dirancang menonjolkan standar visual yang sudah diedit/dikurasi, sehingga membuat kita lupa betapa hebatnya fungsi tubuh kita di dunia nyata.`;
-            } else if (jumlahYaSosmed >= 1) {
-                narasiSosmed = `Pada Aktivitas 3, kamu menyadari pernah mengalami momen membandingkan diri saat melihat media sosial (${jumlahYaSosmed} dari 4 pengalaman). Itu adalah respon manusiawi ketika kita terpapar standar penampilan visual di internet, namun kamu memiliki kesadaran yang baik bahwa konten online tidak menggambarkan keseluruhan hidup seseorang.`;
-            } else {
-                narasiSosmed = `Pada Aktivitas 3, kamu menunjukkan batasan diri yang kuat dan tidak mudah terjebak membandingkan penampilan fisik dengan konten di media sosial. Memahami konsep Body Functionality ini akan semakin memperkuat rasa syukur dan apresiasimu terhadap kemampuan tubuhmu.`;
-            }
-
-            document.getElementById('closing-kode').innerText = kodeResp;
             document.getElementById('closing-analisis-sosmed').innerText = narasiSosmed;
-            document.getElementById('closing-list-fungsi').innerHTML = `
-                <li>${f1}</li>
-                <li>${f2}</li>
-                <li>${f3}</li>
-            `;
+            document.getElementById('closing-list-fungsi').innerHTML = `<li>${f1}</li><li>${f2}</li><li>${f3}</li>`;
             document.getElementById('closing-alasan-fungsi').innerText = alasanFungsi;
             document.getElementById('closing-surat-tubuh').innerText = suratTubuh;
             document.getElementById('closing-refleksi-sosmed').innerText = refleksiSosmed;
-            document.getElementById('closing-list-komitmen').innerHTML = `
-                <li>${k1}</li>
-                <li>${k2}</li>
-                <li>${k3}</li>
-            `;
+            document.getElementById('closing-list-komitmen').innerHTML = `<li>${k1}</li><li>${k2}</li><li>${k3}</li>`;
 
             const payload = {
+                tipeSesi: "HARI_2_INTERVENSI",
                 tanggal: new Date().toLocaleString('id-ID'),
-                kodeResponden: kodeResp,
-                usia: document.getElementById('usia-responden').value.trim(),
-                jenisKelamin: document.getElementById('jk-responden').value,
-                durasiSosmed: document.getElementById('durasi-sosmed').value,
-                pretestItems: preItems.join(', '),
-                pretestTotal: preTotal,
+                namaResponden: namaResp,
                 aktivitas1_10Fungsi: act1List.join(' | '),
                 aktivitas2_3Fungsi: [f1, f2, f3].join(' | '),
                 aktivitas2_Alasan: alasanFungsi,
@@ -874,13 +1754,31 @@
             fetch(GOOGLE_SHEET_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify(payload)
             }).finally(() => {
                 document.getElementById('posttest-wrapper').classList.add('hidden');
                 document.getElementById('closing-wrapper').classList.remove('hidden');
-                document.getElementById('badge-step').innerText = 'Selesai';
+                document.getElementById('badge-step').innerText = 'Rapor Hasil Refleksi';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                const dashOffset = 314 - Math.round((postPercent / 100) * 314);
+                setTimeout(() => {
+                    document.getElementById('score-circle-bar').style.strokeDashoffset = dashOffset;
+                    animasiCountUp('score-mean-display', postMeanNum, 1200, true, '');
+
+                    document.getElementById('bar-fill-1').style.width = `${dim1Percent}%`;
+                    animasiCountUp('bar-label-1', dim1Percent, 1000, false, '%');
+
+                    document.getElementById('bar-fill-2').style.width = `${dim2Percent}%`;
+                    animasiCountUp('bar-label-2', dim2Percent, 1000, false, '%');
+
+                    document.getElementById('bar-fill-3').style.width = `${dim3Percent}%`;
+                    animasiCountUp('bar-label-3', dim3Percent, 1000, false, '%');
+
+                    document.getElementById('bar-fill-4').style.width = `${dim4Percent}%`;
+                    animasiCountUp('bar-label-4', dim4Percent, 1000, false, '%');
+                }, 200);
             });
         }
     </script>
