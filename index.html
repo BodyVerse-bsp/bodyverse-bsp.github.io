@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BodyVerse — Your Body-Your Story-Your Power</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23ffffff%22/><path d=%22M82 4L84.8 12.2L93 15L84.8 17.8L82 26L79.2 17.8L71 15L79.2 12.2Z%22 fill=%22%23008767%22/><circle cx=%2244%22 cy=%2227%22 r=%229.5%22 fill=%22%23008767%22/><path d=%22M12 38C26 35 36 41 45 41C54 41 64 27 73 19C67 32 58 45 53 58L35 63C32 50 24 42 12 38Z%22 fill=%22%23008767%22/><path d=%22M36 74L48 70C42 82 34 90 24 96C27 87 32 80 36 74Z%22 fill=%22%23008767%22/><path d=%22M26 56C10 66 12 80 32 76C52 72 78 54 74 40C71 33 60 34 56 36C64 36 67 40 65 45C61 55 42 66 28 67C18 68 18 61 26 56Z%22 fill=%22%235ac8a5%22/></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23ffffff%22/><path d=%22M82 4L84.8 12.2L93 15L84.8 17.8L82 26L79.2 17.8L71 15L79.2 12.2Z%22 fill=%22%23008767%22/><circle cx=%2244%22 cy=%2227%22 r=%229.5%22 fill=%22%23008767%22/><path d=%22M12 38C26 35, 36 41, 45 41C54 41, 64 27, 73 19C67 32, 58 45, 53 58L35 63C32 50, 24 42, 12 38Z%22 fill=%22%23008767%22/><path d=%22M36 74L48 70C42 82, 34 90, 24 96C27 87, 32 80, 36 74Z%22 fill=%22%23008767%22/><path d=%22M26 56C10 66 12 80 32 76C52 72 78 54 74 40C71 33 60 34 56 36C64 36 67 40 65 45C61 55 42 66 28 67C18 68 18 61 26 56Z%22 fill=%22%235ac8a5%22/></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -118,9 +118,9 @@
                 <svg class="w-11 h-11 flex-shrink-0 logo-float" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path class="star-twinkle" d="M82 4 L84.8 12.2 L93 15 L84.8 17.8 L82 26 L79.2 17.8 L71 15 L79.2 12.2 Z" fill="#008767"/>
                     <circle cx="44" cy="27" r="9.5" fill="#008767"/>
-                    <path d="M12 38 C26 35, 36 41, 45 41 C54 41, 64 27, 73 19 C67 32, 58 45, 53 58 L35 63 C32 50, 24 42, 12 38 Z" fill="#008767"/>
+                    <path d="M12 38 C26 35, 36 41, 45 41 C54 41, 64 27, 73 19C67 32, 58 45, 53 58 L35 63 C32 50, 24 42, 12 38 Z" fill="#008767"/>
                     <path d="M36 74 L48 70 C42 82, 34 90, 24 96 C27 87, 32 80, 36 74 Z" fill="#008767"/>
-                    <path d="M26 56 C10 66, 12 80, 32 76 C52 72, 78 54, 74 40 C71 33, 60 34, 56 36 C64 36, 67 40, 65 45 C61 55, 42 66, 28 67 C18 68, 18 61, 26 56 Z" fill="#5ac8a5"/>
+                    <path d="M26 56 C10 66, 12 80, 32 76 C52 72, 78 54, 74 40 C71 33, 60 34, 56 36 C64 36, 67 40, 65 45C61 55, 42 66, 28 67 C18 68, 18 61, 26 56 Z" fill="#5ac8a5"/>
                 </svg>
                 <div>
                     <span class="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 block leading-none">
@@ -209,6 +209,107 @@
         </div>
     </div>
 
+    <!-- POP-UP MODAL: RANGKUMAN DETAIL RESPONDEN UNTUK ADMIN -->
+    <div id="modal-admin-summary" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-7 shadow-2xl border border-slate-100 space-y-5 my-8 max-h-[90vh] overflow-y-auto page-transition">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 sticky top-0 bg-white z-10">
+                <div>
+                    <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-900 text-amber-300 text-[10px] font-bold uppercase tracking-wider">
+                        🔍 Rangkuman Profil & Refleksi Siswa
+                    </span>
+                    <h3 id="adm-sum-nama" class="font-extrabold text-slate-900 text-lg sm:text-xl mt-1">-</h3>
+                    <p id="adm-sum-meta" class="text-xs text-slate-500">-</p>
+                </div>
+                <button type="button" onclick="tutupModalRangkumanAdmin()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold px-2">&times;</button>
+            </div>
+
+            <!-- Bagian 1: Perbandingan Indeks Apresiasi & Kategori -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div class="bg-teal-50/70 border border-teal-200/80 rounded-2xl p-4 space-y-2">
+                    <span class="text-[11px] font-extrabold text-teal-800 uppercase block">📊 Sesi 1 (Kuesioner Awal)</span>
+                    <div class="flex items-baseline gap-2">
+                        <span id="adm-sum-mean1" class="text-2xl font-extrabold text-teal-950">-</span>
+                        <span id="adm-sum-skor1" class="text-xs text-teal-700 font-semibold">(-/50)</span>
+                    </div>
+                    <div id="adm-sum-kat1" class="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-teal-100 text-teal-800">-</div>
+                </div>
+
+                <div class="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-4 space-y-2">
+                    <span class="text-[11px] font-extrabold text-emerald-800 uppercase block">📊 Sesi 3 (Evaluasi Akhir)</span>
+                    <div class="flex items-baseline gap-2">
+                        <span id="adm-sum-mean3" class="text-2xl font-extrabold text-emerald-950">-</span>
+                        <span id="adm-sum-skor3" class="text-xs text-emerald-700 font-semibold">(-/50)</span>
+                    </div>
+                    <div id="adm-sum-kat3" class="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">-</div>
+                </div>
+            </div>
+
+            <!-- Kartu Perubahan / Delta -->
+            <div class="bg-slate-900 text-white rounded-2xl p-4 space-y-1.5 shadow-sm">
+                <span class="text-[11px] uppercase tracking-wider text-amber-300 font-bold block">📈 Perubahan Indeks (Pre vs Post):</span>
+                <div class="flex items-baseline justify-between">
+                    <span id="adm-sum-delta" class="text-xl font-extrabold text-white">-</span>
+                    <span id="adm-sum-delta-desc" class="text-xs text-slate-300 text-right">Menunggu kelengkapan data sesi.</span>
+                </div>
+            </div>
+
+            <!-- Bagian 2: Rincian Dimensi & Analisis Psikologis -->
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-3">
+                <div class="flex justify-between items-center">
+                    <h4 class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">📈 Analisis 4 Dimensi Apresiasi Tubuh</h4>
+                    <span id="adm-sum-dim-source" class="text-[10px] px-2 py-0.5 bg-slate-200 rounded font-bold text-slate-700">-</span>
+                </div>
+                <div id="adm-sum-dims-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <!-- Dinamis terisi JS -->
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed">
+                    <b>🧠 Catatan Peneliti ("Kenapa" Profil Ini Terbentuk):</b>
+                    <p id="adm-sum-why-analysis" class="mt-1 text-slate-600">-</p>
+                </div>
+            </div>
+
+            <!-- Bagian 3: Rangkuman Catatan & Refleksi Sesi 2 -->
+            <div class="space-y-3">
+                <h4 class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">🌿 Rangkuman Tulisan Refleksi Sesi 2</h4>
+                
+                <div class="space-y-2.5 text-xs">
+                    <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-3.5 space-y-1">
+                        <span class="font-bold text-teal-900 block">1. 3 Fungsi Tubuh Utama yang Dihargai:</span>
+                        <ul id="adm-sum-act2-list" class="list-disc pl-5 text-teal-950 font-semibold space-y-0.5"></ul>
+                        <p class="text-slate-700 mt-1 italic"><b>Alasan:</b> "<span id="adm-sum-act2-alasan">-</span>"</p>
+                    </div>
+
+                    <div class="bg-amber-50/50 border border-amber-100 rounded-xl p-3.5 space-y-1">
+                        <span class="font-bold text-amber-900 block">2. Refleksi Pengalaman Media Sosial (Sesi 2):</span>
+                        <p id="adm-sum-act3-yatidak" class="text-amber-950 font-semibold">-</p>
+                        <p class="text-slate-700 mt-1 italic"><b>Renungan:</b> "<span id="adm-sum-act3-refleksi">-</span>"</p>
+                    </div>
+
+                    <div class="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-3.5 space-y-1">
+                        <span class="font-bold text-emerald-900 block">3. Surat Pribadi untuk Tubuh:</span>
+                        <p id="adm-sum-act4-surat" class="text-slate-700 italic">-</p>
+                    </div>
+
+                    <div class="bg-purple-50/50 border border-purple-100 rounded-xl p-3.5 space-y-1">
+                        <span class="font-bold text-purple-900 block">4. Tiga Komitmen Nyata Merawat Tubuh:</span>
+                        <ul id="adm-sum-act5-list" class="list-decimal pl-5 text-purple-950 font-semibold space-y-0.5"></ul>
+                    </div>
+
+                    <div class="bg-slate-100 border border-slate-200 rounded-xl p-3.5 space-y-1">
+                        <span class="font-bold text-slate-800 block">5. Daftar 10 Fungsi Tubuh (Aktivitas 1):</span>
+                        <p id="adm-sum-act1" class="text-slate-600 text-[11px]">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-2 sticky bottom-0 bg-white pb-2">
+                <button type="button" onclick="tutupModalRangkumanAdmin()" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-xl text-xs sm:text-sm">
+                    Tutup Rangkuman
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- MAIN CONTAINER -->
     <main class="flex-grow flex items-start justify-center px-4 py-6 sm:py-10">
         <div class="max-w-3xl w-full bg-white rounded-3xl shadow-xl shadow-slate-200/60 p-6 sm:p-8 border border-slate-100">
@@ -220,9 +321,9 @@
                         <svg class="w-12 h-12 logo-float" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="star-twinkle" d="M82 4 L84.8 12.2 L93 15 L84.8 17.8 L82 26 L79.2 17.8 L71 15 L79.2 12.2 Z" fill="#008767"/>
                             <circle cx="44" cy="27" r="9.5" fill="#008767"/>
-                            <path d="M12 38 C26 35, 36 41, 45 41 C54 41, 64 27, 73 19 C67 32, 58 45, 53 58 L35 63 C32 50, 24 42, 12 38 Z" fill="#008767"/>
+                            <path d="M12 38 C26 35, 36 41, 45 41 C54 41, 64 27, 73 19C67 32, 58 45, 53 58 L35 63 C32 50, 24 42, 12 38 Z" fill="#008767"/>
                             <path d="M36 74 L48 70 C42 82, 34 90, 24 96 C27 87, 32 80, 36 74 Z" fill="#008767"/>
-                            <path d="M26 56 C10 66, 12 80, 32 76 C52 72, 78 54, 74 40 C71 33, 60 34, 56 36 C64 36, 67 40, 65 45 C61 55, 42 66 28 67 C18 68, 18 61, 26 56 Z" fill="#5ac8a5"/>
+                            <path d="M26 56 C10 66, 12 80, 32 76 C52 72, 78 54, 74 40 C71 33, 60 34, 56 36 C64 36, 67 40, 65 45 C61 55, 42 66, 28 67 C18 68, 18 61, 26 56 Z" fill="#5ac8a5"/>
                         </svg>
                     </div>
                     <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200/60">
@@ -568,10 +669,10 @@
                             🛠️ Panel Kontrol Peneliti (Muhammad Yoga Dwi Nugraha)
                         </span>
                         <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2">
-                            Manajemen Verifikasi & Buka Sesi Responden
+                            Manajemen Verifikasi, Indeks Apresiasi & Rangkuman Siswa
                         </h2>
                         <p class="text-xs text-slate-500">
-                            Pantau progres siswa secara <i>real-time</i>, buka akses sesi lanjutan, atau <b>buka ulang sesi yang sudah selesai</b>.
+                            Pantau Indeks Apresiasi, buka akses sesi, dan klik <b>"👁️ Lihat Rangkuman"</b> untuk membaca analisis lengkap per siswa.
                         </p>
                     </div>
                     <button type="button" onclick="showView('view-home', 'Beranda Utama', 15)" class="text-xs font-bold px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700">
@@ -637,12 +738,12 @@
                     <table class="w-full text-left border-collapse text-xs">
                         <thead>
                             <tr class="bg-slate-100 text-slate-600 border-b border-slate-200">
-                                <th class="p-3 font-extrabold">Responden</th>
-                                <th class="p-3 font-extrabold text-center">Sesi 1 (Pretest)</th>
+                                <th class="p-3 font-extrabold">Responden & Rangkuman</th>
+                                <th class="p-3 font-extrabold text-center">Sesi 1 (Indeks Awal)</th>
                                 <th class="p-3 font-extrabold text-center">Akses Sesi 2</th>
                                 <th class="p-3 font-extrabold text-center">Sesi 2 (5 Aktivitas)</th>
                                 <th class="p-3 font-extrabold text-center">Akses Sesi 3</th>
-                                <th class="p-3 font-extrabold text-center">Sesi 3 (Posttest)</th>
+                                <th class="p-3 font-extrabold text-center">Sesi 3 (Indeks Akhir)</th>
                             </tr>
                         </thead>
                         <tbody id="admin-table-body" class="divide-y divide-slate-100">
@@ -672,27 +773,24 @@
                     </p>
                 </div>
 
-                <!-- ILUSTRASI 5 IKON ANIMASI (DI ANTARA "TIDAK ADA JAWABAN BENAR ATAU SALAH" DAN "SKALA JAWABAN") -->
+                <!-- ILUSTRASI 5 IKON ANIMASI -->
                 <div class="w-full py-2 flex justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 185" class="w-full max-w-xl h-auto block" role="img" aria-label="Ilustrasi 5 simbol apresiasi dan fungsi tubuh">
-                        <!-- Latar Belakang Oval Pastel -->
                         <ellipse cx="145" cy="95" rx="95" ry="62" fill="#e5f4ed"/>
                         <ellipse cx="330" cy="92" rx="115" ry="74" fill="#fdf1cd"/>
                         <ellipse cx="515" cy="100" rx="105" ry="65" fill="#edeaf5"/>
 
-                        <!-- Garis Putus-putus Mengalir -->
                         <path class="dash-flow" d="M 110 92 Q 165 62 215 92 T 330 92 T 445 92 T 565 92" fill="none" stroke="#6c9a8b" stroke-width="3.5" stroke-dasharray="4 9" stroke-linecap="round"/>
 
-                        <!-- Daun Hijau Bergoyang di Kiri -->
                         <path class="leaf-sway" d="M 54 90 C 32 76, 14 95, 16 116 C 36 118, 50 106, 54 90 Z" fill="#3b9c73"/>
 
-                        <!-- Lingkaran 1: Hati (Kasih Sayang Tubuh) -->
+                        <!-- Lingkaran 1: Hati -->
                         <g class="icon-bubble-1">
                             <circle cx="105" cy="95" r="46" fill="#fab39c"/>
                             <path d="M 105 112 C 105 112, 85 98, 85 86 C 85 78, 92 74, 98 74 C 102 74, 105 77, 105 80 C 105 77, 108 74, 112 74 C 118 74, 125 78, 125 86 C 125 98, 105 112, 105 112 Z" fill="none" stroke="#183a2d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
                         </g>
 
-                        <!-- Lingkaran 2: Wajah Senyum (Sikap Positif & Nyaman) -->
+                        <!-- Lingkaran 2: Wajah Senyum -->
                         <g class="icon-bubble-2">
                             <circle cx="218" cy="92" r="46" fill="#ffd166"/>
                             <circle cx="218" cy="92" r="22" fill="none" stroke="#183a2d" stroke-width="4"/>
@@ -701,14 +799,14 @@
                             <path d="M 210 96 Q 218 104 226 96" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round"/>
                         </g>
 
-                        <!-- Lingkaran 3: Figur Berjalan (Gerak & Vitalitas Tubuh) -->
+                        <!-- Lingkaran 3: Figur Berjalan -->
                         <g class="icon-bubble-3">
                             <circle cx="332" cy="92" r="46" fill="#95dec6"/>
                             <circle cx="332" cy="73" r="5.5" fill="none" stroke="#183a2d" stroke-width="4"/>
                             <path d="M 332 79 L 328 96 M 330 84 L 320 93 M 330 84 L 341 90 M 328 96 L 321 112 M 328 96 L 337 112" fill="none" stroke="#183a2d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
                         </g>
 
-                        <!-- Lingkaran 4: Nada Musik (Pancaindra & Menikmati Pengalaman) -->
+                        <!-- Lingkaran 4: Nada Musik -->
                         <g class="icon-bubble-4">
                             <circle cx="446" cy="95" r="46" fill="#c3b5f5"/>
                             <path d="M 439 104 L 439 79 L 461 74 L 461 99" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -716,7 +814,7 @@
                             <circle cx="455" cy="100" r="6" fill="none" stroke="#183a2d" stroke-width="4"/>
                         </g>
 
-                        <!-- Lingkaran 5: Pensil Menulis (Ekspresi & Kognisi) -->
+                        <!-- Lingkaran 5: Pensil Menulis -->
                         <g class="icon-bubble-5">
                             <circle cx="560" cy="95" r="46" fill="#ffd166"/>
                             <path d="M 544 109 L 552 107 L 573 86 C 575 84, 575 80, 573 78 C 571 76, 567 76, 565 78 L 544 99 Z" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1372,6 +1470,7 @@
         let modeSesiAktif = 1;
         let akunSedangLogin = null;
         let breathInterval = null;
+        let adminRespondenList = [];
 
         let statusSesiUser = {
             sesi1Done: false,
@@ -1419,6 +1518,43 @@
             renderAktivitas1Inputs();
             cekSesiLoginTersimpan();
         });
+
+        // =========================================================================
+        // HELPER KATEGORI INDEKS APRESIASI TUBUH (1.00 - 5.00)
+        // =========================================================================
+        function getKategoriApresiasi(meanVal) {
+            const num = parseFloat(meanVal);
+            if (isNaN(num) || num <= 0) {
+                return {
+                    title: "Belum Ada Data",
+                    short: "Belum Ada",
+                    badgeClass: "bg-slate-100 text-slate-500",
+                    desc: "Responden belum menyelesaikan evaluasi pada sesi ini."
+                };
+            }
+            if (num >= 4.0) {
+                return {
+                    title: "🌟 Strong Body Appreciator",
+                    short: "🌟 Strong",
+                    badgeClass: "bg-emerald-100 text-emerald-800 border border-emerald-200",
+                    desc: `Indeks (${num.toFixed(2)}/5.00) berada pada kategori TINGGI. Menunjukkan rasa nyaman, hormat, dan penghargaan yang sangat kuat terhadap fungsi tubuh.`
+                };
+            } else if (num >= 3.0) {
+                return {
+                    title: "🌿 Growing Body Appreciator",
+                    short: "🌿 Growing",
+                    badgeClass: "bg-teal-100 text-teal-800 border border-teal-200",
+                    desc: `Indeks (${num.toFixed(2)}/5.00) berada pada kategori MENENGAH / BERTUMBUH. Sudah memiliki penerimaan tubuh yang baik, namun sesekali masih terpengaruh konten media sosial.`
+                };
+            } else {
+                return {
+                    title: "🌱 Developing Body Connection",
+                    short: "🌱 Developing",
+                    badgeClass: "bg-amber-100 text-amber-900 border border-amber-200",
+                    desc: `Indeks (${num.toFixed(2)}/5.00) berada pada kategori TAHAP AWAL. Masih cenderung membandingkan fisik dan membutuhkan penguatan koneksi positif terhadap fungsi tubuh.`
+                };
+            }
+        }
 
         // =========================================================================
         // 1. AUTENTIKASI LOGIN & REGISTER (DENGAN VALIDASI USIA 15-25 TAHUN)
@@ -1902,7 +2038,7 @@
         }
 
         // =========================================================================
-        // 3. DASHBOARD ADMIN PENELITI
+        // 3. DASHBOARD ADMIN PENELITI (INDEKS APRESIASI & MODAL RANGKUMAN LENGKAP)
         // =========================================================================
         function bukaDashboardAdmin() {
             showView('view-admin', 'Panel Peneliti', 100);
@@ -1922,7 +2058,8 @@
                 const result = await res.json();
 
                 if (result.status === "success" && Array.isArray(result.data)) {
-                    renderTabelAdmin(result.data);
+                    adminRespondenList = result.data;
+                    renderTabelAdmin(adminRespondenList);
                 } else {
                     tbody.innerHTML = `<tr><td colspan="6" class="p-6 text-center text-rose-500">Gagal memuat data. Pastikan Apps Script sudah di-deploy ke Versi Baru.</td></tr>`;
                 }
@@ -1943,44 +2080,72 @@
                 return;
             }
 
-            tbody.innerHTML = list.map(item => {
+            tbody.innerHTML = list.map((item, idx) => {
                 let colS1 = `<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-400">Belum</span>`;
                 if (item.sesi1Done) {
+                    const kat1 = getKategoriApresiasi(item.meanPre);
                     const btnReopen1 = item.reopenSesi1
-                        ? `<button onclick="toggleBukaUlangSesi('${item.username}', '${item.nama}', 1, 'KUNCI_ULANG')" class="mt-1 block mx-auto px-2 py-0.5 rounded bg-indigo-600 text-white text-[10px] font-bold">🔓 Sedang Dibuka (Kunci)</button>`
-                        : `<button onclick="toggleBukaUlangSesi('${item.username}', '${item.nama}', 1, 'BUKA_ULANG')" class="mt-1 block mx-auto px-2 py-0.5 rounded bg-slate-200 hover:bg-indigo-100 text-slate-700 hover:text-indigo-800 text-[10px] font-bold transition-all">🔄 Buka Ulang Sesi 1</button>`;
-                    colS1 = `<span class="px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 font-bold">✅ Skor: ${item.skorPre}</span>${btnReopen1}`;
+                        ? `<button onclick="toggleBukaUlangSesi(${idx}, 1, 'KUNCI_ULANG')" class="mt-1.5 block mx-auto px-2 py-0.5 rounded bg-indigo-600 text-white text-[10px] font-bold">🔓 Sedang Dibuka (Kunci)</button>`
+                        : `<button onclick="toggleBukaUlangSesi(${idx}, 1, 'BUKA_ULANG')" class="mt-1.5 block mx-auto px-2 py-0.5 rounded bg-slate-100 hover:bg-indigo-100 text-slate-600 hover:text-indigo-800 text-[10px] font-bold transition-all">🔄 Buka Ulang</button>`;
+                    colS1 = `
+                        <div class="space-y-1">
+                            <span class="font-extrabold text-slate-900 block">Indeks: ${item.meanPre} <span class="text-slate-400 font-normal">(${item.skorPre})</span></span>
+                            <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold ${kat1.badgeClass}">${kat1.short}</span>
+                            ${btnReopen1}
+                        </div>
+                    `;
                 }
 
                 const btnVerif2 = item.verifikasiSesi2
-                    ? `<button onclick="verifikasiSatuResponden('${item.username}', '${item.nama}', 2, 'BATAL')" class="px-2.5 py-1 rounded-lg bg-emerald-100 hover:bg-rose-100 text-emerald-800 hover:text-rose-700 font-bold transition-all">🔓 Terbuka</button>`
-                    : `<button onclick="verifikasiSatuResponden('${item.username}', '${item.nama}', 2, 'SETUJUI')" class="px-2.5 py-1 rounded-lg bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold shadow-sm transition-all">🔒 Buka Sesi 2</button>`;
+                    ? `<button onclick="verifikasiSatuResponden(${idx}, 2, 'BATAL')" class="px-2.5 py-1 rounded-lg bg-emerald-100 hover:bg-rose-100 text-emerald-800 hover:text-rose-700 font-bold transition-all">🔓 Terbuka</button>`
+                    : `<button onclick="verifikasiSatuResponden(${idx}, 2, 'SETUJUI')" class="px-2.5 py-1 rounded-lg bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold shadow-sm transition-all">🔒 Buka Sesi 2</button>`;
 
                 let colS2 = `<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-400">Belum</span>`;
                 if (item.sesi2Done) {
                     const btnReopen2 = item.reopenSesi2
-                        ? `<button onclick="toggleBukaUlangSesi('${item.username}', '${item.nama}', 2, 'KUNCI_ULANG')" class="mt-1 block mx-auto px-2 py-0.5 rounded bg-indigo-600 text-white text-[10px] font-bold">🔓 Sedang Dibuka (Kunci)</button>`
-                        : `<button onclick="toggleBukaUlangSesi('${item.username}', '${item.nama}', 2, 'BUKA_ULANG')" class="mt-1 block mx-auto px-2 py-0.5 rounded bg-slate-200 hover:bg-indigo-100 text-slate-700 hover:text-indigo-800 text-[10px] font-bold transition-all">🔄 Buka Ulang Sesi 2</button>`;
-                    colS2 = `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">✅ 5 Akt Selesai</span>${btnReopen2}`;
+                        ? `<button onclick="toggleBukaUlangSesi(${idx}, 2, 'KUNCI_ULANG')" class="mt-1.5 block mx-auto px-2 py-0.5 rounded bg-indigo-600 text-white text-[10px] font-bold">🔓 Sedang Dibuka (Kunci)</button>`
+                        : `<button onclick="toggleBukaUlangSesi(${idx}, 2, 'BUKA_ULANG')" class="mt-1.5 block mx-auto px-2 py-0.5 rounded bg-slate-100 hover:bg-indigo-100 text-slate-600 hover:text-indigo-800 text-[10px] font-bold transition-all">🔄 Buka Ulang</button>`;
+                    colS2 = `
+                        <div>
+                            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">✅ 5 Akt Selesai</span>
+                            ${btnReopen2}
+                        </div>
+                    `;
                 }
 
                 const btnVerif3 = item.verifikasiSesi3
-                    ? `<button onclick="verifikasiSatuResponden('${item.username}', '${item.nama}', 3, 'BATAL')" class="px-2.5 py-1 rounded-lg bg-emerald-100 hover:bg-rose-100 text-emerald-800 hover:text-rose-700 font-bold transition-all">🔓 Terbuka</button>`
-                    : `<button onclick="verifikasiSatuResponden('${item.username}', '${item.nama}', 3, 'SETUJUI')" class="px-2.5 py-1 rounded-lg bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold shadow-sm transition-all">🔒 Buka Sesi 3</button>`;
+                    ? `<button onclick="verifikasiSatuResponden(${idx}, 3, 'BATAL')" class="px-2.5 py-1 rounded-lg bg-emerald-100 hover:bg-rose-100 text-emerald-800 hover:text-rose-700 font-bold transition-all">🔓 Terbuka</button>`
+                    : `<button onclick="verifikasiSatuResponden(${idx}, 3, 'SETUJUI')" class="px-2.5 py-1 rounded-lg bg-amber-400 hover:bg-amber-500 text-slate-950 font-extrabold shadow-sm transition-all">🔒 Buka Sesi 3</button>`;
 
                 let colS3 = `<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-400">Belum</span>`;
                 if (item.sesi3Done) {
+                    const kat3 = getKategoriApresiasi(item.meanPost);
+                    const deltaNum = Number(item.selisih);
+                    const deltaBadge = !isNaN(deltaNum)
+                        ? (deltaNum > 0 ? `<span class="text-emerald-700 font-extrabold">(+${deltaNum})</span>` : `<span class="text-slate-500">(${deltaNum})</span>`)
+                        : '';
                     const btnReopen3 = item.reopenSesi3
-                        ? `<button onclick="toggleBukaUlangSesi('${item.username}', '${item.nama}', 3, 'KUNCI_ULANG')" class="mt-1 block mx-auto px-2 py-0.5 rounded bg-indigo-600 text-white text-[10px] font-bold">🔓 Sedang Dibuka (Kunci)</button>`
-                        : `<button onclick="toggleBukaUlangSesi('${item.username}', '${item.nama}', 3, 'BUKA_ULANG')" class="mt-1 block mx-auto px-2 py-0.5 rounded bg-slate-200 hover:bg-indigo-100 text-slate-700 hover:text-indigo-800 text-[10px] font-bold transition-all">🔄 Buka Ulang Sesi 3</button>`;
-                    colS3 = `<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold">🎓 Skor: ${item.skorPost} (Δ ${item.selisih})</span>${btnReopen3}`;
+                        ? `<button onclick="toggleBukaUlangSesi(${idx}, 3, 'KUNCI_ULANG')" class="mt-1.5 block mx-auto px-2 py-0.5 rounded bg-indigo-600 text-white text-[10px] font-bold">🔓 Sedang Dibuka (Kunci)</button>`
+                        : `<button onclick="toggleBukaUlangSesi(${idx}, 3, 'BUKA_ULANG')" class="mt-1.5 block mx-auto px-2 py-0.5 rounded bg-slate-100 hover:bg-indigo-100 text-slate-600 hover:text-indigo-800 text-[10px] font-bold transition-all">🔄 Buka Ulang</button>`;
+                    colS3 = `
+                        <div class="space-y-1">
+                            <span class="font-extrabold text-slate-900 block">Indeks: ${item.meanPost} ${deltaBadge}</span>
+                            <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold ${kat3.badgeClass}">${kat3.short}</span>
+                            ${btnReopen3}
+                        </div>
+                    `;
                 }
 
                 return `
-                    <tr class="hover:bg-slate-50/80">
-                        <td class="p-3">
-                            <span class="font-extrabold text-slate-900 block">${item.nama}</span>
-                            <span class="text-[11px] text-slate-400">@${item.username} &bull; ${item.usia} thn (${item.jk})</span>
+                    <tr class="hover:bg-slate-50/80 align-top">
+                        <td class="p-3 space-y-1.5">
+                            <div>
+                                <span class="font-extrabold text-slate-900 block text-xs sm:text-sm">${item.nama}</span>
+                                <span class="text-[11px] text-slate-400 block">@${item.username} &bull; ${item.usia} thn (${item.jk})</span>
+                            </div>
+                            <button type="button" onclick="bukaModalRangkumanAdmin(${idx})" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-teal-700 text-white font-bold text-[11px] shadow-sm transition-all">
+                                👁️ Lihat Rangkuman
+                            </button>
                         </td>
                         <td class="p-3 text-center">${colS1}</td>
                         <td class="p-3 text-center">${btnVerif2}</td>
@@ -1992,7 +2157,154 @@
             }).join('');
         }
 
-        async function verifikasiSatuResponden(uname, nama, targetSesi, aksi) {
+        function bukaModalRangkumanAdmin(idx) {
+            const item = adminRespondenList[idx];
+            if (!item) return;
+
+            document.getElementById('adm-sum-nama').innerText = item.nama;
+            document.getElementById('adm-sum-meta').innerText = `@${item.username} • Usia ${item.usia} Tahun (${item.jk}) • Sosmed: ${item.durasi || '-'}`;
+
+            const kat1 = getKategoriApresiasi(item.meanPre);
+            document.getElementById('adm-sum-mean1').innerText = item.sesi1Done ? item.meanPre : "-";
+            document.getElementById('adm-sum-skor1').innerText = item.sesi1Done ? `(${item.skorPre}/50)` : "(-/50)";
+            const badge1 = document.getElementById('adm-sum-kat1');
+            badge1.innerText = kat1.title;
+            badge1.className = `inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full ${kat1.badgeClass}`;
+
+            const kat3 = getKategoriApresiasi(item.meanPost);
+            document.getElementById('adm-sum-mean3').innerText = item.sesi3Done ? item.meanPost : "-";
+            document.getElementById('adm-sum-skor3').innerText = item.sesi3Done ? `(${item.skorPost}/50)` : "(-/50)";
+            const badge3 = document.getElementById('adm-sum-kat3');
+            badge3.innerText = kat3.title;
+            badge3.className = `inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full ${kat3.badgeClass}`;
+
+            const deltaEl = document.getElementById('adm-sum-delta');
+            const deltaDescEl = document.getElementById('adm-sum-delta-desc');
+            if (item.sesi1Done && item.sesi3Done) {
+                const diffSkor = Number(item.skorPost) - Number(item.skorPre);
+                const diffMean = (parseFloat(item.meanPost) - parseFloat(item.meanPre)).toFixed(2);
+                if (diffSkor > 0) {
+                    deltaEl.innerText = `+${diffMean} Indeks (+${diffSkor} poin)`;
+                    deltaEl.className = "text-lg sm:text-xl font-extrabold text-emerald-400";
+                    deltaDescEl.innerText = `Meningkat dari ${kat1.short} menjadi ${kat3.short} setelah mengikuti refleksi fungsi tubuh.`;
+                } else if (diffSkor === 0) {
+                    deltaEl.innerText = `0.00 (Stabil)`;
+                    deltaEl.className = "text-lg sm:text-xl font-extrabold text-slate-200";
+                    deltaDescEl.innerText = `Skor apresiasi tubuh tetap stabil pada level ${kat3.short}.`;
+                } else {
+                    deltaEl.innerText = `${diffMean} Indeks (${diffSkor} poin)`;
+                    deltaEl.className = "text-lg sm:text-xl font-extrabold text-rose-400";
+                    deltaDescEl.innerText = `Terdapat penurunan skor pada evaluasi akhir. Cek catatan refleksi Sesi 2 di bawah untuk memahami faktornya.`;
+                }
+            } else {
+                deltaEl.innerText = "Belum Lengkap";
+                deltaEl.className = "text-lg font-extrabold text-slate-400";
+                deltaDescEl.innerText = "Menunggu responden menyelesaikan Sesi 1 dan Sesi 3.";
+            }
+
+            const rawItemsStr = item.sesi3Done ? item.postItems : (item.sesi1Done ? item.preItems : "");
+            const dimSourceBadge = document.getElementById('adm-sum-dim-source');
+            const dimsGrid = document.getElementById('adm-sum-dims-grid');
+
+            const sosmedList = item.act3YaTidak ? item.act3YaTidak.split(',').map(s => s.trim()) : [];
+            const jumlahYaSosmed = sosmedList.filter(v => v === "Ya").length;
+            const jumlahTidakSosmed = sosmedList.filter(v => v === "Tidak").length;
+            const dim4Pct = sosmedList.length > 0 ? (60 + jumlahTidakSosmed * 10) : 0;
+
+            if (rawItemsStr) {
+                dimSourceBadge.innerText = item.sesi3Done ? "Sumber: Data Sesi 3 (Akhir)" : "Sumber: Data Sesi 1 (Awal)";
+                const arr = rawItemsStr.split(',').map(x => parseInt(x.trim()) || 0);
+                const d1Pct = Math.round(((arr[1] + arr[2] + arr[6] + arr[8]) / 20) * 100);
+                const d2Pct = Math.round(((arr[0] + arr[3] + arr[4] + arr[5]) / 20) * 100);
+                const d3Pct = Math.round(((arr[7] + arr[9]) / 10) * 100);
+
+                dimsGrid.innerHTML = `
+                    <div class="p-2.5 rounded-xl bg-white border border-slate-200">
+                        <div class="flex justify-between font-bold text-slate-700 mb-1">
+                            <span>1. Penerimaan & Kenyamanan Fisik</span>
+                            <span class="text-teal-700">${d1Pct}%</span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-teal-600" style="width:${d1Pct}%"></div></div>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-white border border-slate-200">
+                        <div class="flex justify-between font-bold text-slate-700 mb-1">
+                            <span>2. Penghormatan & Kasih Sayang Tubuh</span>
+                            <span class="text-emerald-700">${d2Pct}%</span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-emerald-500" style="width:${d2Pct}%"></div></div>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-white border border-slate-200">
+                        <div class="flex justify-between font-bold text-slate-700 mb-1">
+                            <span>3. Ketahanan Standar Penampilan Sosial</span>
+                            <span class="text-cyan-700">${d3Pct}%</span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-cyan-600" style="width:${d3Pct}%"></div></div>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-white border border-slate-200">
+                        <div class="flex justify-between font-bold text-slate-700 mb-1">
+                            <span>4. Filter Realita Media Sosial (Sesi 2)</span>
+                            <span class="text-amber-700">${sosmedList.length > 0 ? dim4Pct + '%' : 'Belum Isi'}</span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-amber-500" style="width:${dim4Pct}%"></div></div>
+                    </div>
+                `;
+
+                const activeKat = item.sesi3Done ? kat3 : kat1;
+                let alasanTeknis = `${activeKat.desc} `;
+                if (d3Pct < d1Pct && d3Pct < d2Pct) {
+                    alasanTeknis += `Aspek terendah siswa ini berada pada <b>Ketahanan terhadap Standar Penampilan Sosial (${d3Pct}%)</b>, yang menunjukkan bahwa perbandingan visual dengan model/media sosial menjadi faktor utama yang memengaruhi persepsi tubuhnya. `;
+                } else if (d1Pct <= d2Pct && d1Pct <= d3Pct) {
+                    alasanTeknis += `Aspek terendah berada pada <b>Penerimaan & Kenyamanan Fisik (${d1Pct}%)</b>, menandakan siswa masih dalam proses membangun rasa nyaman berada di dalam tubuhnya sendiri. `;
+                } else {
+                    alasanTeknis += `Ketiga dimensi utama berada pada proporsi yang cukup seimbang (Penerimaan ${d1Pct}%, Penghormatan ${d2Pct}%, Ketahanan Sosial ${d3Pct}%). `;
+                }
+
+                if (sosmedList.length > 0) {
+                    alasanTeknis += `Pada refleksi media sosial, siswa menjawab <b>"Ya" pada ${jumlahYaSosmed} dari 4 indikator</b> perbandingan diri di media sosial.`;
+                }
+                document.getElementById('adm-sum-why-analysis').innerHTML = alasanTeknis;
+            } else {
+                dimSourceBadge.innerText = "Belum Ada Data";
+                dimsGrid.innerHTML = `<p class="text-slate-400 italic col-span-2">Siswa belum mengisi kuesioner Sesi 1 maupun Sesi 3.</p>`;
+                document.getElementById('adm-sum-why-analysis').innerText = "Belum tersedia karena responden belum mengisi kuesioner.";
+            }
+
+            const listFungsiEl = document.getElementById('adm-sum-act2-list');
+            if (item.act2Fungsi) {
+                listFungsiEl.innerHTML = item.act2Fungsi.split(' | ').map(f => `<li>${f}</li>`).join('');
+            } else {
+                listFungsiEl.innerHTML = `<li class="text-slate-400 font-normal">Belum diisi</li>`;
+            }
+            document.getElementById('adm-sum-act2-alasan').innerText = item.act2Alasan || "Belum diisi";
+
+            if (sosmedList.length > 0) {
+                document.getElementById('adm-sum-act3-yatidak').innerText =
+                    `1. Bandingkan penampilan: ${sosmedList[0] || '-'} | 2. Kurang menarik: ${sosmedList[1] || '-'} | 3. Tidak puas tubuh: ${sosmedList[2] || '-'} | 4. Ingin mirip orang lain: ${sosmedList[3] || '-'}`;
+            } else {
+                document.getElementById('adm-sum-act3-yatidak').innerText = "Belum mengisi pertanyaan refleksi media sosial.";
+            }
+            document.getElementById('adm-sum-act3-refleksi').innerText = item.act3Refleksi || "Belum diisi";
+            document.getElementById('adm-sum-act4-surat').innerText = item.act4Surat || "Belum menulis surat untuk tubuh.";
+
+            const listKomitmenEl = document.getElementById('adm-sum-act5-list');
+            if (item.act5Komitmen) {
+                listKomitmenEl.innerHTML = item.act5Komitmen.split(' | ').map(k => `<li>${k}</li>`).join('');
+            } else {
+                listKomitmenEl.innerHTML = `<li class="text-slate-400 font-normal">Belum diisi</li>`;
+            }
+
+            document.getElementById('adm-sum-act1').innerText = item.act1 ? item.act1.split(' | ').join(', ') : "Belum diisi";
+
+            document.getElementById('modal-admin-summary').classList.remove('hidden');
+        }
+
+        function tutupModalRangkumanAdmin() {
+            document.getElementById('modal-admin-summary').classList.add('hidden');
+        }
+
+        async function verifikasiSatuResponden(idx, targetSesi, aksi) {
+            const item = adminRespondenList[idx];
+            if (!item) return;
             try {
                 await fetch(GOOGLE_SHEET_URL, {
                     method: 'POST',
@@ -2000,8 +2312,8 @@
                     body: JSON.stringify({
                         tipeSesi: "ADMIN_VERIFIKASI",
                         mode: "SINGLE",
-                        username: uname,
-                        namaResponden: nama,
+                        username: item.username,
+                        namaResponden: item.nama,
                         targetSesi: targetSesi,
                         aksi: aksi
                     })
@@ -2012,7 +2324,9 @@
             }
         }
 
-        async function toggleBukaUlangSesi(uname, nama, targetSesi, aksi) {
+        async function toggleBukaUlangSesi(idx, targetSesi, aksi) {
+            const item = adminRespondenList[idx];
+            if (!item) return;
             try {
                 await fetch(GOOGLE_SHEET_URL, {
                     method: 'POST',
@@ -2020,8 +2334,8 @@
                     body: JSON.stringify({
                         tipeSesi: "ADMIN_VERIFIKASI",
                         mode: "REOPEN_SINGLE",
-                        username: uname,
-                        namaResponden: nama,
+                        username: item.username,
+                        namaResponden: item.nama,
                         targetSesi: targetSesi,
                         aksi: aksi
                     })
@@ -2493,18 +2807,9 @@
             const jumlahYaSosmed = 4 - jumlahTidakSosmed;
             const dim4Percent = 60 + (jumlahTidakSosmed * 10);
 
-            let badgeTitle = "";
-            let badgeDesc = "";
-            if (postMeanNum >= 4.0) {
-                badgeTitle = "🌟 Strong Body Appreciator";
-                badgeDesc = `Indeks Apresiasi Tubuh kamu (${postMean}/5.00) menunjukkan apresiasi dan rasa nyaman yang sangat kuat terhadap tubuhmu. Kamu mampu menghargai keunikan dan fungsi tubuhmu tanpa mudah goyah oleh standar penampilan di media sosial.`;
-            } else if (postMeanNum >= 3.0) {
-                badgeTitle = "🌿 Growing Body Appreciator";
-                badgeDesc = `Indeks Apresiasi Tubuh kamu (${postMean}/5.00) menunjukkan kamu sudah memiliki dasar penerimaan dan rasa hormat yang baik terhadap tubuhmu, meskipun pada situasi tertentu standar visual di media sosial masih sesekali memengaruhi perasaanmu.`;
-            } else {
-                badgeTitle = "🌱 Developing Body Connection";
-                badgeDesc = `Indeks Apresiasi Tubuh kamu (${postMean}/5.00) menunjukkan saat ini kamu sedang dalam tahap membangun kembali koneksi positif dengan tubuhmu. Latihan berfokus pada fungsi tubuh ini adalah langkah awal yang sangat penting untuk membantumu lebih nyaman dengan dirimu.`;
-            }
+            const katRes = getKategoriApresiasi(postMeanNum);
+            const badgeTitle = katRes.title;
+            const badgeDesc = katRes.desc;
 
             let narasiSosmed = "";
             if (jumlahYaSosmed >= 3) {
