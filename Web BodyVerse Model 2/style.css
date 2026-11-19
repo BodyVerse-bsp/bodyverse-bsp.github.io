@@ -1,0 +1,217 @@
+/* ==========================================================================
+   BODYVERSE — CUSTOM ANIMATIONS & PRINT STYLES (style.css)
+   ========================================================================== */
+
+/* Transisi Perpindahan Halaman */
+@keyframes pageSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(16px) scale(0.99);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.page-transition {
+    animation: pageSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Animasi Logo & Ilustrasi Beranda */
+@keyframes floatVitality {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-3.5px);
+    }
+}
+
+@keyframes twinkleStar {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.22) rotate(12deg);
+        opacity: 0.75;
+    }
+}
+
+@keyframes ballBounce {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.logo-float {
+    animation: floatVitality 3.6s ease-in-out infinite;
+}
+
+.star-twinkle {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: twinkleStar 2.2s ease-in-out infinite;
+}
+
+.ball-bounce {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ballBounce 1.8s ease-in-out infinite;
+}
+
+/* Animasi Jeda Napas (Mindful Breathing Modal) */
+@keyframes breathePulse {
+    0%, 100% {
+        transform: scale(0.82);
+        box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.35);
+    }
+    50% {
+        transform: scale(1.18);
+        box-shadow: 0 0 40px 14px rgba(20, 184, 166, 0.20);
+    }
+}
+
+.breathing-circle {
+    animation: breathePulse 6s ease-in-out infinite;
+}
+
+/* Animasi Garis Detak Jantung (Aktivitas 2) */
+@keyframes ecgWave {
+    0% {
+        stroke-dashoffset: 240;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.ecg-line {
+    stroke-dasharray: 240;
+    animation: ecgWave 2.8s linear infinite;
+}
+
+/* Animasi Scan Filter Media Sosial (Aktivitas 3) */
+@keyframes scanFilter {
+    0%, 100% {
+        transform: translateY(-10px);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(12px);
+        opacity: 1;
+    }
+}
+
+.scan-bar {
+    animation: scanFilter 2.5s ease-in-out infinite;
+}
+
+/* Animasi Hati & Nada Mengambang */
+@keyframes floatHeart {
+    0% {
+        transform: translateY(4px) scale(0.9);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-6px) scale(1.08);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(4px) scale(0.9);
+        opacity: 0.3;
+    }
+}
+
+.heart-float-1 {
+    animation: floatHeart 3s ease-in-out infinite;
+}
+
+.heart-float-2 {
+    animation: floatHeart 3s ease-in-out 1.5s infinite;
+}
+
+/* Animasi Gelombang Gelembung Ikon (Sesi 1, Sesi 2, & Sesi 3) */
+@keyframes bubbleWave {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-7px) scale(1.04);
+    }
+}
+
+@keyframes dashFlow {
+    to {
+        stroke-dashoffset: -28;
+    }
+}
+
+@keyframes leafSway {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-9deg) translateY(-2px);
+    }
+}
+
+.icon-bubble-1 {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: bubbleWave 3s ease-in-out 0s infinite;
+}
+
+.icon-bubble-2 {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: bubbleWave 3s ease-in-out 0.35s infinite;
+}
+
+.icon-bubble-3 {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: bubbleWave 3s ease-in-out 0.7s infinite;
+}
+
+.icon-bubble-4 {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: bubbleWave 3s ease-in-out 1.05s infinite;
+}
+
+.icon-bubble-5 {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: bubbleWave 3s ease-in-out 1.4s infinite;
+}
+
+.dash-flow {
+    animation: dashFlow 1.8s linear infinite;
+}
+
+.leaf-sway {
+    transform-box: fill-box;
+    transform-origin: right center;
+    animation: leafSway 2.8s ease-in-out infinite;
+}
+
+/* Pengaturan Cetak PDF Rapor Hasil */
+@media print {
+    body {
+        background-color: #ffffff !important;
+    }
+    main {
+        padding: 0 !important;
+    }
+    main > div {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+}

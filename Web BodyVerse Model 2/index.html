@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BodyVerse — Your Body-Your Story-Your Power</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23ffffff%22/><path d=%22M82 4L84.8 12.2L93 15L84.8 17.8L82 26L79.2 17.8L71 15L79.2 12.2Z%22 fill=%22%23008767%22/><circle cx=%2244%22 cy=%2227%22 r=%229.5%22 fill=%22%23008767%22/><path d=%22M12 38C26 35, 36 41, 45 41C54 41, 64 27, 73 19C67 32, 58 45, 53 58L35 63C32 50, 24 42, 12 38Z%22 fill=%22%23008767%22/><path d=%22M36 74L48 70C42 82, 34 90, 24 96C27 87, 32 80, 36 74Z%22 fill=%22%23008767%22/><path d=%22M26 56C10 66 12 80 32 76C52 72 78 54 74 40C71 33 60 34 56 36C64 36 67 40 65 45C61 55 42 66 28 67C18 68 18 61 26 56Z%22 fill=%22%235ac8a5%22/></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between font-sans selection:bg-teal-500 selection:text-white">
+
+    <!-- HEADER / NAVBAR -->
+    <header class="w-full bg-white/95 backdrop-blur-md border-b border-slate-100 py-3.5 px-5 sticky top-0 z-40 shadow-sm print:hidden">
+        <div class="max-w-3xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2.5">
+                <svg class="w-11 h-11 flex-shrink-0 logo-float" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="star-twinkle" d="M82 4 L84.8 12.2 L93 15 L84.8 17.8 L82 26 L79.2 17.8 L71 15 L79.2 12.2 Z" fill="#008767"/>
+                    <circle cx="44" cy="27" r="9.5" fill="#008767"/>
+                    <path d="M12 38 C26 35, 36 41, 45 41 C54 41, 64 27, 73 19C67 32, 58 45, 53 58 L35 63 C32 50, 24 42, 12 38 Z" fill="#008767"/>
+                    <path d="M36 74 L48 70 C42 82, 34 90, 24 96 C27 87, 32 80, 36 74 Z" fill="#008767"/>
+                    <path d="M26 56 C10 66, 12 80, 32 76 C52 72, 78 54, 74 40 C71 33, 60 34, 56 36 C64 36, 67 40, 65 45C61 55, 42 66, 28 67 C18 68, 18 61, 26 56 Z" fill="#5ac8a5"/>
+                </svg>
+                <div>
+                    <span class="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 block leading-none">
+                        Body<span class="text-[#008f68]">Verse</span>
+                    </span>
+                    <span class="text-[11px] text-slate-500 font-medium block mt-0.5">Your Body-Your Story-Your Power</span>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <button type="button" id="btn-nav-admin" onclick="bukaDashboardAdmin()" class="hidden text-xs font-extrabold px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-amber-300 rounded-full shadow-sm transition-all">
+                    🛠️ Panel Peneliti
+                </button>
+                <span id="badge-step" class="text-xs font-bold px-3 py-1.5 bg-teal-50 text-teal-700 rounded-full border border-teal-100">
+                    Akses Terkunci
+                </span>
+                <button type="button" id="btn-logout" onclick="logoutAkun()" class="hidden text-xs font-bold px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-full border border-rose-200 transition-all">
+                    Keluar
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- POP-UP 1: INFORMASI PENELITIAN & PERSETUJUAN -->
+    <div id="modal-consent" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-100 space-y-4 page-transition">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div class="flex items-center space-x-2">
+                    <span class="text-lg">📄</span>
+                    <h3 class="font-extrabold text-slate-900 text-base sm:text-lg">Informasi Penelitian & Persetujuan</h3>
+                </div>
+                <button type="button" onclick="tutupModalConsent()" class="text-slate-400 hover:text-slate-600 text-xl font-bold px-2">&times;</button>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-xs text-slate-600 space-y-2.5 max-h-60 overflow-y-auto leading-relaxed">
+                <p><b>1. Peneliti & Institusi:</b> Penelitian ini dilakukan oleh <b>Muhammad Yoga Dwi Nugraha</b> (Mahasiswa Program Studi Keperawatan, Poltekkes Kemenkes Jakarta III).</p>
+                <p><b>2. Tujuan Penelitian:</b> Mengetahui efektivitas intervensi <i>Refleksi Fungsi Tubuh (Body Functionality Reflection)</i> terhadap peningkatan citra tubuh positif pada remaja SMA pengguna media sosial.</p>
+                <p><b>3. Rangkaian 3 Sesi Kegiatan:</b> Kegiatan terbagi menjadi 3 sesi berurutan: <b>Sesi 1</b> (Kuesioner Awal ~5 menit), <b>Sesi 2</b> (5 Aktivitas Refleksi Fungsi Tubuh ~30 menit), dan <b>Sesi 3</b> (Evaluasi Akhir & Rapor Hasil ~5 menit).</p>
+                <p><b>4. Hak Responden & Persetujuan Orang Tua/Wali:</b> Keikutsertaan ini bersifat sukarela tanpa paksaan serta telah mendapatkan izin/persetujuan dari orang tua atau wali murid. Kamu berhak bertanya atau mengundurkan diri kapan saja tanpa konsekuensi apa pun.</p>
+                <p><b>5. Kerahasiaan Data:</b> Identitas akun hanya dipakai oleh sistem untuk menyambungkan progres Sesi 1, Sesi 2, dan Sesi 3. Pada laporan hasil penelitian, seluruh identitas dijaga kerahasiaannya secara anonim.</p>
+            </div>
+
+            <label class="flex items-start space-x-3 p-3.5 rounded-xl bg-teal-50/70 border border-teal-200 cursor-pointer">
+                <input type="checkbox" id="consent-check" class="mt-0.5 w-4 h-4 text-teal-600 rounded focus:ring-teal-500">
+                <span class="text-xs font-semibold text-teal-950 leading-snug">
+                    Saya telah membaca penjelasan di atas, telah mendapatkan persetujuan dari orang tua/wali murid, dan setuju berpartisipasi secara sukarela sebagai responden.
+                </span>
+            </label>
+
+            <div class="flex space-x-3 pt-1">
+                <button type="button" onclick="tutupModalConsent()" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 rounded-xl text-xs sm:text-sm">
+                    Batal
+                </button>
+                <button type="button" onclick="konfirmasiConsentDanMulaiSesi1()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-teal-600/25 text-xs sm:text-sm">
+                    Saya Setuju & Mulai Sesi 1 &rarr;
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POP-UP 2: ANIMASI MINDFUL BREATHING SEBELUM INTERVENSI SESI 2 -->
+    <div id="modal-breathing" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/75 backdrop-blur-md p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-7 shadow-2xl border border-teal-100 text-center space-y-6 page-transition">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-bold border border-teal-200">
+                🌬️ Jeda Kesadaran Tubuh (Mindful Pause)
+            </span>
+
+            <div class="space-y-1">
+                <h3 class="text-xl font-extrabold text-slate-900">Rasakan Fungsi Tubuhmu Saat Ini</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Sebelum memasuki 5 aktivitas refleksi di <b>Sesi 2</b>, ikuti irama lingkaran di bawah ini. Sadari paru-paru dan jantungmu yang sedang bekerja otomatis untukmu.
+                </p>
+            </div>
+
+            <div class="py-6 flex justify-center items-center">
+                <div class="w-36 h-36 rounded-full bg-gradient-to-tr from-teal-500 to-emerald-400 flex flex-col items-center justify-center text-white shadow-lg breathing-circle">
+                    <span id="breath-instruction" class="font-extrabold text-sm tracking-wide">Tarik Napas...</span>
+                    <span id="breath-timer" class="text-[11px] text-teal-50 mt-1 font-medium">Rasakan energimu</span>
+                </div>
+            </div>
+
+            <button type="button" onclick="lanjutKeAktivitas1SetelahNapas()" class="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-teal-600/25 transition-all text-xs sm:text-sm">
+                Saya Siap Memulai Refleksi Sesi 2 &rarr;
+            </button>
+        </div>
+    </div>
+
+    <!-- POP-UP MODAL: RANGKUMAN DETAIL RESPONDEN UNTUK ADMIN -->
+    <div id="modal-admin-summary" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-7 shadow-2xl border border-slate-100 space-y-5 my-8 max-h-[90vh] overflow-y-auto page-transition">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 sticky top-0 bg-white z-10">
+                <div>
+                    <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-900 text-amber-300 text-[10px] font-bold uppercase tracking-wider">
+                        🔍 Rangkuman Profil & Refleksi Siswa
+                    </span>
+                    <h3 id="adm-sum-nama" class="font-extrabold text-slate-900 text-lg sm:text-xl mt-1">-</h3>
+                    <p id="adm-sum-meta" class="text-xs text-slate-500">-</p>
+                </div>
+                <button type="button" onclick="tutupModalRangkumanAdmin()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold px-2">&times;</button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div class="bg-teal-50/70 border border-teal-200/80 rounded-2xl p-4 space-y-2">
+                    <span class="text-[11px] font-extrabold text-teal-800 uppercase block">📊 Sesi 1 (Kuesioner Awal)</span>
+                    <div class="flex items-baseline gap-2">
+                        <span id="adm-sum-mean1" class="text-2xl font-extrabold text-teal-950">-</span>
+                        <span id="adm-sum-skor1" class="text-xs text-teal-700 font-semibold">(-/50)</span>
+                    </div>
+                    <div id="adm-sum-kat1" class="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-teal-100 text-teal-800">-</div>
+                </div>
+
+                <div class="bg-emerald-50/70 border border-emerald-200/80 rounded-2xl p-4 space-y-2">
+                    <span class="text-[11px] font-extrabold text-emerald-800 uppercase block">📊 Sesi 3 (Evaluasi Akhir)</span>
+                    <div class="flex items-baseline gap-2">
+                        <span id="adm-sum-mean3" class="text-2xl font-extrabold text-emerald-950">-</span>
+                        <span id="adm-sum-skor3" class="text-xs text-emerald-700 font-semibold">(-/50)</span>
+                    </div>
+                    <div id="adm-sum-kat3" class="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">-</div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-white rounded-2xl p-4 space-y-1.5 shadow-sm">
+                <span class="text-[11px] uppercase tracking-wider text-amber-300 font-bold block">📈 Perubahan Indeks (Pre vs Post):</span>
+                <div class="flex items-baseline justify-between">
+                    <span id="adm-sum-delta" class="text-xl font-extrabold text-white">-</span>
+                    <span id="adm-sum-delta-desc" class="text-xs text-slate-300 text-right">Menunggu kelengkapan data sesi.</span>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-3">
+                <div class="flex justify-between items-center">
+                    <h4 class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">📈 Analisis 4 Dimensi Apresiasi Tubuh</h4>
+                    <span id="adm-sum-dim-source" class="text-[10px] px-2 py-0.5 bg-slate-200 rounded font-bold text-slate-700">-</span>
+                </div>
+                <div id="adm-sum-dims-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs"></div>
+                <div class="bg-white p-3 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed">
+                    <b>🧠 Catatan Peneliti ("Kenapa" Profil Ini Terbentuk):</b>
+                    <p id="adm-sum-why-analysis" class="mt-1 text-slate-600">-</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">🌿 Rangkuman Tulisan Refleksi Sesi 2</h4>
+                <div class="space-y-2.5 text-xs">
+                    <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-3.5 space-y-1">
+                        <span class="font-bold text-teal-900 block">1. 3 Fungsi Tubuh Utama yang Dihargai:</span>
+                        <ul id="adm-sum-act2-list" class="list-disc pl-5 text-teal-950 font-semibold space-y-0.5"></ul>
+                        <p class="text-slate-700 mt-1 italic"><b>Alasan:</b> "<span id="adm-sum-act2-alasan">-</span>"</p>
+                    </div>
+
+                    <div class="bg-amber-50/50 border border-amber-100 rounded-xl p-3.5 space-y-1">
+                        <span class="font-bold text-amber-900 block">2. Refleksi Pengalaman Media Sosial (Sesi 2):</span>
+                        <p id="adm-sum-act3-yatidak" class="text-amber-950 font-semibold">-</p>
+                        <p class="text-slate-700 mt-1 italic"><b>Renungan:</b> "<span id="adm-sum-act3-refleksi">-</span>"</p>
+                    </div>
+
+                    <div class="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-3.5 space-y-1">
+                        <span class="font-bold text-emerald-900 block">3. Surat Pribadi untuk Tubuh:</span>
+                        <p id="adm-sum-act4-surat" class="text-slate-700 italic">-</p>
+                    </div>
+
+                    <div class="bg-purple-50/50 border border-purple-100 rounded-xl p-3.5 space-y-1">
+                        <span class="font-bold text-purple-900 block">4. Tiga Komitmen Nyata Merawat Tubuh:</span>
+                        <ul id="adm-sum-act5-list" class="list-decimal pl-5 text-purple-950 font-semibold space-y-0.5"></ul>
+                    </div>
+
+                    <div class="bg-slate-100 border border-slate-200 rounded-xl p-3.5 space-y-1">
+                        <span class="font-bold text-slate-800 block">5. Daftar 10 Fungsi Tubuh (Aktivitas 1):</span>
+                        <p id="adm-sum-act1" class="text-slate-600 text-[11px]">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-2 sticky bottom-0 bg-white pb-2">
+                <button type="button" onclick="tutupModalRangkumanAdmin()" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 rounded-xl text-xs sm:text-sm">
+                    Tutup Rangkuman
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow flex items-start justify-center px-4 py-6 sm:py-10">
+        <div class="max-w-3xl w-full bg-white rounded-3xl shadow-xl shadow-slate-200/60 p-6 sm:p-8 border border-slate-100">
+
+            <!-- ================= HALAMAN 0: GERBANG LOGIN & DAFTAR AKUN ================= -->
+            <section id="view-login" class="space-y-6 page-transition">
+                <div class="text-center space-y-2">
+                    <div class="w-16 h-16 mx-auto bg-teal-50/80 rounded-2xl flex items-center justify-center border border-teal-100 shadow-sm mb-2">
+                        <svg class="w-12 h-12 logo-float" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="star-twinkle" d="M82 4 L84.8 12.2 L93 15 L84.8 17.8 L82 26 L79.2 17.8 L71 15 L79.2 12.2 Z" fill="#008767"/>
+                            <circle cx="44" cy="27" r="9.5" fill="#008767"/>
+                            <path d="M12 38 C26 35, 36 41, 45 41 C54 41, 64 27, 73 19C67 32, 58 45, 53 58 L35 63 C32 50, 24 42, 12 38 Z" fill="#008767"/>
+                            <path d="M36 74 L48 70 C42 82, 34 90, 24 96 C27 87, 32 80, 36 74 Z" fill="#008767"/>
+                            <path d="M26 56 C10 66, 12 80, 32 76 C52 72, 78 54, 74 40 C71 33, 60 34, 56 36 C64 36, 67 40, 65 45C61 55, 42 66, 28 67 C18 68, 18 61, 26 56 Z" fill="#5ac8a5"/>
+                        </svg>
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200/60">
+                        🔒 Akses Akun Responden
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                        Selamat Datang di Body<span class="text-[#008f68]">Verse</span>
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
+                        Silakan masuk menggunakan akunmu. Jika belum memiliki akun untuk mengikuti <b>Sesi 1</b>, pilih menu <b>Daftar Akun Baru</b> terlebih dahulu.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 p-1.5 bg-slate-100 rounded-2xl">
+                    <button type="button" id="tab-auth-login" onclick="switchAuthTab('login')" class="py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all bg-white text-teal-700 shadow-sm">
+                        🔑 Masuk (Login)
+                    </button>
+                    <button type="button" id="tab-auth-register" onclick="switchAuthTab('register')" class="py-2.5 px-3 rounded-xl font-extrabold text-xs sm:text-sm transition-all text-slate-500 hover:text-slate-800">
+                        📝 Daftar Akun Baru
+                    </button>
+                </div>
+
+                <div id="form-login-box" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                            Username <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="login-username" placeholder="Masukkan username kamu..." 
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 bg-slate-50/50 font-semibold transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                            Password <span class="text-red-500">*</span>
+                        </label>
+                        <input type="password" id="login-password" placeholder="Masukkan password (min. 8 karakter)..." 
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 bg-slate-50/50 transition-all">
+                    </div>
+
+                    <button type="button" id="btn-submit-login" onclick="prosesLogin()" class="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-teal-600/25 transition-all text-sm">
+                        Masuk ke BodyVerse &rarr;
+                    </button>
+                </div>
+
+                <div id="form-register-box" class="hidden space-y-3.5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                                Buat Username <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="reg-username" placeholder="Cth: budi12" 
+                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50 font-semibold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                                Buat Password <span class="text-red-500">*</span>
+                            </label>
+                            <input type="password" id="reg-password" placeholder="Minimal 8 karakter" 
+                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                            <span class="text-[10px] text-slate-400 block mt-0.5">Wajib minimal 8 karakter (huruf/angka).</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                            Nama Lengkap Sesuai Absen <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="reg-nama" placeholder="Cth: Budi Santoso" 
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                                Usia (15–25 Tahun) <span class="text-red-500">*</span>
+                            </label>
+                            <input type="number" id="reg-usia" placeholder="Ketik usia (15 - 25)" min="15" max="25"
+                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50 font-semibold">
+                            <span class="text-[10px] text-slate-400 block mt-0.5">Hanya menerima usia 15 s/d 25 tahun.</span>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                                Jenis Kelamin <span class="text-red-500">*</span>
+                            </label>
+                            <select id="reg-jk" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                                <option value="">-- Pilih --</option>
+                                <option value="Perempuan">Perempuan</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                            Durasi Penggunaan Media Sosial / Hari <span class="text-red-500">*</span>
+                        </label>
+                        <select id="reg-durasi" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-teal-600 bg-slate-50/50">
+                            <option value="">-- Pilih Durasi Harian --</option>
+                            <option value="< 1 Jam per hari">&lt; 1 Jam per hari</option>
+                            <option value="1 - 3 Jam per hari">1 – 3 Jam per hari</option>
+                            <option value="3 - 5 Jam per hari">3 – 5 Jam per hari</option>
+                            <option value="> 5 Jam per hari">&gt; 5 Jam per hari</option>
+                        </select>
+                    </div>
+
+                    <button type="button" id="btn-submit-register" onclick="prosesRegister()" class="w-full bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition-all text-sm">
+                        Daftar Akun & Masuk &rarr;
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= HALAMAN BERANDA UTAMA PESERTA ================= -->
+            <section id="view-home" class="hidden space-y-5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200/60">
+                        👋 Halo, <span id="greeting-nama" class="font-extrabold">Responden</span>
+                    </div>
+                    <button type="button" onclick="bukaModalInfoSaja()" class="text-xs font-bold text-teal-600 hover:text-teal-800 underline flex items-center gap-1">
+                        📄 Baca Informasi Penelitian
+                    </button>
+                </div>
+
+                <div class="space-y-3.5">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug mb-1">
+                            BODY FUNCTIONALITY REFLECTION
+                        </h1>
+                        <p class="text-teal-600 font-bold text-sm sm:text-base">
+                            Kenali, Hargai, dan Syukuri Fungsi Tubuhmu
+                        </p>
+                    </div>
+
+                    <!-- ILUSTRASI SVG BERANDA (UKURAN PROPORSIONAL max-w-md mx-auto) -->
+                    <div class="w-full max-w-md mx-auto overflow-hidden rounded-2xl border border-teal-100 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 200" class="w-full h-auto block" role="img" aria-labelledby="t d">
+                            <title id="t">Ilustrasi fungsi tubuh</title>
+                            <desc id="d">Empat remaja dengan bentuk tubuh berbeda menulis, menari, mendengarkan musik, dan bermain bola.</desc>
+                            <defs>
+                                <linearGradient id="bgm" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#e6f7f1"/>
+                                    <stop offset="1" stop-color="#d4f0e8"/>
+                                </linearGradient>
+                            </defs>
+                            <rect width="360" height="200" rx="18" fill="url(#bgm)"/>
+                            <circle cx="28" cy="28" r="26" fill="#ffffff" opacity=".45"/>
+                            <circle cx="335" cy="24" r="34" fill="#ffffff" opacity=".4"/>
+                            <circle cx="180" cy="16" r="14" fill="#ffffff" opacity=".35"/>
+                            <path d="M0 170h360v12a18 18 0 0 1-18 18H18A18 18 0 0 1 0 182z" fill="#bfe8d9"/>
+                            <g fill="#f4b942">
+                                <path class="star-twinkle" d="M118 22l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z"/>
+                                <path class="star-twinkle" d="M262 14l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/>
+                            </g>
+                            <g transform="translate(-52 4) scale(.75)">
+                                <rect x="118" y="178" width="13" height="44" rx="6" fill="#2f4858"/>
+                                <rect x="140" y="178" width="13" height="44" rx="6" fill="#2f4858"/>
+                                <path d="M104 128q32-12 64 0l8 62q-40 10-80 0z" fill="#34b58f"/>
+                                <circle cx="136" cy="98" r="30" fill="#0f8f6f"/>
+                                <path d="M110 112q26 34 52 0l8 22q-34 18-68 0z" fill="#0f8f6f"/>
+                                <circle cx="136" cy="100" r="21" fill="#efc29c"/>
+                                <circle cx="129" cy="99" r="2" fill="#3b2a20"/>
+                                <circle cx="144" cy="99" r="2" fill="#3b2a20"/>
+                                <path d="M130 108q6 5 12 0" stroke="#3b2a20" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                <rect x="92" y="150" width="46" height="32" rx="4" fill="#ffffff" stroke="#0f8f6f" stroke-width="2.5" transform="rotate(-8 115 166)"/>
+                                <path d="M100 160h28M100 168h22" stroke="#9ad3bf" stroke-width="2.5" stroke-linecap="round" transform="rotate(-8 115 166)"/>
+                                <path d="M168 140l-30 20" stroke="#efc29c" stroke-width="10" stroke-linecap="round"/>
+                                <path d="M140 160l-12 12" stroke="#f4b942" stroke-width="5" stroke-linecap="round"/>
+                            </g>
+                            <g transform="translate(-101 4) scale(.75)">
+                                <path d="M290 178l-24 44" stroke="#2f4858" stroke-width="17" stroke-linecap="round"/>
+                                <path d="M318 178l30 30" stroke="#2f4858" stroke-width="17" stroke-linecap="round"/>
+                                <rect x="276" y="118" width="64" height="68" rx="26" fill="#f4b942"/>
+                                <path d="M284 130l-34-36" stroke="#c98b5e" stroke-width="11" stroke-linecap="round"/>
+                                <path d="M332 130l34-42" stroke="#c98b5e" stroke-width="11" stroke-linecap="round"/>
+                                <circle cx="308" cy="94" r="22" fill="#c98b5e"/>
+                                <path d="M286 90q4-24 24-24t22 24q-14-10-46 0z" fill="#2b1d16"/>
+                                <circle cx="301" cy="96" r="2" fill="#3b2a20"/>
+                                <circle cx="316" cy="96" r="2" fill="#3b2a20"/>
+                                <path d="M300 104q8 7 16 0" stroke="#3b2a20" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                                <path class="heart-float-1" d="M372 62c-6-10-20-2-12 8l12 12 12-12c8-10-6-18-12-8z" fill="#f08a7e"/>
+                            </g>
+                            <g transform="translate(-142.5 4) scale(.75)">
+                                <path d="M458 84q0-32 28-32t28 32v52q-28 8-56 0z" fill="#2b1d16"/>
+                                <rect x="474" y="176" width="11" height="46" rx="5" fill="#3b5b7a"/>
+                                <rect x="492" y="176" width="11" height="46" rx="5" fill="#3b5b7a"/>
+                                <path d="M466 130q20-8 40 0l6 52h-52z" fill="#f08a7e"/>
+                                <path d="M468 136l-14 36" stroke="#f1c9a5" stroke-width="8" stroke-linecap="round"/>
+                                <path d="M506 136l14 -24" stroke="#f1c9a5" stroke-width="8" stroke-linecap="round"/>
+                                <circle cx="486" cy="92" r="19" fill="#f1c9a5"/>
+                                <path d="M467 88q4-22 19-22t19 22q-18-8-38 0z" fill="#2b1d16"/>
+                                <circle cx="480" cy="95" r="2" fill="#3b2a20"/>
+                                <circle cx="493" cy="95" r="2" fill="#3b2a20"/>
+                                <path d="M481 102q5 5 10 0" stroke="#3b2a20" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                <path d="M465 90q2-30 21-30t21 30" stroke="#0f8f6f" stroke-width="4" fill="none" stroke-linecap="round"/>
+                                <rect x="460" y="86" width="9" height="16" rx="4" fill="#0f8f6f"/>
+                                <rect x="503" y="86" width="9" height="16" rx="4" fill="#0f8f6f"/>
+                                <g fill="#0f8f6f" font-family="Arial, sans-serif" font-weight="700">
+                                    <text class="heart-float-1" x="526" y="78" font-size="28">♪</text>
+                                    <text class="heart-float-2" x="430" y="62" font-size="22" opacity=".7">♫</text>
+                                </g>
+                            </g>
+                            <g transform="translate(-206 4) scale(.75)">
+                                <rect x="646" y="176" width="14" height="46" rx="7" fill="#2f4858"/>
+                                <path d="M674 178l30 28" stroke="#2f4858" stroke-width="14" stroke-linecap="round"/>
+                                <rect x="636" y="118" width="58" height="64" rx="24" fill="#5aa9e6"/>
+                                <path d="M642 130l-26-12" stroke="#a86b46" stroke-width="10" stroke-linecap="round"/>
+                                <path d="M688 130l24-22" stroke="#a86b46" stroke-width="10" stroke-linecap="round"/>
+                                <circle cx="665" cy="94" r="21" fill="#a86b46"/>
+                                <g fill="#241812">
+                                    <circle cx="650" cy="80" r="8"/><circle cx="662" cy="74" r="9"/>
+                                    <circle cx="675" cy="76" r="9"/><circle cx="684" cy="86" r="7"/>
+                                </g>
+                                <circle cx="658" cy="96" r="2" fill="#241812"/>
+                                <circle cx="672" cy="96" r="2" fill="#241812"/>
+                                <path d="M658 103q7 6 14 0" stroke="#241812" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                                <g class="ball-bounce">
+                                    <circle cx="728" cy="208" r="13" fill="#ffffff" stroke="#2f4858" stroke-width="2.5"/>
+                                    <path d="M728 199l7 5-3 8h-8l-3-8z" fill="#2f4858"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 text-slate-700 text-xs sm:text-sm italic leading-relaxed">
+                    "Tubuh bukan hanya tentang bagaimana penampilan kita, tetapi juga tentang berbagai hal yang dapat kita lakukan dengannya."
+                </div>
+
+                <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-3.5 text-xs text-teal-900 space-y-1">
+                    <span class="font-bold block text-teal-950">📋 Petunjuk Kegiatan:</span>
+                    <p class="leading-relaxed">
+                        Pilih sesi pelaksanaan di bawah ini secara berurutan (<b>Sesi 1</b>, <b>Sesi 2</b>, dan <b>Sesi 3</b>), bacalah setiap instruksi dengan saksama, dan jawablah <b>dengan jujur sesuai pengalamanmu sendiri tanpa kebohongan sedikit pun</b> (tidak ada jawaban benar atau salah).
+                    </p>
+                </div>
+
+                <div class="space-y-2.5 pt-1">
+                    <div class="flex items-center justify-between">
+                        <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-500">
+                            Alur 3 Sesi Kegiatan Kamu:
+                        </label>
+                        <button type="button" id="btn-refresh-status" onclick="sinkronisasiProgresDariServer(true)" class="text-xs font-bold text-teal-600 hover:text-teal-800 flex items-center gap-1 bg-teal-50 px-2.5 py-1 rounded-lg border border-teal-100 transition-all">
+                            🔄 Cek Bukaan Sesi
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <button type="button" id="card-sesi-1" onclick="pilihModeSesi(1)" class="p-3.5 rounded-2xl border-2 text-left transition-all flex flex-col justify-between space-y-2 border-teal-600 bg-teal-50/40">
+                            <div class="flex items-center justify-between w-full">
+                                <span class="text-xs font-extrabold text-teal-800 uppercase">Sesi 1</span>
+                                <span id="status-pill-1" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-100 text-teal-800">🔓 Terbuka</span>
+                            </div>
+                            <div>
+                                <p class="font-extrabold text-slate-900 text-xs sm:text-sm">Kuesioner Awal</p>
+                                <p class="text-[11px] text-slate-500">Kenali perasaan awal terhadap tubuh (~5 mnt)</p>
+                            </div>
+                        </button>
+
+                        <button type="button" id="card-sesi-2" onclick="pilihModeSesi(2)" class="p-3.5 rounded-2xl border-2 text-left transition-all flex flex-col justify-between space-y-2 border-slate-200 bg-slate-50/70 opacity-80">
+                            <div class="flex items-center justify-between w-full">
+                                <span class="text-xs font-extrabold text-slate-600 uppercase">Sesi 2</span>
+                                <span id="status-pill-2" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">🔒 Terkunci</span>
+                            </div>
+                            <div>
+                                <p class="font-extrabold text-slate-900 text-xs sm:text-sm">5 Aktivitas Intervensi</p>
+                                <p class="text-[11px] text-slate-500">Refleksi fungsi tubuh & media sosial (~30 mnt)</p>
+                            </div>
+                        </button>
+
+                        <button type="button" id="card-sesi-3" onclick="pilihModeSesi(3)" class="p-3.5 rounded-2xl border-2 text-left transition-all flex flex-col justify-between space-y-2 border-slate-200 bg-slate-50/70 opacity-80">
+                            <div class="flex items-center justify-between w-full">
+                                <span class="text-xs font-extrabold text-slate-600 uppercase">Sesi 3</span>
+                                <span id="status-pill-3" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">🔒 Terkunci</span>
+                            </div>
+                            <div>
+                                <p class="font-extrabold text-slate-900 text-xs sm:text-sm">Evaluasi & Rapor</p>
+                                <p class="text-[11px] text-slate-500">Kuesioner akhir & rapor hasil pribadi (~5 mnt)</p>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div id="info-status-sesi" class="p-3 rounded-xl bg-amber-50/80 border border-amber-200 text-xs text-amber-900 leading-relaxed">
+                        📌 Silakan mulai dari <b>Sesi 1 (Kuesioner Awal)</b>. Sesi 2 dan Sesi 3 akan dibuka secara bertahap setelah sesi sebelumnya selesai dan diverifikasi oleh peneliti.
+                    </div>
+                </div>
+
+                <div class="space-y-3 pt-1">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                            Nama Lengkap Responden <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="nama-responden" readonly
+                            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm bg-slate-100 text-slate-700 font-bold cursor-not-allowed">
+                    </div>
+
+                    <div id="fields-sesi-1" class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Usia (15–25 Thn) <span class="text-red-500">*</span></label>
+                            <input type="number" id="usia-responden" min="15" max="25" placeholder="Ketik 15 - 25" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-slate-50 font-semibold">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Jenis Kelamin</label>
+                            <select id="jk-responden" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-slate-50 font-semibold">
+                                <option value="Perempuan">Perempuan</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase text-slate-500 mb-1">Durasi Sosmed</label>
+                            <select id="durasi-sosmed" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-slate-50 font-semibold">
+                                <option value="< 1 Jam per hari">&lt; 1 Jam/hari</option>
+                                <option value="1 - 3 Jam per hari">1 – 3 Jam/hari</option>
+                                <option value="3 - 5 Jam per hari">3 – 5 Jam/hari</option>
+                                <option value="> 5 Jam per hari">&gt; 5 Jam/hari</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-1">
+                    <button type="button" id="btn-home-action" onclick="handleTombolUtamaBeranda()" class="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-teal-600/25 transition-all text-sm">
+                        Mulai Sesi 1: Kuesioner Awal &rarr;
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= DASHBOARD ADMIN PENELITI ================= -->
+            <section id="view-admin" class="hidden space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 text-amber-300 text-xs font-bold">
+                            🛠️ Panel Kontrol Peneliti (Muhammad Yoga Dwi Nugraha)
+                        </span>
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2">
+                            Manajemen Verifikasi, Indeks Apresiasi & Rangkuman Siswa
+                        </h2>
+                        <p class="text-xs text-slate-500">
+                            Pantau Indeks Apresiasi, buka akses sesi, dan klik <b>"👁️ Lihat Rangkuman"</b> untuk membaca analisis lengkap per siswa.
+                        </p>
+                    </div>
+                    <button type="button" onclick="showView('view-home', 'Beranda Utama', 15)" class="text-xs font-bold px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700">
+                        &larr; Lihat Tampilan Peserta
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                    <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200">
+                        <span class="text-[11px] font-bold text-slate-400 uppercase block">Total Akun</span>
+                        <span id="stat-total" class="text-2xl font-extrabold text-slate-900">0</span>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-teal-50/70 border border-teal-200">
+                        <span class="text-[11px] font-bold text-teal-700 uppercase block">Selesai Sesi 1</span>
+                        <span id="stat-s1" class="text-2xl font-extrabold text-teal-800">0</span>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+                        <span class="text-[11px] font-bold text-emerald-700 uppercase block">Selesai Sesi 2</span>
+                        <span id="stat-s2" class="text-2xl font-extrabold text-emerald-800">0</span>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200">
+                        <span class="text-[11px] font-bold text-amber-700 uppercase block">Selesai Sesi 3</span>
+                        <span id="stat-s3" class="text-2xl font-extrabold text-amber-800">0</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 text-white p-4 sm:p-5 rounded-2xl space-y-3.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-amber-300">
+                            ⚡ Kontrol Massal Satu Kelas Sekaligus
+                        </span>
+                        <button type="button" onclick="muatDataDashboardAdmin()" class="text-xs font-bold bg-white/15 hover:bg-white/25 px-3 py-1.5 rounded-lg transition-all">
+                            🔄 Muat Ulang Tabel
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <button type="button" onclick="verifikasiMassalAdmin(2)" class="bg-teal-600 hover:bg-teal-500 text-white font-bold py-2.5 px-3 rounded-xl text-xs transition-all">
+                            🔓 Buka Sesi 2 (Yang Selesai Sesi 1)
+                        </button>
+                        <button type="button" onclick="verifikasiMassalAdmin(3)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-3 rounded-xl text-xs transition-all">
+                            🔓 Buka Sesi 3 (Yang Selesai Sesi 2)
+                        </button>
+                        <button type="button" onclick="bukaSemuaSesiLanjutanMassal()" class="bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold py-2.5 px-3 rounded-xl text-xs transition-all shadow-sm">
+                            🚀 Buka Semua Sesi Lanjutan (2 & 3)
+                        </button>
+                    </div>
+
+                    <div class="pt-2 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <button type="button" onclick="bukaUlangSemuaSesiSelesaiMassal(true)" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-all">
+                            🔄 Buka Ulang Semua Sesi yang Sudah Selesai (Sesi 1, 2 & 3)
+                        </button>
+                        <button type="button" onclick="bukaUlangSemuaSesiSelesaiMassal(false)" class="bg-slate-700 hover:bg-slate-600 text-slate-200 font-bold py-2.5 px-4 rounded-xl text-xs transition-all">
+                            🔒 Kunci Kembali Semua Sesi yang Sudah Selesai
+                        </button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto border border-slate-200 rounded-2xl">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-600 border-b border-slate-200">
+                                <th class="p-3 font-extrabold">Responden & Rangkuman</th>
+                                <th class="p-3 font-extrabold text-center">Sesi 1 (Indeks Awal)</th>
+                                <th class="p-3 font-extrabold text-center">Akses Sesi 2</th>
+                                <th class="p-3 font-extrabold text-center">Sesi 2 (5 Aktivitas)</th>
+                                <th class="p-3 font-extrabold text-center">Akses Sesi 3</th>
+                                <th class="p-3 font-extrabold text-center">Sesi 3 (Indeks Akhir)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body" class="divide-y divide-slate-100">
+                            <tr>
+                                <td colspan="6" class="p-6 text-center text-slate-400">Memuat data responden dari Google Sheets...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ================= SESI 1: KUESIONER AWAL ================= -->
+            <section id="view-pretest" class="hidden space-y-5">
+                <div class="flex justify-between items-center">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-semibold border border-amber-200">
+                        📊 Sesi 1 dari 3 &bull; Kuesioner Awal
+                    </span>
+                    <span class="text-xs text-slate-400 font-semibold">~5 Menit</span>
+                </div>
+
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">
+                        Kenali Perasaanmu terhadap Tubuhmu
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                        Silakan baca setiap pernyataan dan pilih jawaban yang paling sesuai dengan keadaan atau pengalaman dirimu saat ini. <b>Tidak ada jawaban benar atau salah.</b>
+                    </p>
+                </div>
+
+                <div class="w-full py-2 flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 185" class="w-full max-w-xl h-auto block" role="img" aria-label="Ilustrasi 5 simbol apresiasi dan fungsi tubuh">
+                        <ellipse cx="145" cy="95" rx="95" ry="62" fill="#e5f4ed"/>
+                        <ellipse cx="330" cy="92" rx="115" ry="74" fill="#fdf1cd"/>
+                        <ellipse cx="515" cy="100" rx="105" ry="65" fill="#edeaf5"/>
+                        <path class="dash-flow" d="M 110 92 Q 165 62 215 92 T 330 92 T 445 92 T 565 92" fill="none" stroke="#6c9a8b" stroke-width="3.5" stroke-dasharray="4 9" stroke-linecap="round"/>
+                        <path class="leaf-sway" d="M 54 90 C 32 76, 14 95, 16 116 C 36 118, 50 106, 54 90 Z" fill="#3b9c73"/>
+                        <g class="icon-bubble-1">
+                            <circle cx="105" cy="95" r="46" fill="#fab39c"/>
+                            <path d="M 105 112 C 105 112, 85 98, 85 86 C 85 78, 92 74, 98 74 C 102 74, 105 77, 105 80 C 105 77, 108 74, 112 74 C 118 74, 125 78, 125 86 C 125 98, 105 112, 105 112 Z" fill="none" stroke="#183a2d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <g class="icon-bubble-2">
+                            <circle cx="218" cy="92" r="46" fill="#ffd166"/>
+                            <circle cx="218" cy="92" r="22" fill="none" stroke="#183a2d" stroke-width="4"/>
+                            <circle cx="210" cy="86" r="2.8" fill="#183a2d"/>
+                            <circle cx="226" cy="86" r="2.8" fill="#183a2d"/>
+                            <path d="M 210 96 Q 218 104 226 96" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round"/>
+                        </g>
+                        <g class="icon-bubble-3">
+                            <circle cx="332" cy="92" r="46" fill="#95dec6"/>
+                            <circle cx="332" cy="73" r="5.5" fill="none" stroke="#183a2d" stroke-width="4"/>
+                            <path d="M 332 79 L 328 96 M 330 84 L 320 93 M 330 84 L 341 90 M 328 96 L 321 112 M 328 96 L 337 112" fill="none" stroke="#183a2d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                        <g class="icon-bubble-4">
+                            <circle cx="446" cy="95" r="46" fill="#c3b5f5"/>
+                            <path d="M 439 104 L 439 79 L 461 74 L 461 99" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="433" cy="105" r="6" fill="none" stroke="#183a2d" stroke-width="4"/>
+                            <circle cx="455" cy="100" r="6" fill="none" stroke="#183a2d" stroke-width="4"/>
+                        </g>
+                        <g class="icon-bubble-5">
+                            <circle cx="560" cy="95" r="46" fill="#ffd166"/>
+                            <path d="M 544 109 L 552 107 L 573 86 C 575 84, 575 80, 573 78 C 571 76, 567 76, 565 78 L 544 99 Z" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M 559 109 L 577 109" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-[11px] sm:text-xs text-slate-500">
+                    <b>Skala Jawaban:</b> 1 = Tidak Pernah &bull; 2 = Jarang &bull; 3 = Kadang-kadang &bull; 4 = Sering &bull; 5 = Selalu
+                </div>
+
+                <div id="pretest-container" class="space-y-4"></div>
+
+                <div class="flex space-x-3 pt-2">
+                    <button type="button" onclick="showView('view-home', 'Beranda Utama', 15)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3.5 px-4 rounded-xl text-sm">
+                        Kembali
+                    </button>
+                    <button type="button" id="btn-submit-pretest" onclick="submitPretestSesi1()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
+                        Simpan Jawaban Sesi 1 &check;
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= LAYAR SELESAI SESI 1 ================= -->
+            <section id="view-pretest-done" class="hidden text-center py-6 space-y-5">
+                <div class="w-16 h-16 bg-teal-100 text-teal-700 rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold shadow-sm animate-bounce">
+                    ✅
+                </div>
+                <div class="space-y-2">
+                    <span class="inline-block px-3 py-1 rounded-full bg-teal-50 text-teal-800 text-xs font-bold border border-teal-200">
+                        Sesi 1 Selesai & Terkunci
+                    </span>
+                    <h2 class="text-2xl font-extrabold text-slate-900">
+                        Terima Kasih, Jawaban Sesi 1 Tersimpan!
+                    </h2>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                    Kuesioner awalmu sudah berhasil direkam. Untuk melanjutkan ke <b>Sesi 2 (5 Aktivitas Intervensi)</b>, silakan tunggu verifikasi dari peneliti, lalu klik tombol <b>"🔄 Cek Bukaan Sesi"</b> di Beranda Utama.
+                </p>
+                <div class="bg-slate-50 border-2 border-dashed border-teal-300 rounded-2xl p-4 max-w-xs mx-auto">
+                    <span class="text-[11px] uppercase font-bold text-slate-400 block">Responden Terdaftar:</span>
+                    <span id="done-pretest-nama" class="text-lg font-extrabold text-teal-700">-</span>
+                </div>
+                <div class="pt-3">
+                    <button type="button" onclick="kembaliKeBerandaDanCek()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-6 rounded-xl text-xs sm:text-sm">
+                        &larr; Kembali ke Beranda Utama
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= SESI 2: AKTIVITAS 1 (ILUSTRASI SVG SESUAI RUJUKAN) ================= -->
+            <section id="view-act-1" class="hidden space-y-5">
+                <div class="flex justify-between items-center">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200">
+                        🌱 Sesi 2 &bull; Aktivitas 01 dari 05
+                    </span>
+                    <span class="text-xs text-slate-400 font-semibold">~7 Menit</span>
+                </div>
+
+                <div class="w-full py-2 flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 185" class="w-full max-w-xl h-auto block" role="img" aria-label="Ilustrasi Aktivitas 1">
+                        <ellipse cx="325" cy="95" rx="280" ry="75" fill="#e8f5ec"/>
+                        <g class="icon-bubble-1"><circle cx="100" cy="80" r="14" fill="#3b2a20"/><rect x="91" y="98" width="18" height="38" rx="4" fill="#0f8f6f"/><rect x="95" y="110" width="10" height="8" rx="2" fill="#f4b942"/></g>
+                        <g class="icon-bubble-2"><circle cx="190" cy="78" r="15" fill="#f1c9a5"/><circle cx="190" cy="78" r="18" fill="none" stroke="#2d3748" stroke-width="3"/><path d="M 180 98 h 20 v 38 h -20 z" fill="#f07167"/><text x="145" y="65" font-size="20" fill="#3a86ff" class="heart-float-1">♪</text></g>
+                        <g class="icon-bubble-3"><circle cx="280" cy="80" r="14" fill="#3b2a20"/><rect x="273" y="98" width="14" height="38" rx="4" fill="#3a86ff"/><circle cx="310" cy="80" r="14" fill="#f1c9a5"/><rect x="303" y="98" width="14" height="38" rx="4" fill="#fb8500"/><path class="heart-float-2" d="M 295 55 c -4 -7 -14 -1 -8 6 l 8 8 l 8 -8 c 6 -7 -4 -13 -8 -6 z" fill="#f08a7e"/></g>
+                        <g class="icon-bubble-4"><circle cx="400" cy="78" r="14" fill="#3b2a20"/><rect x="393" y="98" width="14" height="38" rx="4" fill="#2a9d8f"/></g>
+                        <g class="icon-bubble-5"><circle cx="490" cy="78" r="14" fill="#3b2a20"/><rect x="483" y="98" width="14" height="38" rx="4" fill="#e76f51"/><rect x="460" y="45" width="28" height="20" rx="4" fill="#ffffff" stroke="#2a9d8f" stroke-width="2"/><circle cx="468" cy="55" r="2" fill="#2a9d8f"/><circle cx="474" cy="55" r="2" fill="#2a9d8f"/><circle cx="480" cy="55" r="2" fill="#2a9d8f"/><path d="M 474 65 L 478 72" stroke="#2a9d8f" stroke-width="2"/></g>
+                    </svg>
+                </div>
+
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-teal-50 border border-teal-100 rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-teal-100 flex items-center justify-center flex-shrink-0 logo-float">
+                        <svg class="w-7 h-7 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <div class="text-xs text-teal-950">
+                        <span class="font-extrabold block text-sm text-slate-900">Tubuh Saya Membantu Saya</span>
+                        <span>Pancaindra, gerak fisik, bernapas, hingga berkomunikasi adalah bukti kehebatan fungsi tubuhmu.</span>
+                    </div>
+                </div>
+
+                <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-950 leading-relaxed space-y-2">
+                    <span class="font-bold block">📖 Materi Pengantar:</span>
+                    <p>
+                        Tubuh memiliki berbagai kemampuan yang membantu kita menjalani kehidupan sehari-hari. Kemampuan tersebut tidak hanya berkaitan dengan gerakan fisik, tetapi juga pancaindra, proses dalam tubuh, berpikir, berkomunikasi, dan berinteraksi dengan lingkungan.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between items-end">
+                        <label class="block text-sm font-bold text-slate-800">
+                            ✍️ Tugas Refleksi (10 Fungsi Tubuh):
+                        </label>
+                        <span id="act1-counter-badge" class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 transition-all">
+                            0 / 10 Terisi
+                        </span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div id="act1-progress-bar" class="h-full bg-gradient-to-r from-teal-500 to-emerald-500 transition-all duration-300" style="width: 0%;"></div>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed pt-1">
+                        Tuliskan <b>minimal 10 aktivitas</b> yang dapat kamu lakukan berkat fungsi tubuhmu.<br>
+                        <span class="text-slate-400 italic">Contoh: membaca buku, mendengarkan musik, berjalan, bernapas, memeluk keluarga, atau berbicara dengan teman.</span>
+                    </p>
+                </div>
+
+                <div id="aktivitas1-inputs" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
+
+                <div class="flex space-x-3 pt-2">
+                    <button type="button" onclick="showView('view-home', 'Beranda Utama', 15)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                        Beranda
+                    </button>
+                    <button type="button" onclick="validateAktivitas1()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
+                        Lanjut ke Aktivitas 2 &rarr;
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= SESI 2: AKTIVITAS 2 (ILUSTRASI SVG SESUAI RUJUKAN) ================= -->
+            <section id="view-act-2" class="hidden space-y-5">
+                <div class="flex justify-between items-center">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200">
+                        🌿 Sesi 2 &bull; Aktivitas 02 dari 05
+                    </span>
+                    <span class="text-xs text-slate-400 font-semibold">~5 Menit</span>
+                </div>
+
+                <div class="w-full py-2 flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 185" class="w-full max-w-xl h-auto block" role="img" aria-label="Ilustrasi Aktivitas 2">
+                        <ellipse cx="325" cy="95" rx="280" ry="75" fill="#fdf1cd"/>
+                        <circle cx="325" cy="100" r="20" fill="#3b2a20"/><rect x="315" y="118" width="20" height="38" rx="4" fill="#0f8f6f"/>
+                        <path class="heart-float-1" d="M 325 55 c -4 -7 -14 -1 -8 6 l 8 8 l 8 -8 c 6 -7 -4 -13 -8 -6 z" fill="#f08a7e"/>
+                        <path d="M 180 60 L 310 88" stroke="#6c9a8b" stroke-dasharray="4,4" stroke-width="2.5" fill="none"/>
+                        <circle cx="180" cy="60" r="22" fill="#ffffff" stroke="#0f8f6f" stroke-width="3"/>
+                        <circle cx="180" cy="60" r="6" fill="#0f8f6f"/><circle cx="180" cy="60" r="2" fill="#ffffff"/>
+                        <path d="M 470 60 L 340 88" stroke="#6c9a8b" stroke-dasharray="4,4" stroke-width="2.5" fill="none"/>
+                        <circle cx="470" cy="60" r="22" fill="#ffffff" stroke="#0f8f6f" stroke-width="3"/>
+                        <path d="M 464 68 v -10 h 2.5 v 10 z M 468 70 v -13 h 2.5 v 13 z M 472 70 v -13 h 2.5 v 13 z M 476 68 v -10 h 2.5 v 10 z" fill="#f4b942"/>
+                        <path d="M 470 135 L 340 110" stroke="#6c9a8b" stroke-dasharray="4,4" stroke-width="2.5" fill="none"/>
+                        <circle cx="470" cy="135" r="22" fill="#ffffff" stroke="#0f8f6f" stroke-width="3"/>
+                        <rect x="458" y="129" width="24" height="11" rx="3" fill="#0f8f6f"/>
+                    </svg>
+                </div>
+
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-teal-50 border border-teal-100 rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-14 h-12 rounded-2xl bg-white shadow-sm border border-teal-100 flex items-center justify-center flex-shrink-0">
+                        <svg class="w-10 h-8 text-teal-600" viewBox="0 0 100 50" fill="none">
+                            <path class="ecg-line" d="M2 25 L25 25 L33 10 L42 42 L52 6 L62 38 L70 25 L98 25" stroke="#0d9488" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="text-xs text-teal-950">
+                        <span class="font-extrabold block text-sm text-slate-900">Fungsi Tubuh yang Saya Hargai</span>
+                        <span>Menyadari dan mensyukuri 3 fungsi utama tubuh yang paling bermakna dalam keseharianmu.</span>
+                    </div>
+                </div>
+
+                <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-950 leading-relaxed space-y-2">
+                    <span class="font-bold block">📖 Materi Pengantar:</span>
+                    <p>
+                        Setiap fungsi tubuh mempunyai peran penting dalam kehidupan kita. Ada fungsi tubuh yang membantu kita belajar, bergerak, merasakan, berkomunikasi, dan menikmati berbagai pengalaman berharga.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <label class="block text-sm font-bold text-slate-800">
+                        ✍️ Tugas Refleksi:
+                    </label>
+                    <p class="text-xs text-slate-600">
+                        Tuliskan <b>tiga fungsi tubuh</b> yang paling berarti bagimu, lalu jelaskan alasan mengapa kamu menghargai fungsi tersebut.
+                    </p>
+
+                    <input type="text" id="act2-fungsi-1" placeholder="⭐ Fungsi tubuh utama 1 (Cth: Mata untuk melihat dan membaca)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+                    <input type="text" id="act2-fungsi-2" placeholder="⭐ Fungsi tubuh utama 2 (Cth: Tangan untuk menulis dan membantu sesama)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+                    <input type="text" id="act2-fungsi-3" placeholder="⭐ Fungsi tubuh utama 3 (Cth: Paru-paru dan jantung yang bekerja tanpa henti)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+
+                    <div class="pt-2">
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5">
+                            Kenapa ketiga fungsi tersebut sangat bermakna bagimu? <span class="text-red-500">*</span>
+                        </label>
+                        <textarea id="act2-alasan" rows="4" placeholder="Ceritakan alasanmu menghargai ketiga fungsi tubuh di atas..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex space-x-3 pt-2">
+                    <button type="button" onclick="showView('view-act-1', 'Sesi 2: Aktivitas 1 / 5', 30)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                        Kembali
+                    </button>
+                    <button type="button" onclick="validateAktivitas2()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
+                        Lanjut ke Aktivitas 3 &rarr;
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= SESI 2: AKTIVITAS 3 (ILUSTRASI SVG SESUAI RUJUKAN) ================= -->
+            <section id="view-act-3" class="hidden space-y-5">
+                <div class="flex justify-between items-center">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200">
+                        📱 Sesi 2 &bull; Aktivitas 03 dari 05
+                    </span>
+                    <span class="text-xs text-slate-400 font-semibold">~8 Menit</span>
+                </div>
+
+                <div class="w-full py-2 flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 185" class="w-full max-w-xl h-auto block" role="img" aria-label="Ilustrasi Aktivitas 3">
+                        <ellipse cx="325" cy="95" rx="280" ry="75" fill="#e8f5ec"/>
+                        <circle cx="130" cy="80" r="14" fill="#3b2a20"/><rect x="122" y="98" width="16" height="38" rx="4" fill="#f07167"/><path d="M 138 110 L 175 110" stroke="#3b2a20" stroke-width="4" stroke-linecap="round"/>
+                        <rect x="250" y="30" width="64" height="116" rx="10" fill="#2d3748"/>
+                        <rect x="257" y="44" width="50" height="88" rx="3" fill="#ffffff"/>
+                        <circle cx="282" cy="78" r="14" fill="#ffd166"/>
+                        <circle cx="485" cy="80" r="32" fill="none" stroke="#0f8f6f" stroke-width="6"/>
+                        <path d="M 507 102 L 532 127" stroke="#0f8f6f" stroke-width="6" stroke-linecap="round"/>
+                        <circle cx="475" cy="74" r="8" fill="#f08a7e"/><circle cx="493" cy="84" r="8" fill="#3a86ff"/>
+                        <path d="M 314 85 Q 400 85 452 85" stroke="#6c9a8b" stroke-dasharray="4,4" stroke-width="3" fill="none"/>
+                    </svg>
+                </div>
+
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-teal-50 border border-teal-100 rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-teal-100 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+                        <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <rect x="6" y="3" width="12" height="18" rx="2"/>
+                            <line x1="10" y1="18" x2="14" y2="18"/>
+                        </svg>
+                        <div class="w-9 h-1 bg-teal-500 rounded-full absolute scan-bar"></div>
+                    </div>
+                    <div class="text-xs text-teal-950">
+                        <span class="font-extrabold block text-sm text-slate-900">Memahami Media Sosial & Cara Pandang Tubuh</span>
+                        <span>Mengaktifkan filter kritis agar tidak mudah terjebak membandingkan fisik di dunia maya.</span>
+                    </div>
+                </div>
+
+                <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-950 leading-relaxed space-y-2">
+                    <span class="font-bold block">📖 Materi Pengantar:</span>
+                    <p>
+                        Foto dan video yang kita lihat di media sosial merupakan sebagian kecil dari pengalaman yang dipilih untuk dibagikan seseorang. Konten tersebut tidak selalu menggambarkan seluruh kehidupan, kemampuan, atau fungsi tubuh orang yang mengunggahnya.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <label class="block text-sm font-bold text-slate-800">
+                        ✍️ Tugas Refleksi Pengalaman Digital:
+                    </label>
+
+                    <div class="space-y-2.5 text-xs sm:text-sm">
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <span class="text-slate-700 font-medium">1. Saya pernah membandingkan penampilan saya dengan orang lain di media sosial.</span>
+                            <div class="flex space-x-4 shrink-0">
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-1" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-1" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <span class="text-slate-700 font-medium">2. Saya pernah merasa kurang menarik setelah melihat konten media sosial.</span>
+                            <div class="flex space-x-4 shrink-0">
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-2" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-2" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <span class="text-slate-700 font-medium">3. Saya pernah merasa tidak puas terhadap tubuh setelah melihat konten media sosial.</span>
+                            <div class="flex space-x-4 shrink-0">
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-3" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-3" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <span class="text-slate-700 font-medium">4. Saya pernah berharap memiliki penampilan seperti orang yang saya lihat di media sosial.</span>
+                            <div class="flex space-x-4 shrink-0">
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-4" value="Ya" class="text-teal-600"> <span class="ml-1.5 font-semibold">Ya</span></label>
+                                <label class="inline-flex items-center cursor-pointer"><input type="radio" name="sosmed-4" value="Tidak" class="text-teal-600"> <span class="ml-1.5 font-semibold">Tidak</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5">
+                            Pertanyaan Refleksi Lanjutan: Menurutmu, apakah foto dan video di media sosial selalu menunjukkan keseluruhan kondisi seseorang? Mengapa? <span class="text-red-500">*</span>
+                        </label>
+                        <textarea id="act3-refleksi" rows="4" placeholder="Tuliskan pendapat dan renunganmu di sini..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex space-x-3 pt-2">
+                    <button type="button" onclick="showView('view-act-2', 'Sesi 2: Aktivitas 2 / 5', 45)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                        Kembali
+                    </button>
+                    <button type="button" onclick="validateAktivitas3()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
+                        Lanjut ke Aktivitas 4 &rarr;
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= SESI 2: AKTIVITAS 4 (ILUSTRASI SVG SESUAI RUJUKAN) ================= -->
+            <section id="view-act-4" class="hidden space-y-5">
+                <div class="flex justify-between items-center">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200">
+                        💌 Sesi 2 &bull; Aktivitas 04 dari 05
+                    </span>
+                    <span class="text-xs text-slate-400 font-semibold">~7 Menit</span>
+                </div>
+
+                <div class="w-full py-2 flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 185" class="w-full max-w-xl h-auto block" role="img" aria-label="Ilustrasi Aktivitas 4">
+                        <ellipse cx="325" cy="95" rx="280" ry="75" fill="#fdf1cd"/>
+                        <rect x="90" y="115" width="220" height="12" rx="4" fill="#a55a36"/>
+                        <circle cx="150" cy="80" r="14" fill="#3b2a20"/><rect x="142" y="98" width="16" height="38" rx="4" fill="#9b5de5"/>
+                        <rect x="390" y="55" width="115" height="78" rx="8" fill="#ffffff" stroke="#0f8f6f" stroke-width="4"/>
+                        <path d="M 392 58 L 448 98 L 503 58" stroke="#0f8f6f" stroke-width="3" fill="none"/>
+                        <circle cx="448" cy="88" r="15" fill="#f08a7e" class="heart-float-1"/>
+                    </svg>
+                </div>
+
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-teal-50 border border-teal-100 rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-teal-100 flex items-center justify-center flex-shrink-0 relative">
+                        <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <span class="absolute -top-1 right-1 text-xs heart-float-1">💚</span>
+                    </div>
+                    <div class="text-xs text-teal-950">
+                        <span class="font-extrabold block text-sm text-slate-900">Surat untuk Tubuh Saya</span>
+                        <span>Ungkapkan rasa terima kasih yang tulus kepada tubuh yang telah menemanimu bertumbuh.</span>
+                    </div>
+                </div>
+
+                <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-950 leading-relaxed space-y-2">
+                    <span class="font-bold block">📖 Materi Pengantar:</span>
+                    <p>
+                        Tubuh telah membantu kita melakukan banyak aktivitas setiap hari tanpa henti. Melalui kegiatan ini, kamu diajak mengungkapkan penghargaan yang tulus terhadap kemampuan tubuh dengan kata-katamu sendiri.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="block text-sm font-bold text-slate-800">
+                        ✍️ Tugas Refleksi:
+                    </label>
+                    <p class="text-xs text-slate-600">
+                        Tuliskan pesan atau ucapan terima kasih kepada tubuhmu atas segala fungsi yang telah membantumu bertahan, belajar, dan bertumbuh hingga saat ini.
+                    </p>
+                    <textarea id="act4-surat" rows="6" placeholder="Untuk tubuhku tersayang, terima kasih karena selama ini..." class="w-full px-4 py-3 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all"></textarea>
+                    <p class="text-[11px] text-slate-400 italic">
+                        🔒 Jawaban bersifat pribadi dan tidak perlu dibagikan kepada teman.
+                    </p>
+                </div>
+
+                <div class="flex space-x-3 pt-2">
+                    <button type="button" onclick="showView('view-act-3', 'Sesi 2: Aktivitas 3 / 5', 60)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                        Kembali
+                    </button>
+                    <button type="button" onclick="validateAktivitas4()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
+                        Lanjut ke Aktivitas 5 &rarr;
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= SESI 2: AKTIVITAS 5 (ILUSTRASI SVG SESUAI RUJUKAN) ================= -->
+            <section id="view-act-5" class="hidden space-y-5">
+                <div class="flex justify-between items-center">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-semibold border border-teal-200">
+                        ✨ Sesi 2 &bull; Aktivitas 05 dari 05
+                    </span>
+                    <span class="text-xs text-slate-400 font-semibold">~4 Menit</span>
+                </div>
+
+                <div class="w-full py-2 flex justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 185" class="w-full max-w-xl h-auto block" role="img" aria-label="Ilustrasi Aktivitas 5">
+                        <ellipse cx="325" cy="95" rx="280" ry="75" fill="#e8f5ec"/>
+                        <circle cx="160" cy="76" r="14" fill="#3b2a20"/><rect x="152" y="94" width="16" height="40" rx="4" fill="#ffd166"/>
+                        <path d="M 152 100 L 132 78 M 168 100 L 188 78" stroke="#3b2a20" stroke-width="4" stroke-linecap="round"/>
+                        <rect x="410" y="112" width="46" height="34" fill="#e76f51" rx="4"/>
+                        <line x1="433" y1="112" x2="433" y2="45" stroke="#0f8f6f" stroke-width="6"/>
+                        <circle cx="380" cy="62" r="15" fill="#ffffff" stroke="#0f8f6f" stroke-width="3"/>
+                        <circle cx="485" cy="72" r="15" fill="#ffffff" stroke="#0f8f6f" stroke-width="3"/>
+                        <circle cx="410" cy="35" r="15" fill="#ffffff" stroke="#0f8f6f" stroke-width="3"/>
+                        <path d="M 433 85 Q 400 68 380 62 M 433 65 Q 460 70 485 72 M 433 55 Q 420 40 410 35" stroke="#0f8f6f" stroke-width="3" fill="none"/>
+                    </svg>
+                </div>
+
+                <div class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-teal-50 border border-teal-100 rounded-2xl p-4 flex items-center justify-between">
+                    <div class="flex items-center space-x-3.5">
+                        <div class="w-12 h-12 rounded-2xl bg-white shadow-sm border border-teal-100 flex items-center justify-center flex-shrink-0 logo-float">
+                            <span class="text-2xl">🌱</span>
+                        </div>
+                        <div class="text-xs text-teal-950">
+                            <span class="font-extrabold block text-sm text-slate-900">Komitmen Menghargai Tubuh Saya</span>
+                            <span>Wujudkan rasa syukur melalui 3 kebiasaan nyata untuk merawat fungsi tubuhmu.</span>
+                        </div>
+                    </div>
+                    <span id="act5-badge-count" class="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-white text-teal-700 border border-teal-200 shrink-0">
+                        0 / 3 Siap
+                    </span>
+                </div>
+
+                <div class="bg-teal-50/60 border border-teal-100 rounded-2xl p-4 text-xs sm:text-sm text-teal-950 leading-relaxed space-y-2">
+                    <span class="font-bold block">📖 Materi Pengantar:</span>
+                    <p>
+                        Menghargai tubuh dapat diterapkan melalui tindakan sederhana dalam kehidupan sehari-hari. Setelah mengenali dan memahami fungsi tubuh, kamu diajak menentukan komitmen yang realistis untuk merawatnya.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <label class="block text-sm font-bold text-slate-800">
+                        ✍️ Tugas Refleksi:
+                    </label>
+                    <p class="text-xs text-slate-600">
+                        Tuliskan <b>tiga tindakan nyata</b> yang akan kamu lakukan untuk menghargai dan menjaga fungsi tubuhmu mulai sekarang.
+                    </p>
+
+                    <input type="text" id="act5-komitmen-1" oninput="updateAct5Progress()" placeholder="🌿 Komitmen 1 (Cth: Tidur cukup dan membatasi begadang karena sosmed)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+                    <input type="text" id="act5-komitmen-2" oninput="updateAct5Progress()" placeholder="🌿 Komitmen 2 (Cth: Mengucapkan syukur atas fungsi tubuh setiap pagi)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+                    <input type="text" id="act5-komitmen-3" oninput="updateAct5Progress()" placeholder="🌿 Komitmen 3 (Cth: Berhenti membandingkan fisik diri dengan foto di internet)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/50 focus:outline-none focus:border-teal-600 transition-all">
+                </div>
+
+                <div class="flex space-x-3 pt-2">
+                    <button type="button" onclick="showView('view-act-4', 'Sesi 2: Aktivitas 4 / 5', 75)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                        Kembali
+                    </button>
+                    <button type="button" id="btn-submit-sesi2" onclick="submitIntervensiSesi2()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
+                        Simpan Refleksi Sesi 2 &check;
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= LAYAR SELESAI SESI 2 ================= -->
+            <section id="view-sesi2-done" class="hidden text-center py-6 space-y-5">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-2xl flex items-center justify-center mx-auto text-3xl font-bold shadow-sm animate-bounce">
+                    🌿
+                </div>
+                <div class="space-y-2">
+                    <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+                        Sesi 2 Selesai & Terkunci
+                    </span>
+                    <h2 class="text-2xl font-extrabold text-slate-900">
+                        Luar Biasa! 5 Aktivitas Refleksimu Tersimpan
+                    </h2>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                    Seluruh catatan fungsi tubuh dan surat apresiasimu pada <b>Sesi 2</b> telah tersimpan dengan aman. Untuk melanjutkan ke <b>Sesi 3 (Evaluasi Akhir & Rapor Hasil)</b>, silakan tunggu verifikasi dari peneliti lalu klik tombol <b>"🔄 Cek Bukaan Sesi"</b> di Beranda.
+                </p>
+                <div class="pt-3">
+                    <button type="button" onclick="kembaliKeBerandaDanCek()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-6 rounded-xl text-xs sm:text-sm">
+                        &larr; Kembali ke Beranda Utama
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= SESI 3: EVALUASI AKHIR & RAPOR HASIL REFLEKSI ================= -->
+            <section id="view-posttest" class="hidden space-y-5">
+                <div id="posttest-wrapper" class="space-y-5">
+                    <div class="flex flex-wrap justify-between items-center gap-2">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-semibold border border-amber-200">
+                            📊 Sesi 3 dari 3 &bull; Evaluasi Akhir
+                        </span>
+                        <button type="button" id="btn-lihat-rapor-lama" onclick="tampilkanRaporDariDataTersimpan()" class="hidden text-xs font-bold text-teal-700 underline">
+                            🎓 Lihat Rapor Sebelumnya
+                        </button>
+                    </div>
+
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">
+                            Kenali Perasaanmu terhadap Tubuhmu (Setelah Refleksi)
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                            Setelah mengikuti rangkaian refleksi fungsi tubuh pada Sesi 2, silakan baca kembali setiap pernyataan berikut dan pilih jawaban yang paling menggambarkan perasaanmu <b>saat ini</b>. <b>Tidak ada jawaban benar atau salah.</b>
+                        </p>
+                    </div>
+
+                    <div class="w-full py-2 flex justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 185" class="w-full max-w-xl h-auto block" role="img" aria-label="Ilustrasi 5 simbol apresiasi dan fungsi tubuh">
+                            <ellipse cx="145" cy="95" rx="95" ry="62" fill="#e5f4ed"/>
+                            <ellipse cx="330" cy="92" rx="115" ry="74" fill="#fdf1cd"/>
+                            <ellipse cx="515" cy="100" rx="105" ry="65" fill="#edeaf5"/>
+                            <path class="dash-flow" d="M 110 92 Q 165 62 215 92 T 330 92 T 445 92 T 565 92" fill="none" stroke="#6c9a8b" stroke-width="3.5" stroke-dasharray="4 9" stroke-linecap="round"/>
+                            <path class="leaf-sway" d="M 54 90 C 32 76, 14 95, 16 116 C 36 118, 50 106, 54 90 Z" fill="#3b9c73"/>
+                            <g class="icon-bubble-1">
+                                <circle cx="105" cy="95" r="46" fill="#fab39c"/>
+                                <path d="M 105 112 C 105 112, 85 98, 85 86 C 85 78, 92 74, 98 74 C 102 74, 105 77, 105 80 C 105 77, 108 74, 112 74 C 118 74, 125 78, 125 86 C 125 98, 105 112, 105 112 Z" fill="none" stroke="#183a2d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <g class="icon-bubble-2">
+                                <circle cx="218" cy="92" r="46" fill="#ffd166"/>
+                                <circle cx="218" cy="92" r="22" fill="none" stroke="#183a2d" stroke-width="4"/>
+                                <circle cx="210" cy="86" r="2.8" fill="#183a2d"/>
+                                <circle cx="226" cy="86" r="2.8" fill="#183a2d"/>
+                                <path d="M 210 96 Q 218 104 226 96" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round"/>
+                            </g>
+                            <g class="icon-bubble-3">
+                                <circle cx="332" cy="92" r="46" fill="#95dec6"/>
+                                <circle cx="332" cy="73" r="5.5" fill="none" stroke="#183a2d" stroke-width="4"/>
+                                <path d="M 332 79 L 328 96 M 330 84 L 320 93 M 330 84 L 341 90 M 328 96 L 321 112 M 328 96 L 337 112" fill="none" stroke="#183a2d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <g class="icon-bubble-4">
+                                <circle cx="446" cy="95" r="46" fill="#c3b5f5"/>
+                                <path d="M 439 104 L 439 79 L 461 74 L 461 99" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="433" cy="105" r="6" fill="none" stroke="#183a2d" stroke-width="4"/>
+                                <circle cx="455" cy="100" r="6" fill="none" stroke="#183a2d" stroke-width="4"/>
+                            </g>
+                            <g class="icon-bubble-5">
+                                <circle cx="560" cy="95" r="46" fill="#ffd166"/>
+                                <path d="M 544 109 L 552 107 L 573 86 C 575 84, 575 80, 573 78 C 571 76, 567 76, 565 78 L 544 99 Z" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M 559 109 L 577 109" fill="none" stroke="#183a2d" stroke-width="4" stroke-linecap="round"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-[11px] sm:text-xs text-slate-500">
+                        <b>Skala Jawaban:</b> 1 = Tidak Pernah &bull; 2 = Jarang &bull; 3 = Kadang-kadang &bull; 4 = Sering &bull; 5 = Selalu
+                    </div>
+
+                    <div id="posttest-container" class="space-y-4"></div>
+
+                    <div class="flex space-x-3 pt-2">
+                        <button type="button" onclick="showView('view-home', 'Beranda Utama', 15)" class="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-4 rounded-xl text-sm">
+                            Beranda
+                        </button>
+                        <button type="button" id="btn-submit-posttest" onclick="submitPosttestSesi3()" class="w-2/3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-600/25 text-sm">
+                            Simpan Sesi 3 & Lihat Rapor Hasil &check;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- LAYAR RAPOR HASIL AKHIR DI SESI 3 -->
+                <div id="closing-wrapper" class="hidden space-y-6 py-2 page-transition">
+                    <div class="bg-gradient-to-br from-slate-900 via-teal-950 to-slate-900 text-white rounded-3xl p-6 text-center space-y-4 shadow-xl relative overflow-hidden">
+                        <span class="inline-block px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-[11px] font-bold border border-teal-400/30 uppercase tracking-wider">
+                            📊 Personal Reflection Report &bull; Sesi 3 Selesai
+                        </span>
+                        <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight">
+                            Hasil Evaluasi Apresiasi & Fungsi Tubuh
+                        </h2>
+                        <p class="text-xs text-slate-300">
+                            Responden: <b id="closing-nama" class="text-white">-</b> &bull; Program: <i>Body Functionality Reflection</i>
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 py-3">
+                            <div class="relative w-36 h-36 flex items-center justify-center">
+                                <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                                    <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="10"></circle>
+                                    <circle id="score-circle-bar" cx="60" cy="60" r="50" fill="none" stroke="#14b8a6" stroke-width="10" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" class="transition-all duration-1000 ease-out"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span class="text-[10px] uppercase tracking-widest text-teal-300 font-bold">Indeks Apresiasi</span>
+                                    <span id="score-mean-display" class="text-3xl font-extrabold text-white">0.00</span>
+                                    <span id="score-total-display" class="text-[11px] text-slate-300 font-medium">dari 5.0 (0%)</span>
+                                </div>
+                            </div>
+
+                            <div class="text-left space-y-2 max-w-xs">
+                                <span class="text-[11px] uppercase tracking-wider text-teal-300 font-bold block">Profil Apresiasi Diri Saat Ini:</span>
+                                <div id="score-badge-title" class="inline-block px-3 py-1 rounded-lg bg-amber-400 text-slate-950 font-extrabold text-xs sm:text-sm">
+                                    -
+                                </div>
+                                <p id="score-badge-desc" class="text-xs text-slate-200 leading-relaxed">
+                                    -
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="text-[10px] text-slate-400 italic border-t border-white/10 pt-3">
+                            *Skor dihitung berdasarkan rata-rata evaluasi apresiasi dan fungsi tubuh sebagai gambaran reflektif, bukan diagnosis medis/klinis.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 space-y-4">
+                        <h3 class="font-extrabold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+                            <span>📈</span> Rincian 4 Dimensi Kemampuan & Apresiasi Tubuh
+                        </h3>
+
+                        <div class="space-y-3.5 text-xs">
+                            <div>
+                                <div class="flex justify-between font-bold text-slate-700 mb-1">
+                                    <span>1. Penerimaan & Kenyamanan Fisik</span>
+                                    <span id="bar-label-1" class="text-teal-700">0%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div id="bar-fill-1" class="h-full bg-teal-600 rounded-full transition-all duration-1000 ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between font-bold text-slate-700 mb-1">
+                                    <span>2. Penghormatan & Kasih Sayang Tubuh</span>
+                                    <span id="bar-label-2" class="text-teal-700">0%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div id="bar-fill-2" class="h-full bg-emerald-500 rounded-full transition-all duration-1000 ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between font-bold text-slate-700 mb-1">
+                                    <span>3. Ketahanan terhadap Standar Penampilan Sosial</span>
+                                    <span id="bar-label-3" class="text-teal-700">0%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div id="bar-fill-3" class="h-full bg-cyan-600 rounded-full transition-all duration-1000 ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between font-bold text-slate-700 mb-1">
+                                    <span>4. Kesadaran & Filter Realita Media Sosial</span>
+                                    <span id="bar-label-4" class="text-amber-700">0%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                                    <div id="bar-fill-4" class="h-full bg-amber-500 rounded-full transition-all duration-1000 ease-out" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-200/80 text-xs text-slate-600 leading-relaxed">
+                            <b>🧠 Analisis Psikologis Pengaruh Media Sosial:</b>
+                            <span id="closing-analisis-sosmed" class="block mt-1 text-slate-700"></span>
+                        </div>
+                    </div>
+
+                    <div class="bg-teal-50/60 border border-teal-200/80 rounded-2xl p-5 space-y-3 text-xs sm:text-sm">
+                        <h3 class="font-extrabold text-teal-950 flex items-center gap-2 text-sm sm:text-base">
+                            <span>💎</span> Peta Kekuatan Fungsi Tubuhmu (Rekaman Sesi 2)
+                        </h3>
+                        <p class="text-teal-900 text-xs">
+                            Berikut adalah <b>3 fungsi tubuh paling berharga</b> yang kamu tuliskan sebagai sumber kekuatanmu:
+                        </p>
+                        <ul id="closing-list-fungsi" class="list-disc pl-5 font-bold text-teal-950 space-y-1"></ul>
+                        <div class="bg-white/80 p-3 rounded-xl border border-teal-100 text-xs text-slate-700 italic">
+                            <b>Alasanmu menghargainya:</b> "<span id="closing-alasan-fungsi">-</span>"
+                        </div>
+                        <div class="bg-amber-50/80 p-3.5 rounded-xl border border-amber-200/70 text-xs text-amber-950">
+                            <span class="font-bold block mb-1">💌 Pesan Apresiasi Pribadi untuk Tubuhmu:</span>
+                            <p class="italic">"<span id="closing-surat-tubuh">-</span>"</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-teal-600 to-emerald-700 rounded-2xl p-5 text-white space-y-3.5 shadow-lg shadow-teal-600/20 text-xs sm:text-sm">
+                        <h3 class="font-extrabold text-base sm:text-lg flex items-center gap-2">
+                            <span>🚀</span> Apa yang Harus Kamu Lakukan Selanjutnya?
+                        </h3>
+                        <div class="space-y-2.5">
+                            <div class="bg-white/10 backdrop-blur-sm p-3.5 rounded-xl border border-white/15">
+                                <span class="font-bold block text-amber-300 mb-0.5">1. Latih "Shift Focus" dari Penampilan ke Fungsi</span>
+                                <p class="text-xs text-teal-50 leading-relaxed">
+                                    Saat kamu mulai mengkritik penampilan fisik di cermin, segera alihkan pikiranmu dengan menyebutkan 3 fungsi utama tubuhmu di atas yang bekerja keras membantumu beraktivitas.
+                                </p>
+                            </div>
+
+                            <div class="bg-white/10 backdrop-blur-sm p-3.5 rounded-xl border border-white/15">
+                                <span class="font-bold block text-amber-300 mb-0.5">2. Aktifkan Filter Kritis Media Sosialmu</span>
+                                <p class="text-xs text-teal-50 leading-relaxed">
+                                    Pegang teguh kesimpulanmu sendiri: <i>"<span id="closing-refleksi-sosmed">-</span>"</i>. Jangan biarkan potongan foto/video di internet menurunkan rasa syukur atas tubuhmu.
+                                </p>
+                            </div>
+
+                            <div class="bg-white/10 backdrop-blur-sm p-3.5 rounded-xl border border-white/15">
+                                <span class="font-bold block text-amber-300 mb-1">3. Jalankan 3 Komitmen Nyatamu:</span>
+                                <ul id="closing-list-komitmen" class="list-decimal pl-5 text-xs font-semibold text-white space-y-1"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex flex-col sm:flex-row gap-3 print:hidden">
+                        <button type="button" onclick="showView('view-home', 'Beranda Utama', 15)" class="w-full sm:w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3.5 px-4 rounded-xl text-xs sm:text-sm">
+                            &larr; Beranda
+                        </button>
+                        <button type="button" onclick="window.print()" class="w-full sm:w-2/3 bg-slate-800 hover:bg-slate-900 text-white font-bold py-3.5 px-6 rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center space-x-2">
+                            <span>🖨️ Simpan / Cetak Rapor Hasil (PDF)</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="w-full text-center py-5 text-slate-400 text-xs border-t border-slate-100 bg-white print:hidden">
+        <div class="flex items-center justify-center space-x-1.5 mb-1">
+            <svg class="w-3.5 h-3.5 text-teal-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+            <span>Data dijamin aman untuk kepentingan riset.</span>
+        </div>
+        <p>&copy; 2026 Body Functionality Reflection &bull; Muhammad Yoga Dwi Nugraha</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
